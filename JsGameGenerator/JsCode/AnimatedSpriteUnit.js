@@ -1,5 +1,4 @@
-﻿/// <reference path="gametemplate.js" />
-function AnimatedSpriteUnit() {
+﻿function AnimatedSpriteUnit() {
 	var base = RectUnit;
 	__extends(AnimatedSpriteUnit, base);
 

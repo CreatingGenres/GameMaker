@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link href="css/normalize.css" rel="stylesheet" />
+        <link href="css/modern.css" rel="stylesheet">
+        <link href="css/modern-responsive.css" rel="stylesheet">
+        <link href="css/theme-dark.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
+        <link href="floating-menu.css" rel="stylesheet" />
+		<link href="css/create-frames.css" rel="stylesheet"/>
+
+        <!-- Alertify -->
+        <link href="css/alertify/alertify.bootstrap.css" rel="stylesheet" />
+        <link href="css/alertify/alertify.core.css" rel="stylesheet" />
+        <link href="css/alertify/alertify.default.css" rel="stylesheet" />
+
+        <!--Responsiveness-->
+        <link rel="stylesheet" href="css/small-screen-theme/main.min.css" />
+        <link rel="stylesheet" href="css/games-view.min.css" />
+
+        <title>Gamers Creating Games for Gamers</title>
+    </head>
+    <body class="metrouicss">
+        <div id="content">
+            <div class="page">
+                <div class="page-header">
+                    <div class="padding10 page-header-content">
+                        <h1 class="element brand">
+                            Game Maker <small>from Creating Genres</small>
+                        </h1>
+					<!--Size Slider-->
+					<div id="size-slider-id" class="slider" data-role="slider">
+					</div>
+                    <!-- navbar inner -->
+                    </div>
+                <!-- navbar -->
+                </div>
+            <!-- page -->
+            </div>
+            <nav id="charms" class="bg-color-blue unselectable">
+                <img id="hide-menu" src="images/right-arrow.png" /> <br />
+                <ul class="fg-color-white" id="main-menu">
+                    <li><a class="fg-color-white" href="#home">Home<i class="nav-icon icon-home place-right"></i></a></li>
+                    <li><a class="fg-color-white" href="#lobby">Lobby<i class="nav-icon icon-broadcast place-right"></i></a></li>
+                    <li><a class="fg-color-white" href="#games">Games<i class="nav-icon icon-cube place-right"></i></a></li>
+                    <li><a class="fg-color-white" href="#create">Create<i class="nav-icon icon-mouse place-right"></i></a></li>
+                    <li><a class="fg-color-white" href="#community">People<i class="nav-icon icon-accessibility place-right"></i></a></li>
+                    <li><a class="fg-color-white" href="#play">Play<i class="nav-icon icon-rocket place-right"></i></a></li>
+                </ul>
+            </nav>
+            
+            <div id="home" class="page">
+    <div class="page-region">
+        <div class="page-region-content">
+            <div class="grid">
+                <div class="row" style="margin-top: 30px;">
+                    <div class="span8">
+                        <div class="hero-unit text-center">
+                                <img src="images/logo.png" style="width: 100%; padding-bottom: 1em;"/>
+                            <p class="text-center">
+                                So, you like our Game Maker?
+                                <br />
+                                <a target="_blank" href="http://www.creatinggenres.com/">See what the fuss is all about</a>
+                            </p>
+                        </div>
+                    <!-- span (the span8, Kolio) -->
+                    </div>
+                                
+                    <div class="span4 padding40 text-center bg-color-blueLight">
+                                        
+                            <h2 class="fg-color-red">why not play your games instead?</h2>
+                            <p class="">Immense <a class="" href="#community">possibilities</a> every day</p>
+                                        
+                            <a href="#games"><h1><i class="icon-arrow-right-3 fg-color-red"></i></h1></a>
+                    </div>
+                                
+                <!-- row -->
+                </div>
+                            
+            <!-- grid collapse -->
+            </div>
+                    
+            <div class="grid">
+                <div class="row">
+                    <div class="span4 padding10 text-center bg-color-blue">
+                        <a href="#create">
+                            <h2 class="fg-color-white">Create <i style="font-size: 1.3em;" class="icon-pencil place-right"></i></h2>
+                        </a>
+                    <!-- span -->
+                    </div>
+                                
+                    <div class="span4 padding10 text-center bg-color-green">
+                        <a href="#games">
+                            <h2 class="fg-color-white">Explore <i style="font-size: 1.3em;" class="icon-cloud place-right"></i></h2>
+                        </a>
+                        <!-- span -->
+                    </div>
+                                
+                    <div class="span4 padding10 text-center bg-color-red">
+                        <a href="#community">
+                            <h2 class="fg-color-white">Share <i style="font-size: 1.3em;" class="icon-share place-right"></i></h2>
+                        </a>
+                        <!-- span -->
+                    </div>
+                            
+                </div>
+                <!--grid collapse-->
+            </div>
+            <!-- page region content -->
+        </div>
+        <!-- page region -->
+    </div>
+    <!-- page -->
+</div><div class="page hidden" id="games">
+    <div class="grid padding20">
+        <div class="row">
+            <div class="span10 offset1">
+                <h2 class="padding20 fg-color-white">Custom Games</h2>
+                <ul class="replies" data-bind="foreach: publishedGames">
+					<!-- ko if: $index() == 0 -->
+                    <li class="tile bg-color-blueDark" onclick="playDAHGAME('DungeonApospimise.js');">
+                        <div class="avatar"><img src="images/game.ico" /></div>
+                        <div class="reply">
+                            <div class="date">Not 26 March 2013</div>
+                            <div class="author" >Kolio</div>
+                            <div class="text" >A game we surely didnt make 2 hours before the presentation.</div>
+                        </div>
+                    <!-- game -->
+                    </li>
+                    <li class="tile bg-color-red" onclick="playDAHGAME('game.js'); ">
+                        <div class="avatar"><img src="images/game.ico" /></div>
+                        <div class="reply">
+                            <div class="date">26 March 2013</div>
+                            <div class="author" >Traiko</div>
+                            <div class="text" >Lorem ipsum</div>
+                        </div>
+                    <!-- game -->
+                    </li>
+					<!-- /ko -->
+					<li class="tile bg-color-blueDark" data-bind="click: function () { loadPublishedGame($data); }">
+                        <div class="avatar"><img src="images/game.ico" /></div>
+                        <div class="reply">
+							<h3 class="name" data-bind="text: $data"></h3>
+                            <div class="date">UNKNOWN</div>
+                            <div class="author">UNKONWN</div>
+                            <div class="text" >UNKNOWN</div>
+                        </div>
+					</li>
+                <!-- game list -->
+                </ul>
+            <!-- span -->
+            </div>
+                       
+        <!-- row -->
+        </div>
+                    
+    <!-- grid -->
+    </div>
+<!-- page -->
+</div>
+<div class="page hidden" id="create">
+    <div class="hidden" id="create-small-screen">
+        <div class="message">
+            Uh-oh!
+        </div>
+
+        <div class="title">
+            Creating games is only possible on desktop devices. That doesn't mean you can't play them, though!<br />
+            Head over to the play page and try them out.
+        </div>
+    </div>
+
+<!--    <div class="row text-center">
+        <div class="span2 offset5">
+            <button class="button bg-color-purple fg-color-white" id="play-button">Play</button>
+        </div>
+    </div> <!-- row -->
+    <div id="main-content">
+        <div class="page-control">
+            <!-- Responsive controls -->
+            <span class="menu-pull"></span> 
+            <div class="menu-pull-bar"></div>
+
+            <!-- Tabs -->
+            <ul style="background-color: rgba(255, 255, 255, 0.6)">
+                <li><button id="play-button" class="">Play</button></li>
+                <li data-trigger="scroll" data-scroll="0"><a><strong>Edit</strong></a></li>
+                <li data-trigger="scroll" data-scroll="1"><a><strong>Unit</strong></a></li>
+                <li data-trigger="scroll" data-scroll="2"><a><strong>Events / Key Bindings</strong></a></li>
+                <li data-trigger="scroll" data-scroll="3"><a><strong>Game</strong></a></li>
+
+			    <li data-trigger="scroll" data-scroll="4" class="place-right"><a href="#frame-manage"><strong>Manage <i class="icon-bookmark-4"></i></strong></a></li>
+            </ul>
+	    </div>
+
+            <!-- Tabs content -->
+            <div class="frame-container" style="border: none">
+                <div class="frame-tab" id="frame-edit">
+                    <!-- Basic unit editing toolbox. Dependencies: Units -->
+                    <!--REVIEW: looks nice, except for id-->
+
+                    <div class="span3 bg-color-purple" style="float: left;">
+                        <h3 class="fg-color-white">Toolbox</h3>
+                            
+                        <ul class="accordion span3 dark" data-role="accordion">
+                            <li>
+                                <!--For every unit we need the name, prototype and id-->
+                                <a href="#" class="fg-color-white">Units<i class="icon-user"></i></a>
+                                <div data-bind="foreach: model.units">
+                                    <button class="meduim active"
+                                        data-bind="attr: { 'data-id': id }, click: window.onUnitButtonClick.bind($data)">
+                                            
+                                        <i class="icon-cancel place-left" data-bind="if: isPrototype()"></i>
+                                        <i class="icon-user place-left" data-bind="ifnot: isPrototype()"></i>
+
+                                        <span data-bind="text: id"></span>
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                            
+                    </div>
+                        
+                    <!--Main canvas. Everything gets drawn here.-->
+                    <div class="span9 border-color-white" style="display: inline-block;">
+                        <canvas id="game-canvas" width="800px" height="600px" class="game-canvas"></canvas>
+                    </div>
+                </div>
+
+                <!--This is a grid to allow the span*-s to align in colums-->
+                <!--The unit tab-->
+                <div id="frame-unit"  class="frame-tab grid" data-bind="with: selectedUnit">
+                    <div class="row">
+                        <!--2 of 12 to thumbnail-->
+                        <div class="span2">
+                            <!--a tile with a thumbnail-->
+                            <div class="tile icon(image)">
+                                <div class="tile-content">
+                                    <img class="filled" data-bind="attr: { src: texture(), width: size.width(), height: size.height() }"/>
+                                    <div class="brand bg-color-red">
+                                        <p class="text" data-bind="text: id"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Reset bindings to default.-->
+                        <!-- ko with: $root -->
+                            <!--5 of 12 to properties-->
+                            <div class="span6">
+                                <h2 class="fg-color-white">Properties</h2>
+
+                                <ul class="listview fluid" data-bind="foreach: $root.getObjectProperties(selectedUnit())">
+                            
+                                    <!-- ko if: type && type != "none" -->
+                                    <li style="width: auto;">
+                                        <div data-bind="template: { name: type, data: $data }"></div>
+                                    </li>
+                                    <!-- /ko -->
+                                </ul>
+                            </div>
+
+                            <div data-bind="template: { 
+							    name: 'module-edit', 
+							    data: { 
+								    editedEntity: selectedUnit(), 
+								    toChooseFrom: $root.filterUnitModules,
+								    target: selectedUnit()
+							    }
+						    }"></div>
+                        
+                        <!--It adds up to 13. May break the responsive design.-->
+                        <!-- /ko -->
+                    </div>
+                </div> 
+		
+                <div id="frame-key-bindings" class="frame-tab grid">
+                    <div class="row">
+                        <div class="span4 offset2">
+                            <!--3 of 12 to events-->
+                            <div class="span4">
+                                <h2 class="fg-color-white">Events</h2>
+
+                                <div data-bind="foreach: gameMakerViewModel.selectedUnit().events">
+                                    <button class="bg-color-blue fg-color-white"
+										    data-trigger="popup" data-popup="event-edit"
+                                            data-bind="text: name, click: dialogs.beginEdit.bind($data)">
+                                    </button>
+                                </div>
+
+                                <div class="input-control select">
+                                    <select data-bind="foreach: eventList">
+                                        <option data-bind="text: name"></option>
+                                    </select>
+                                </div>
+                                        
+                                <button id="add-event" data-bind="click: addEvent">Add Event</button>
+                            </div>
+                        </div>
+
+                        <div class="span4 offset2">
+                            <h2 class="fg-color-white">Key Bindings</h2>
+
+                            <div style="max-height: 25em; overflow-y: hidden; overflow-x: hidden;">
+                                <!--DAFUQ TRAIKO-->
+                                <div id="bindings" data-bind="foreach: model.keyBindings">
+
+                                    <!-- ko if: !target() || target().substr(1, target().length) == $root.selectedUnit().id() -->
+                                    <button data-type="module-button"
+                                            class="bg-color-blue fg-color-white"
+                                            data-trigger="popup" data-popup="binding-select"
+                                            data-bind="text: key() == 'None' ? 'None' : String.fromKeyCode(key()), click: dialogs.beginEdit.bind($data)" >
+                                    </button>
+                                    <!-- /ko -->
+                                </div>
+                                        
+                                <button id="add-binding" data-bind="click: addBinding">Add Binding</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="frame-game-properties" class="frame-tab grid" >
+                    <div class="row">
+                        <div class="span6 offset2">
+                            <ul class="listview fluid">
+                                <li style="width: auto;">
+                                    <h2 class="fg-color-white">Name</h2>
+                                    <div class="input-control text">
+                                        <input type="text" class="with-helper" placeholder="Name" data-bind="value: model.name" />
+                                        <button class="helper"></button>
+                                    </div>
+                                </li>
+                            
+                                <li style="width: auto;">
+                                    <h2 class="fg-color-white">Background</h2>
+                                
+                                    <button class="bg-color-blue fg-color-white" data-trigger="popup" data-popup="image-select"
+                                        onclick="dialogs.beginEdit.call(gameMakerViewModel.model.background.texture, 'picture');">Change Image</button>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                        <div data-bind="template: {
+						    name: 'module-edit',
+						    data: {
+							    editedEntity: model,
+							    toChooseFrom: $root.filterGameModules,
+							    target: model
+						    }
+					    }"></div>
+                    </div>
+                </div>
+
+			    <div id="frame-manage" class="frame-tab">				
+				    <ul data-bind="foreach: saveFiles" class="tile-group unselectable">
+					    <li class="tile resizable bg-color-blueDark">
+						    <div class="tile-content">
+							    <h2 class="unselectable" data-bind="text: name"></h2>
+							    <i class="icon-clock"></i>
+							    <h3 class="unselectable" data-bind="text: timestamp.toLocaleDateString()"></h3>
+							    <h3 class="unselectable" data-bind="text: timestamp.toLocaleTimeString()"></h3>
+						    </div>
+					    </li>
+				    </ul>		
+				    <i id="delete-saves-button" class="save-file-icon icon-cancel-2"></i>
+				    <input id="save-name-input" placeholder="Save Name" type="text" />
+				    <i id="save-button" class="save-file-icon icon-database"></i>
+			    </div>
+
+			    <!-- frame -->
+            </div> <!-- frames -->
+        
+        </div> <!-- content -->
+    </div> <!-- page -->
+
+    <!--Region: templates-->
+    <script type="text/html" id="module-edit">
+        <!--5 of 12 to Modules-->
+        <div class="span5">
+            <h2 class="fg-color-white">Modules</h2>
+            <div class="clearfix" data-bind="foreach: editedEntity.modules">
+                <div
+                        class="tile half half-vertical resizable bg-color-blue fg-color-white">
+    <!--                    data-bind="text: name, click: dialogs.launchModuleEditDialog.bind($data, $parent.target)" >-->
+				    <div class="tile-content" data-bind="text: name, click: dialogs.beginEdit.bind($data, 'module')"
+					    data-trigger="popup" data-popup="module-edit-popup">
+				    </div>
+                </div>
+            </div>
+                                        
+		    <div class="clear">
+			    <div class="input-control select">
+				    <select name="modules"  data-bind="options: toChooseFrom, optionsText: 'name'">
+				    </select>
+			    </div>
+			    <button id="add-module" data-bind="click: $root.addModule">Add Module</button>
+		    </div>
+        </div>
+    </script>
+
+    <script type="text/html" id="text">
+        <div class="input-control text fg-color-white span2">
+            <label data-bind="text: name"></label>
+            <input type="text"
+                class="with-helper"
+                data-bind="value: binding, attr: { placeholder: name }"
+                data-validate="formula" />
+        </div>
+    </script>
+    <script type="text/html" id="integer"> </script>
+    <script type="text/html" id="float"> </script>
+    <script type="text/html" id="function">adsf</script>
+    <script type="text/html" id="picture">
+        <button class="bg-color-blue fg-color-white" data-trigger="popup" data-popup="image-select"
+            data-bind="click: dialogs.beginEdit.bind(binding, 'picture')">Background</button>
+            <!-- data-bind="click: dialogs.launchImageSelectDialog" -->
+    </script>
+    <script type="text/html" id="color">as</script>
+    <script type="text/html" id="font">adsf</script>
+    <script type="text/html" id="vector">
+        <h4 class="fg-color-white" data-bind="text: name"></h4>
+        <div data-bind="template: { name: 'text', data: { binding: binding[Object.keys(binding)[0]], name: Object.keys(binding)[0] } }"></div>
+        <div data-bind="template: { name: 'text', data: { binding: binding[Object.keys(binding)[1]], name: Object.keys(binding)[1] } }"></div>
+    </script>
+    <script type="text/html" id="none"> </script><div id="play" class="page hidden">        
+    <div id="play-div" class="span10">
+        <canvas id="play-canvas" width="800px" height="600px"></canvas>
+
+        <script id="play-script"></script>
+    </div>
+
+    <div class="controls">
+        <div class="span3 button fg-color-white text-center bg-color-blue"
+            onclick="if(game)game.start();" style="font-size: 1.2em;">
+            (Re)Play <i style="font-size: 1em;" class="icon-rocket place-right"></i>
+            <!-- span -->
+        </div>
+
+        <div class="span3 button fg-color-white text-center bg-color-blue"
+            onclick="if(game)game.togglePause();" style="font-size: 1.2em;">
+            (Un)Pause <i style="font-size: 1em;" class="icon-rocket place-right"></i>
+            <!-- span -->
+        </div>
+        
+        <div id="Div1" class="span3 button fg-color-white text-center bg-color-blue"
+            style="font-size: 1.2em;">
+            Download <i style="font-size: 1em;" class="icon-download-2 place-right"></i>
+            <!-- span -->
+        </div>
+
+        <div id="publish-button" class="span3 button fg-color-white text-center bg-color-blue"
+            style="font-size: 1.2em;">
+            Publish <i style="font-size: 1em;" class="icon-share-2 place-right"></i>
+            <!-- span -->
+        </div>
+    </div>
+    <!-- play page here -->
+</div>
+
+            <div class="page hidden" id="loading">
+                <div class="text-center" style="padding-top: 10em;">
+                    <img src="images/preloader-w8-cycle-white.gif"/>
+                </div>
+            </div>
+
+        </div> <!-- content -->
+
+        <!--From now on, i'm inlining the shit out of styles-->
+<link href="css/dialogs.css" rel="stylesheet" />
+<!--Also, break down the dependencies on each file-->
+<div id="dialog-markup">
+    <div id="image-select" class="popup hidden">
+        <div class="arrow-left"></div>
+
+        <div class="page-control" data-role="page-control">
+            
+            <span class="menu-pull"></span> 
+            <div class="menu-pull-bar"></div>
+
+            <!-- Tabs -->
+            <ul>
+                <li class="active"><a href="#library-page"><strong>Library</strong></a></li>
+                <li><a href="#google-page"><i class="icon-search"></i><strong>Google</strong></a></li>
+            </ul>
+            
+            <div class="frames" style="border: none">
+                <div class="frame active" id="library-page">
+                <!-- ko if: editedProperty() && ko.isObservable(editedProperty()) -->
+                    <div data-bind="foreach: library.images"
+                            class="image-collection image-library">
+                        <div>
+                            <img data-type="library-image" data-bind="attr: { src: $data }" onclick="dialogs.deselectOthers (this, 'library-image')"/> 
+                        </div>
+                    </div>
+                <!-- /ko -->
+                </div>
+
+                <div class="frame text-center" id="google-page">
+                    <div class="span7">
+                        <div class="input-control text">
+                            <input id="google-search-field" type="text" />
+                            <button class="btn-clear"></button>
+                        </div>
+
+                        <button id="google-search-button" class="fg-color-white bg-color-blue">Search</button>
+
+                        <div data-bind="foreach: googleSearchResults" class="image-collection image-library">
+                            <div>
+                                <img data-type="google-image" data-bind="attr: { src: $data }" onclick="dialogs.chooseGoogleImage (this, 'google-image')" /> 
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+	<!-- IMPORTANT: The only way we can differentiate between a standard module and an event is to check the existence of the requirements-->
+	<div id="module-edit-popup" data-bind="if: editedProperty() && editedProperty().name && editedProperty().invocationArgs && editedProperty().args && !editedProperty().requirements" 
+		class="popup hidden">
+        <div class="arrow-left"></div>
+
+		<span class="fg-color-black text-center"
+				data-bind="visible: Array.findObservable(modules(), 'name', editedProperty().name()).args().length == 0">
+			Nothing to edit here!
+		</span>
+                
+		<div data-bind="foreach: Array.findObservable(modules(), 'name', editedProperty().name()).args">
+			<div class="input-control text">
+				<input id="background-changer" type="text"
+					class="with-helper"
+					data-bind="value: Array.findObservable($root.editedProperty().args(), 'name', name()).value, attr: { placeholder: name() }" />
+				<button class="helper"></button>
+			</div>
+		</div>
+	</div>
+
+    <div id="error-creating" class="hidden error-bar">
+        <h1>There was an error creating the game.</h1><br>
+        Please make sure that:
+        <ul style="list-style-type: circle">
+            <li>When specifying unit name in an event/module other than the <strong>"Attack" module</strong>, make sure the name is enclosed in SINGLE 'quotes'</li>
+            <li>When specifying position/size/velocity, make sure you enter a number. Formulae are not supported yet.</li>
+            <li>Any input other than numbers and the keywords: "unitOffsetX", "unitOffsetY", "Random" (case sensitive) is invalid</li>
+        </ul>
+        Sorry for not having debbuging functionality yet.
+
+		<button class="place-right close-error">Close me</button>
+    </div>
+
+    <div id="error-publishing" class="hidden error-bar">
+        <h1>There was an error publishing the game.</h1><br>
+        Sorry for not having debbuging functionality yet.
+
+		<button class="place-right close-error">Close me</button>
+    </div>
+
+	<div id="error-saving" class="hidden error-bar">
+		<h1>There was an error loading this save</h1>
+
+		This save file appears to be corrupt. You may:
+        <ul style="list-style-type: circle">
+            <li>Go have a cold bear to help you mourn about your lost data.</li>
+            <li>Go have a hot stripper to help you mourn about your lost data.</li>
+            <li>Call us and hope we may help you. (Most of time our support will just send you back to the above 2 options, so don't count on it.)</li>
+        </ul>
+
+		<button class="place-right close-error">Close me</button>
+	</div>
+            
+    <div id="binding-select" data-bind="if: editedProperty() && editedProperty().key && editedProperty().singleCall != undefined"
+		class="popup hidden">
+        <div class="arrow-left"></div>
+
+        <div class="text-center" data-bind="with: editedProperty">
+            <button data-bind="text: key() == 'None' ? 'None' : String.fromKeyCode(key()), click: $root.listenForBind"
+                class="fg-color-white bg-color-blue text-center" data-type="listener">
+            </button>
+                    
+            <div class="input-control select">
+                <!--The filter test checks if the game module has an invoke method-->
+                <select class="binding-modules"
+                    data-bind=
+                        "foreach: $root.selectedUnit().id() == 'None' ?
+                            $root.invokableGameModules :
+                            $root.selectedUnit().modules, value: $root.targetModuleName,
+						event: { change: $root.changeBindingsArgs }">
+                    <option data-bind="text: name"></option>
+                </select>
+            </div>
+					
+			<label class="input-control switch">
+				<input type="checkbox" data-bind="checked: singleCall">
+				<span class="helper">Single call</span>
+			</label>
+                    
+			<div data-bind="template: { name: 'module-invocation-args-template', data: args }"></div>
+        </div>
+	</div>
+    <!-- binding -->
+
+	<script type="text/html" id="module-invocation-args-template">
+		<div data-bind="foreach: $data">
+			<span data-bind="text: name"></span>
+			<input type="text"
+				data-bind="value: value, attr: { placeholder: name }"/>
+			<br/>
+		</div>
+    </script>
+            
+    <div id="event-edit" data-bind="if: editedProperty() != undefined && editedProperty().requirements != undefined" class="popup hidden">
+        <div class="arrow-left"></div>
+		
+		<!-- ko with: editedProperty -->
+        <h3 class="text-center" data-bind="text: name"></h3>
+                
+		<!--comment this-->
+        <div class="span3 bg-color-white text-center grid" data-bind="with: $root">
+            <div id="requirements" class="row dark">
+                <div class="span3" data-bind="visible: editedProperty().requirements().length">
+                    <a href="#" class="fg-color-white">Conditions</a>
+                    <div data-bind="foreach: editedProperty().requirements">
+                                
+                        <div class="input-control text fg-color-black">
+                            <span data-bind="text: name"></span>
+                            <input type="text"
+                                class="with-helper" 
+                                data-bind="value: value" />
+                        </div>
+                    </div>
+                </div>
+                        
+                <!-- region: Default -->
+                <div class="span3">
+                    <a href="#" >
+                        Properties
+                    </a>
+                            
+                    <div class="properties" style="max-height: 33em; overflow-y: hidden; overflow-x: hidden;"
+                        data-bind="foreach: editedProperty().args">
+                        <div class="input-control text fg-color-black"
+                            data-bind="visible: $root.hasPointsModule() || name() != 'points'">
+                            <span data-bind="text: name"></span>
+                            <input type="text"
+                                class="with-helper"
+                                data-bind="value: value, attr: { placeholder: name }" />
+                        </div>
+                    </div>
+                </div>
+				<div class="span3">
+                    <a href="#">
+                        Action
+                    </a>
+
+					<div data-bind="with: editedProperty().action">
+                        <div class="input-control text fg-color-black">
+                            <span>Target </span>
+                            <select 
+                                class="with-helper"
+                                data-bind="value: $root.eventTarget, options: $root.model.units, optionsText: 'id'">
+							</select>
+							<!-- ko if: $root.eventTarget().modules().length != 0 -->
+								<span>Module name </span>
+								<select 
+									class="with-helper"
+									data-bind="value: $root.eventModule, options: $root.eventTarget().modules, optionsText: 'name'" >
+								</select>
+								
+								<!-- ko if: $root.eventModule().invocationArgs().length != 0 -->
+									<span>Args </span>
+									<div data-bind="template: { name: 'module-invocation-args-template', data: args }"></div>
+								<!-- /ko -->
+							<!-- /ko -->
+							<!-- ko ifnot: $root.eventTarget().modules().length != 0 -->
+								<span>Fuck you, there are no modules on this unit!</span>
+							<!-- /ko -->
+                        </div>
+
+					</div>
+
+
+				</div>
+                        
+            </div>
+        </div>
+
+		<!-- /ko -->
+    </div>
+</div>
+
+        <!-- le scripts -->
+        <script src="Scripts/libraries/jquery-1.9.1.min.js"></script>
+
+        <!-- metro ui -->
+        <script src="Scripts/libraries/dropdown.js"></script>
+        <script src="Scripts/libraries/dropdown.js"></script>
+        <script src="Scripts/libraries/tile-drag.js"></script>
+        <script src="Scripts/libraries/buttonset.js"></script>
+        <script src="Scripts/libraries/accordion.js"></script>
+        <script src="Scripts/libraries/input-control.js"></script>
+        <script src="Scripts/libraries/dialog.js"></script>
+        <script src="Scripts/libraries/pagecontrol.js"></script>
+        
+        <!-- libraries -->
+        <script src="Scripts/libraries/jquery-ui-1.10.1.custom.js"></script>
+        <script src="Scripts/libraries/knockout-2.2.1.js"></script>
+        <script src="Scripts/libraries/knockout.mapping-latest.js"></script>
+        <script src="Scripts/libraries/sammy-0.7.4.js"></script>
+        <script src="Scripts/libraries/shunting-yard.js"></script>
+		<script src="Scripts/libraries/slider.js"></script>
+        <script src="Scripts/libraries/alertify/alertify.min.js"></script>
+
+        <!-- custom scripts -->
+        <script src="Scripts/Extensions.js"></script>
+
+        <script src="data/baseModel.js"></script>
+        <script src="Scripts/config.js"></script>
+        <script src="Scripts/navigator.js"></script>
+        
+        <script src="../Scripts/jquery.signalR-1.0.1.js"></script>
+        <script src="../signalr/hubs"></script>
+        <script src="Scripts/Main.js"></script>
+        
+		<script src="Scripts/saveManager.js"></script>
+		<script src="Scripts/undoManager.js"></script>
+		<script src="Scripts/create.js"></script>
+        <script src="Scripts/dialogs.js"></script>
+        <script src="Scripts/view.js"></script>
+        <script src="Scripts/key-bindings.js"></script>
+        <script src="Scripts/Extensions.js"></script>
+        <script src="Scripts/model.js"></script>
+        <script src="Scripts/view-model.js"></script>
+        <script src="Scripts/basic-renderer.js"></script>
+        
+		<script src="Scripts/create-scroll-control.js">	</script>
+        <script src="Scripts/popup.js"></script>
+        <script src="Scripts/validator.js"></script>
+        <script src="Scripts/logger.js"></script>
+
+        <script>
+            // Mega custom thingy
+            var charmsBarSelector = "#charms";
+            $(window).load(function () {
+                $("#hide-menu").click(function (e) {
+                    $(charmsBarSelector).removeClass("active");
+                    e.stopPropagation();
+                });
+
+                $(".nav-icon").click(function (e) {
+                	e.stopPropagation();
+                });
+
+                $(charmsBarSelector).click(function () {
+                    $(charmsBarSelector).addClass("active");
+                });
+            });
+        </script>
+        
+    </body>
+</html>

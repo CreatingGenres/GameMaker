@@ -1,11 +1,9 @@
-﻿/// <summary>Deep copies the object.</summary>
-/// <param name="obj" type="Object">The object do be copied</param>
-/// <returns type="Object">A deep copy of the original object.</returns>
+﻿//Cool stuff to buff prototypes with
 function clone(obj) {
     if (obj == null || typeof (obj) != 'object' || obj.nodeName)
         return obj;
 
-    var temp = new obj.constructor();
+    var temp = new obj.constructor(); // changed
 
     for (var key in obj)
         temp[key] = clone(obj[key]);
@@ -105,9 +103,6 @@ var Helper = {
 	},
 }
 
-/// <summary>
-/// Removes the item with the specified key from the specified array.
-/// </summary>
 Array.removeItem = function (array, key) {
 	if (!array.hasOwnProperty(key))
 		return;
@@ -117,9 +112,6 @@ Array.removeItem = function (array, key) {
 		array.splice(key, 1);
 };
 
-/// <summary>
-/// Deep copies the specified array.
-/// </summary>
 Array.deepCopy = function (arr) {
     var out = [];
 
@@ -153,8 +145,6 @@ var __extends = function (derived, base) {
 };
 
 // Extra Math functions
-
-/// <summary>Clamps the value between the left and right limits.</summary>
 Math.clamp = function (value, left, right) {
     if (value > right) {
         return right;
@@ -178,9 +168,8 @@ Math.sign = function (number) {
     return number / Math.abs(number);
 };
 
-/// <summary>Returns a FUNCTION that given a x coordinate,
-/// calculates the y coordinate of the point with the same x value that lies on the line defined by the 2 points (x1, y1) and (x2, y2)
-/// </summary>
+// Returns a function that given a x coordinate, 
+// calculates the y coordinate of the point with the same x value that lies on the line defined by the 2 points (x1, y1) and (x2, y2)
 Math.getLineEquation = function (x1, y1, x2, y2) {
     return function (x) {
         return y1 + ((y2 - y1) / (x2 - x1)) * (x - x1);
@@ -300,6 +289,15 @@ Array.findObservable = function (array, attribute, value) {
 
 window.onmousemove = function (args) {
     window.mouse = args;
+};
+
+Array.removeItem = function (array, key) {
+    if (!array.hasOwnProperty(key))
+        return
+    if (isNaN(parseInt(key)) || !(array instanceof Array))
+        delete array[key]
+    else
+        array.splice(key, 1)
 };
 
 // Get the name of any keyboard button

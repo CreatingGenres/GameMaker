@@ -1,0 +1,6 @@
+D:\Projects\work\GameMaker\JsGameGenerator\bin\Debug\JsGameGenerator.dll
+D:\Projects\work\GameMaker\JsGameGenerator\bin\Debug\JsGameGenerator.pdb
+D:\Projects\work\GameMaker\JsGameGenerator\bin\Debug\Newtonsoft.Json.xml
+D:\Projects\work\GameMaker\JsGameGenerator\obj\Debug\JsGameGenerator.csprojResolveAssemblyReference.cache
+D:\Projects\work\GameMaker\JsGameGenerator\obj\Debug\JsGameGenerator.dll
+D:\Projects\work\GameMaker\JsGameGenerator\obj\Debug\JsGameGenerator.pdb

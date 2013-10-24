@@ -1,5 +1,4 @@
-﻿using GameMaker.ModelStructure;
-using GameMaker.ModelStructure.Units;
+﻿using GameMaker.Model_Structure.Units;
 using Newtonsoft.Json;
 using System;
 using System.Globalization;
@@ -42,9 +41,9 @@ namespace GameMaker
 				var models = (from thing in Assembly.GetAssembly(typeof(Unit)).GetTypes()
 							 where thing.IsClass && thing.Namespace == "GameMaker.Model_Structure.Units"
 							 select thing).ToList();
-				var attributeType = typeof(GameMaker.ModelStructure.EditorFieldAttribute);
+				var attributeType = typeof(EditorField);
 
-				var data = GameMaker.ModelStructure.Helper.GetTypeAttributesData(models, attributeType,
+				var data = GameMaker.Helper.GetTypeAttributesData(models, attributeType,
 					attributeType.GetProperty("Type"));
 
 				string baseModelTemplate = "template = {0}";

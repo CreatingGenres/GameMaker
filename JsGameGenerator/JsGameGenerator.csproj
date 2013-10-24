@@ -44,26 +44,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="ModelStructure\EditorField.cs" />
-    <Compile Include="ModelStructure\Helper.cs" />
+    <Compile Include="EditorField.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="JsGenerator.cs" />
-    <Compile Include="ModelStructure\Background.cs" />
+    <Compile Include="Model Structure\Background.cs" />
     <Compile Include="ICodeGenerator.cs" />
-    <Compile Include="ModelStructure\EventExtensions.cs" />
-    <Compile Include="ModelStructure\Units\Size.cs" />
-    <Compile Include="ModelStructure\Units\Vector2.cs" />
-    <Compile Include="ModelStructure\Event.cs" />
-    <Compile Include="ModelStructure\GameModel.cs" />
-    <Compile Include="ModelStructure\IExtensible.cs" />
-    <Compile Include="ModelStructure\KeyBinding.cs" />
-    <Compile Include="ModelStructure\Module.cs" />
-    <Compile Include="ModelStructure\ModuleCollection.cs" />
-    <Compile Include="ModelStructure\Units\Unit.cs" />
-    <Compile Include="ModelStructure\Units\AnimatedSpriteUnit.cs" />
-    <Compile Include="ModelStructure\Units\Animation.cs" />
-    <Compile Include="ModelStructure\Units\InanimatedSpriteUnit.cs" />
-    <Compile Include="ModelStructure\Units\RectangleUnit.cs" />
+    <Compile Include="Model Structure\EventExtensions.cs" />
+    <Compile Include="Model Structure\Units\Size.cs" />
+    <Compile Include="Model Structure\Units\Vector2.cs" />
+    <Compile Include="Model Structure\Event.cs" />
+    <Compile Include="Model Structure\GameModel.cs" />
+    <Compile Include="Model Structure\IExtensible.cs" />
+    <Compile Include="Model Structure\KeyBinding.cs" />
+    <Compile Include="Model Structure\Module.cs" />
+    <Compile Include="Model Structure\ModuleCollection.cs" />
+    <Compile Include="Model Structure\MouseBinding.cs" />
+    <Compile Include="Model Structure\Player.cs" />
+    <Compile Include="Model Structure\Units\Unit.cs" />
+    <Compile Include="Model Structure\Units\AnimatedSpriteUnit.cs" />
+    <Compile Include="Model Structure\Units\Animation.cs" />
+    <Compile Include="Model Structure\Units\InanimatedSpriteUnit.cs" />
+    <Compile Include="Model Structure\Units\RectangleUnit.cs" />
     <Compile Include="PathFinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -38,7 +38,7 @@ var saveManager = (function () {
 
 
 	// The next 4 functions are a single polyfill. We may not serialize undefined values as json. The model contains some values that just happen to be undefined
-	// at certain times. Therefore, the save manager and only it uses the jsonStringifyUndefined / jsonParseUndefined  to deal with it. Note - null values wont persist when 
+	// at certain times. Therefore, the save manager and only it uses the jsonStringify(Parse)Undefined to deal with it. Note - null values wont persist when 
 	// deserialized, instead they'll be replace with undefined.
 	var deepCopy = function deepCopy(obj) {
 		if (obj == null || typeof (obj) != 'object' || obj.nodeName)
@@ -51,9 +51,6 @@ var saveManager = (function () {
 		return temp;
 	}
 
-	/// <summary>
-	/// Loops trough all properties of the object and replaces all occurrences of valueToReplace with replacer.
-	/// </summary>
 	var replaceSpecialValue = function (obj, valueToReplace, replacer) {
 		for (var i in obj) {
 			if (obj[i] instanceof Object && !(obj[i] instanceof Function)) {
@@ -67,17 +64,12 @@ var saveManager = (function () {
 		}
 	};
 
-	/// <summary>
-	/// Properly stringifies an object that contains undefined values
-	/// </summary>
 	var jsonStringifyUndefined = function (obj) {
 		obj = deepCopy(obj);
 		replaceSpecialValue(obj, undefined, null);
 		return JSON.stringify(obj);
 	};
-	/// <summary>
-	/// Properly parses an json that contains null values instead of undefineds.
-	/// </summary>
+
 	var jsonParseUndefined = function (json) {
 		var obj = JSON.parse(json);
 		replaceSpecialValue(obj, null, undefined);
@@ -91,8 +83,7 @@ var saveManager = (function () {
 		var existingSaves = JSON.parse(savesAsJson) || {}; // If undefined, set it to an empty object so that the next call doesn't trow
 		Object.keys(existingSaves).forEach(function (value, index) {
 			var save = existingSaves[index];
-			// Parsing a Date object returns a string so we need to explicitly set the date. 
-			// Check that JSON.parse(JSON.stringify(new Date())) returns a string if you don't believe
+			// Parsing a Date object returns a string explicitly set the date. Check that JSON.parse(JSON.stringify(new Date())) returns a string if you don't believe
 			save.timestamp = new Date(save.timestamp);
 			saveManager.saveFiles.push(save);
 		});
@@ -153,9 +144,6 @@ var saveManager = (function () {
 		renderer.updateViewModel(gameMakerViewModel);
 	}
 
-	/// <summary>Saves the specified viewModel into a new save slot with the given name.</summary>
-	/// <param name="viewModel" type="Object">The viewModel to save</param>
-	/// <param name="saveName" type="String">The name of the save.</param>
 	saveManager.save = function (viewModel, saveName) {
 		// If no name is specified, set the name to be Unnamed_Index where index is the last available.
 		saveName = saveName ? saveName : specialValues.unnamedPrefix + ++specialValues.lastUnnamedIndex;
@@ -165,9 +153,7 @@ var saveManager = (function () {
 		saveManager.saveFiles.push(save);
 		saveToStorage();
 	}
-
-	/// <summary>Loads the viewModel from the save with the specified name.</summary>
-	/// <param name="saveName" type="String">The name of the save.</param>
+	
 	saveManager.load = function (saveName) {
 		if (!saveName) {
 			throw new Error("Empty save name!");
@@ -201,8 +187,6 @@ var saveManager = (function () {
 		return true;
 	}
 
-	/// <summary>Deletes the viewModel with the specified name.</summary>
-	/// <param name="saveName" type="String">The name of the save.</param>
 	saveManager.delete = function (saveName) {
 		saveManager.saveFiles.remove(function (x) {
 			return x.name == saveName;

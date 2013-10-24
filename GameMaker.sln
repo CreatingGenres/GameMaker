@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsGameGenerator", "JsGameGe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameMaker.Console", "GameMaker.Console\GameMaker.Console.csproj", "{EB3F46A1-875D-4E89-AE61-086BCAF3FA69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameMakerUITests", "GameMakerUITests\GameMakerUITests.csproj", "{F6B45DD4-51D4-4659-A0E5-F77D31E62B1E}"
-EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -31,10 +29,6 @@ Global
 		{EB3F46A1-875D-4E89-AE61-086BCAF3FA69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB3F46A1-875D-4E89-AE61-086BCAF3FA69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB3F46A1-875D-4E89-AE61-086BCAF3FA69}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F6B45DD4-51D4-4659-A0E5-F77D31E62B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F6B45DD4-51D4-4659-A0E5-F77D31E62B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F6B45DD4-51D4-4659-A0E5-F77D31E62B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F6B45DD4-51D4-4659-A0E5-F77D31E62B1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

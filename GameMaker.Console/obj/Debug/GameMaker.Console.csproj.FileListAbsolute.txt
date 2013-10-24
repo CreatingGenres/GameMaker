@@ -1,0 +1,10 @@
+D:\Projects\work\GameMaker\GameMaker.Console\bin\Debug\GameMaker.Console.exe.config
+D:\Projects\work\GameMaker\GameMaker.Console\bin\Debug\GameMaker.Console.exe
+D:\Projects\work\GameMaker\GameMaker.Console\bin\Debug\GameMaker.Console.pdb
+D:\Projects\work\GameMaker\GameMaker.Console\bin\Debug\JsGameGenerator.dll
+D:\Projects\work\GameMaker\GameMaker.Console\bin\Debug\Newtonsoft.Json.dll
+D:\Projects\work\GameMaker\GameMaker.Console\bin\Debug\JsGameGenerator.pdb
+D:\Projects\work\GameMaker\GameMaker.Console\bin\Debug\Newtonsoft.Json.xml
+D:\Projects\work\GameMaker\GameMaker.Console\obj\Debug\GameMaker.Console.csprojResolveAssemblyReference.cache
+D:\Projects\work\GameMaker\GameMaker.Console\obj\Debug\GameMaker.Console.exe
+D:\Projects\work\GameMaker\GameMaker.Console\obj\Debug\GameMaker.Console.pdb
