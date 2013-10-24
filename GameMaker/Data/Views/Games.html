@@ -1,0 +1,47 @@
+﻿<div class="page hidden" id="games">
+    <div class="grid padding20">
+        <div class="row">
+            <div class="span10 offset1">
+                <h2 class="padding20 fg-color-white">Custom Games</h2>
+                <ul class="replies" data-bind="foreach: publishedGames">
+					<!-- ko if: $index() == 0 -->
+                    <li class="tile bg-color-blueDark" onclick="playDAHGAME('DungeonApospimise.js');">
+                        <div class="avatar"><img src="images/game.ico" /></div>
+                        <div class="reply">
+                            <div class="date">Not 26 March 2013</div>
+                            <div class="author" >Kolio</div>
+                            <div class="text" >A game we surely didnt make 2 hours before the presentation.</div>
+                        </div>
+                    <!-- game -->
+                    </li>
+                    <li class="tile bg-color-red" onclick="playDAHGAME('game.js'); ">
+                        <div class="avatar"><img src="images/game.ico" /></div>
+                        <div class="reply">
+                            <div class="date">26 March 2013</div>
+                            <div class="author" >Traiko</div>
+                            <div class="text" >Lorem ipsum</div>
+                        </div>
+                    <!-- game -->
+                    </li>
+					<!-- /ko -->
+					<li class="tile bg-color-blueDark" data-bind="click: function () { loadPublishedGame($data); }">
+                        <div class="avatar"><img src="images/game.ico" /></div>
+                        <div class="reply">
+							<h3 class="name" data-bind="text: $data"></h3>
+                            <div class="date">UNKNOWN</div>
+                            <div class="author">UNKONWN</div>
+                            <div class="text" >UNKNOWN</div>
+                        </div>
+					</li>
+                <!-- game list -->
+                </ul>
+            <!-- span -->
+            </div>
+                       
+        <!-- row -->
+        </div>
+                    
+    <!-- grid -->
+    </div>
+<!-- page -->
+</div>

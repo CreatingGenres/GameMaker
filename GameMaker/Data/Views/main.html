@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link href="css/normalize.css" rel="stylesheet" />
+        <link href="css/modern.css" rel="stylesheet">
+        <link href="css/modern-responsive.css" rel="stylesheet">
+        <link href="css/theme-dark.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
+        <link href="floating-menu.css" rel="stylesheet" />
+		<link href="css/create-frames.css" rel="stylesheet"/>
+
+        <!-- Alertify -->
+        <link href="css/alertify/alertify.bootstrap.css" rel="stylesheet" />
+        <link href="css/alertify/alertify.core.css" rel="stylesheet" />
+        <link href="css/alertify/alertify.default.css" rel="stylesheet" />
+
+        <!--Responsiveness-->
+        <link rel="stylesheet" href="css/small-screen-theme/main.min.css" />
+        <link rel="stylesheet" href="css/games-view.min.css" />
+
+        <title>Gamers Creating Games for Gamers</title>
+    </head>
+    <body class="metrouicss">
+        <div id="content">
+            <div class="page">
+                <div class="page-header">
+                    <div class="padding10 page-header-content">
+                        <h1 class="element brand">
+                            Game Maker <small>from Creating Genres</small>
+                        </h1>
+					<!--Size Slider-->
+					<div id="size-slider-id" class="slider" data-role="slider">
+					</div>
+                    <!-- navbar inner -->
+                    </div>
+                <!-- navbar -->
+                </div>
+            <!-- page -->
+            </div>
+            <nav id="charms" class="bg-color-blue unselectable">
+                <img id="hide-menu" src="images/right-arrow.png" /> <br />
+                <ul class="fg-color-white" id="main-menu">
+                    <li><a class="fg-color-white" href="#home">Home<i class="nav-icon icon-home place-right"></i></a></li>
+                    <li><a class="fg-color-white" href="#lobby">Lobby<i class="nav-icon icon-broadcast place-right"></i></a></li>
+                    <li><a class="fg-color-white" href="#games">Games<i class="nav-icon icon-cube place-right"></i></a></li>
+                    <li><a class="fg-color-white" href="#create">Create<i class="nav-icon icon-mouse place-right"></i></a></li>
+                    <li><a class="fg-color-white" href="#community">People<i class="nav-icon icon-accessibility place-right"></i></a></li>
+                    <li><a class="fg-color-white" href="#play">Play<i class="nav-icon icon-rocket place-right"></i></a></li>
+                </ul>
+            </nav>
+            
+            @view_placeholder
+
+            <div class="page hidden" id="loading">
+                <div class="text-center" style="padding-top: 10em;">
+                    <img src="images/preloader-w8-cycle-white.gif"/>
+                </div>
+            </div>
+
+        </div> <!-- content -->
+
+        @additional_placeholder
+
+        <!-- le scripts -->
+        <script src="Scripts/libraries/jquery-2.0.3.min.js"></script>
+
+        <!-- metro ui -->
+        <script src="Scripts/libraries/dropdown.js"></script>
+        <script src="Scripts/libraries/dropdown.js"></script>
+        <script src="Scripts/libraries/tile-drag.js"></script>
+        <script src="Scripts/libraries/buttonset.js"></script>
+        <script src="Scripts/libraries/accordion.js"></script>
+        <script src="Scripts/libraries/input-control.js"></script>
+        <script src="Scripts/libraries/dialog.js"></script>
+        <script src="Scripts/libraries/pagecontrol.js"></script>
+        
+        <!-- libraries -->
+        <script src="Scripts/libraries/jquery-ui-1.10.1.custom.js"></script>
+        <script src="Scripts/libraries/knockout-2.2.1.js"></script>
+        <script src="Scripts/libraries/knockout.mapping-latest.js"></script>
+        <script src="Scripts/libraries/sammy-0.7.4.js"></script>
+        <script src="Scripts/libraries/shunting-yard.js"></script>
+		<script src="Scripts/libraries/slider.js"></script>
+        <script src="Scripts/libraries/alertify/alertify.min.js"></script>
+
+        <!-- custom scripts -->
+        <script src="Scripts/Extensions.js"></script>
+
+        <script src="data/baseModel.js"></script>
+        <script src="Scripts/config.js"></script>
+        <script src="Scripts/navigator.js"></script>
+        
+		<script src="Scripts/jquery.signalR-2.0.0-rc1.js"></script>
+        <script src="../signalr/hubs"></script>
+        <script src="Scripts/Main.js"></script>
+        
+		<script src="Scripts/saveManager.js"></script>
+		<script src="Scripts/undoManager.js"></script>
+		<script src="Scripts/create.js"></script>
+        <script src="Scripts/dialogs.js"></script>
+        <script src="Scripts/view.js"></script>
+        <script src="Scripts/key-bindings.js"></script>
+        <script src="Scripts/Extensions.js"></script>
+        <script src="Scripts/model.js"></script>
+        <script src="Scripts/view-model.js"></script>
+        <script src="Scripts/basic-renderer.js"></script>
+        
+		<script src="Scripts/create-scroll-control.js">	</script>
+        <script src="Scripts/popup.js"></script>
+        <script src="Scripts/validator.js"></script>
+        <script src="Scripts/logger.js"></script>
+
+        <script>
+            // Mega custom thingy
+            var charmsBarSelector = "#charms";
+            $(window).load(function () {
+                $("#hide-menu").click(function (e) {
+                    $(charmsBarSelector).removeClass("active");
+                    e.stopPropagation();
+                });
+
+                $(".nav-icon").click(function (e) {
+                	e.stopPropagation();
+                });
+
+                $(charmsBarSelector).click(function () {
+                    $(charmsBarSelector).addClass("active");
+                });
+            });
+        </script>
+        
+    </body>
+</html>

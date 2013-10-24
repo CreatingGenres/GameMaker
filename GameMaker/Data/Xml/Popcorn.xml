@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<gameModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<units>
+		<unit id="paddle" xsi:type="RectangleUnit" color="#FF0000">
+			<size width="50" height="10"/>
+			<position x="300" y="400"/>
+			<modules>
+				<module name="move"/>
+				<module name="onCollision">
+					<args>
+						<argument name="canvasTop" value="y: 'units.canvasTop.y'" isArray="true"/>
+						<argument name="canvasBottom" value="y: 'units.canvasBottom.y - this.height'" isArray="true"/>
+					</args>
+				</module>
+			</modules>
+		</unit>
+		<unit id="enemy" xsi:type="RectangleUnit" color="#0000FF" isPrototype="true">
+			<size width="25" height="10"/>
+			<position x="650" y="200"/>
+			<modules>
+				<module name="move"/>
+				<module name="onCollision">
+					<args>
+						<argument name="ball" value="hp: 'this.hp-1'" isArray="true"/>
+					</args>
+				</module>
+				<module name="onDeath">
+					<args>
+						<argument name="points" value="5"/>
+					</args>
+				</module>
+			</modules>
+		</unit>
+		<unit id="ball" xsi:type="RectangleUnit" color="#00FF00">
+			<size width="20" height="20"/>
+			<position x="300" y="300"/>
+			<velocity x="-3" y="-3"/>
+			<modules>
+				<module name="move"/>
+				<module name="onCollision">
+					<args>
+						<argument name="paddle" value="dy: '-this.dy'" isArray="true"/>
+						<argument name="canvasRight" value="dx: '-this.dx'" isArray="true"/>
+						<argument name="canvasLeft" value="dx: '-this.dx'" isArray="true"/>
+						<argument name="canvasTop" value="dy: '-this.dy'" isArray="true"/>
+						<argument name="canvasBottom" value="hp: 'this.hp-1'" isArray="true"/>
+					</args>
+				</module>
+				<module name="onDeath">
+					<args>
+						<argument name="stillPlaying" value="false"/>
+					</args>
+				</module>
+			</modules>
+		</unit>
+	</units>
+	<keyBindings>
+		<keyBinding key="37" target="#paddle" action="move" args="-2 0" />
+		<keyBinding key="39" target="#paddle" action="move" args="2 0" />
+	</keyBindings>
+	<modules>
+		<module name="collider"/>
+		<module name="unit-generator"/>
+		<module name="timed-unit-generator">
+			<args>
+				<argument name="unit" value="'enemy'"/>
+				<argument name="interval" value="500"/>
+				<argument name="coordinates" value="new Object({x: Math.random() * canvas.width,y:0})" />
+			</args>
+		</module>
+		<module name="points">
+			<args>
+				<argument name="font" value="'30px Arial'"/>
+				<argument name="color" value="'red'"/>
+				<argument name="x" value="20"/>
+				<argument name="y" value="40"/>
+			</args>
+		</module>
+	</modules>
+</gameModel>

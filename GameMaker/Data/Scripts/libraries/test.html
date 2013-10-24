@@ -1,0 +1,22 @@
+<html>
+	<input type="text" id="asdf"/>
+
+	<script src="shunting-yard.js"></script>
+	<script>
+		var input = document.getElementById("asdf");
+		
+		function tryshit () {
+			try {
+				Shunt.parse(input.value);
+				input.style.border = "2px solid green";
+			} catch (exc) {
+				input.style.border = "2px solid red";
+			}
+			
+		};
+		
+		input.onkeydown = tryshit;
+		input.onkeyup = tryshit;
+		
+	</script>
+</html>

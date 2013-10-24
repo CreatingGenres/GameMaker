@@ -1,0 +1,333 @@
+﻿<?xml version="1.0"?>
+<gameModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<players>
+		<player name="Nikola" />
+	</players>
+	<background texture="images/library/background.png" />
+	<units>
+		<unit xsi:type="AnimatedSpriteUnit" id="zombie" owner="Nikola" color="black" texture="images/library/zombiee.png"
+		 framesPerRow="8" framesPerCol="3" isPrototype="true">
+			<animations>
+				<animation name="idle" row="1" duration="650">
+					
+				</animation>
+				<animation name="die" row="0" duration="650" mustPlayUntilFinished="true">
+					<playedOn>
+						<action name="onDeath" />
+					</playedOn>
+				</animation>
+				<animation name="attack" row="2" duration="650" mustPlayUntilFinished="true">
+					<playedOn>
+						<action name="attack" />
+					</playedOn>
+				</animation>
+			</animations>
+			<modules>
+				<module name="move" />
+				<module name="rotate" />
+				<module name="attack" >
+					<args>
+						<argument name="damage" value="1"/>
+					</args>
+				</module>
+				<module name="onCollision">
+					<args>
+						<argument name="chest" value="action: 'this.attack(units.chest)'" isArray="true" />
+					</args>
+				</module>
+				<module name="charge" >
+					<args>
+						<argument name="speed" value="10" />
+					</args>
+				</module>
+				<module name="onDeath">
+					<args>
+						<argument name="points" value="1"/>
+					</args>
+				</module>
+				<module name="onSpawn">
+					<args>
+						<argument name="actions" value="charge: 'charge'" isArray="true"/>
+						<argument name="actionArgs" value="charge: 'Object({endX:  Math.random() * 20 - 10 + units.chest.x - units.chest.width, endY: Math.random() * 20 - 10 + units.chest.y})'" isArray="true" />
+					</args>
+				</module>
+			</modules>
+			<position x="0" y="400" />
+			<velocity x="0" y="0" />
+			<size width="75" height="75" />
+		</unit>
+		<unit xsi:type="RectangleUnit" id="invisibleWall" color="rgba(0,0,0,0)">
+			<position x="0" y="0"/>
+			<size width="800" height="250"/>
+		</unit>
+		<!--
+		<unit xsi:type="AnimatedSpriteUnit" id="knight" owner="Nikola" color="red" texture="images/library/Guardian.png"
+		 framesPerRow="35" framesPerCol="6">
+			<animations>
+				<animation name="idle" row="2" startCol="17" endCol="21" duration="400"/>
+				<animation name="moveUp" row="4" startCol="14" endCol="19" duration="800">
+					<playedOn>
+						<action name="move" args="dx: 0, dy:-5"/>
+					</playedOn>
+				</animation>
+				<animation name="moveLeft" row="2" startCol="14" endCol="19" duration="800">
+					<playedOn>
+						<action name="move" args="dx:-5, dy: 0"/>
+					</playedOn>
+				</animation>
+				<animation name="moveRight" row="5" startCol="14" endCol="19" duration="800">
+					<playedOn>
+						<action name="move" args="dx: 5, dy: 0"/>
+					</playedOn>
+				</animation>
+				<animation name="moveDown" row="0" startCol="14" endCol="19" duration="800">
+					<playedOn>
+						<action name="move" args="dx: 0, dy: 5"/>
+					</playedOn>
+				</animation>
+			</animations>
+			<modules>
+				<module name="scale" />
+				<module name="move" />
+				<module name="rotate" />
+				<module name="attack">
+					<args>
+						<argument name="damage" value="10" ></argument>
+					</args>
+				</module>
+				<module name="charge">
+					<args>
+						<argument name="speed" value="10" />
+					</args>
+				</module>
+				<module name="onDeath"/>
+				<module name="onCollision">
+					<args>
+						<argument name="zombie" value="action: 'this.attack(unit);'" isArray="true"/>
+						<argument name="invisibleWall" value="y: 'units.invisibleWall.height'" isArray="true"/>
+					</args>
+				</module>
+			</modules>
+			<position x="650" y="300" />
+			<velocity x="0" y="0" />
+			<size width="142" height="91" />
+		</unit>-->
+		<unit xsi:type="AnimatedSpriteUnit" id="mage" owner="Nikola" color="yellow" texture="images/library/mage.png"
+		framesPerRow="7" framesPerCol="1">
+			<animations>
+				<animation name="idle" isEmpty="true"/>
+				<animation name="summon" row="0" duration="1000" mustPlayUntilFinished="true" >
+					<playedOn>
+						<action name="summon"/>
+					</playedOn>
+				</animation>
+			</animations>
+			<modules>
+				<module name="summon"/>
+				<module name="scale" />
+				<module name="onSpawn">
+					<args>
+						<argument name="actions" value="scale: 'scale'" isArray="true"/>
+						<argument name="actionArgs" value="scale: 'Object({scaleX: -1})'" isArray="true" />
+					</args>
+				</module>
+			</modules>
+			<size width="100" height="97"/>
+			<position x="650" y="400" />
+		</unit>
+		<unit xsi:type="AnimatedSpriteUnit" id="dragon" owner="Nikola" color="orange" texture="images/library/dragon.gif"
+		framesPerRow="10" framesPerCol="8" isPrototype="true">
+			<animations>
+				<animation name="idle" row="4" duration="1000" />
+			</animations>
+			<modules>
+				<module name="attack">
+					<args>
+						<argument name="ammo" value="fireball" />
+						<argument name="ammoX" value="this.x - unitPrototypes.fireball.width"/>
+						<argument name="ammoY" value="this.y + this.height/2"/>
+						<argument name="ammoDx" value="0"/>
+						<argument name="ammoDy" value="0"/>
+					</args>
+				</module>
+			</modules>
+			<size width="107" height="100"/>
+			<position x="700" y="50" />
+		</unit>
+		<unit xsi:type="AnimatedSpriteUnit" id="fireball" owner="Nikola" color="pink" texture="images/library/fire.png"
+		framesPerRow="6" framesPerCol="1" isPrototype="true">
+			<animations>
+				<animation name="idle" row="0" duration="1000" />
+			</animations>
+			<modules>
+				<module name="charge">
+					<args>
+						<argument name="speed" value="7.5"/>
+					</args>
+				</module>
+				<module name="rotate"></module>
+				<module name="onSpawn">
+					<args>
+						<argument name="actions" value="rotate: 'rotate'" isArray="true"/>
+						<argument name="actionArgs" value="rotate: 'Object({angle: 3*Math.PiOver4, angleY: 0})'" isArray="true" />
+						<argument name="properties" value="dx: -7, dy: 7" isArray="true"/>
+					</args>
+				</module>
+				<module name="attack">
+					<args>
+						<argument name="damage" value="10"/>
+					</args>
+				</module>
+				<module name="onCollision">
+					<args>
+						<argument name="zombie" value="action: 'this.attack(unit)', hp: -1"  isArray="true"/>
+					</args>
+				</module>
+			</modules>
+			<size width="72" height="72"/>
+			<position x="700" y="50" />
+		</unit>
+		<unit xsi:type="InanimatedSpriteUnit" hp="255" id="chest" owner="Nikola" texture="images/library/chest.png">
+			<size width="64" height="64"/>
+			<position x="700" y="250" />
+			<modules>
+				<module name="hpBar"/>
+				<module name="onDeath">
+					<args>
+						<argument name="stillPlaying" value="false"/>
+					</args>
+				</module>
+			</modules>
+		</unit>
+		<unit xsi:type="AnimatedSpriteUnit" id="archer" color="blue" owner="Nikola" texture="images/library/archery(2).png" 
+		framesPerRow="25" framesPerCol="6">
+			<size width="128" height="128"></size>
+			<position x="600" y="450" />
+			<animations>
+				<animation name="idle" row="2" startCol="10" endCol="12" duration="100" />
+				<animation name="attack" row="2" startCol="4" endCol="11"  duration="400" mustPlayUntilFinished="true">
+					<playedOn>
+						<action name="attack"/>
+					</playedOn>
+				</animation>
+			</animations>
+			<modules>
+				<module name="scale" />
+				<module name="onSpawn">
+					<args>
+						<argument name="actions" value="scale: 'scale'" isArray="true"/>
+						<argument name="actionArgs" value="scale: 'Object({scaleX: -1})'" isArray="true" />
+					</args>
+				</module>
+
+				<module name="move"/>
+				<module name="attack">
+					<args>
+						<argument name="ammo" value="arrow"/>
+						<argument name="ammoX" value="this.x + 10"/>
+						<argument name="ammoY" value="this.y + this.height / 4 + 20"/>
+					</args>
+				</module>
+				<module name="rotate"/>
+			</modules>
+		</unit>
+		<unit xsi:type="InanimatedSpriteUnit" id="arrow" owner="Nikola" color="red" texture="images/library/arrow.png" isPrototype="true">
+			<modules>
+				<module name="charge">
+					<args>
+						<argument name="speed" value="40"/>
+					</args>	
+				</module>
+				<module name="rotate"/>
+				<module name="onSpawn">
+					<args>
+						<argument name="actions" value="charge: 'charge', rotate: 'rotate'" isArray="true"/>
+						<!--EEEEBAAAAAHTI HAKAAAAA-->
+						<argument name="actionArgs" value="charge: 'Object({endX: mouse.x + Math.sign(mouse.x - this.x)*1000, endY: Math.getLineEquation(mouse.x, mouse.y, this.x, this.y)(mouse.x + Math.sign(mouse.x - this.x)*1000)})', rotate: 'Object({angle: Math.atan((mouse.y - this.y) / (mouse.x - this.x))})'" isArray="true" />
+					</args>
+				</module>
+				<module name="attack">
+					<args>
+						<argument name="damage" value="10"/>
+					</args>
+				</module>
+				<module name="onCollision">
+					<args>
+						<argument name="zombie" value="action: 'this.attack({unit: unit})', hp: -1"  isArray="true"/>
+					</args>
+				</module>
+			</modules>
+			<size width="40" height="6"/>
+			<position x="750" y="50" />
+		</unit>
+	</units>
+	<keyBindings>
+		<!--<keyBinding key="50" target="#knight" action="charge" single-call="true">
+			<args>
+				<argument name="endX" value="0"/>
+				<argument name="endY" value="canvas.height/2"/>
+				<argument name="shouldReturn" value="true"/>
+			</args>
+		</keyBinding>-->
+		<keyBinding key="51" target="#mage" action="summon" args="'dragon' " single-call="true" >
+			<args>
+				<argument name="unit" value="'dragon'"/>
+				<argument name="unitX" value="'canvas.width'"/>
+				<argument name="unitY" value="canvas.height*0.2"/>
+				<argument name="unitDx" value="-3"/>
+			</args>
+		</keyBinding>
+		<!--<keyBinding key="37" target="#knight" action="move" single-call="false" >
+			<args>
+				<argument name="dx" value="-5"/>
+			</args>
+		</keyBinding>
+		<keyBinding key="38" target="#knight" action="move" single-call="false" >
+			<args>
+				<argument name="dy" value="-5"/>
+			</args>
+		</keyBinding>
+		<keyBinding key="39" target="#knight" action="move"  single-call="false" >
+			<args>
+				<argument name="dx" value="5"/>
+			</args>
+		</keyBinding>
+		<keyBinding key="40" target="#knight" action="move" single-call="false" >
+			<args>
+				<argument name="dy" value="5"/>
+			</args>
+		</keyBinding>-->
+	</keyBindings>
+	<mouseBindings>
+		<mouseBinding button="left" target="#archer" action="attack" single-call="true"/>
+	</mouseBindings>
+
+	<modules>
+		<module name="collider"/>
+		<module name="unit-generator"/>
+		<module name="timed-unit-generator">
+			<args>
+				<argument name="unit" value="'zombie'"/>
+				<argument name="interval" value="1000 / (modules.points.points / 100 + 1)"/>
+				<argument name="unitX" value="'-unitPrototypes.zombie.width'"/>
+				<argument name="unitY" value="'units.invisibleWall.height + Math.random()*(canvas.height - units.invisibleWall.height)'" />
+			</args>
+		</module>
+		<module name="points">
+			<args>
+				<argument name="x" value="30"/>
+				<argument name="y" value="550"/>
+				<argument name="font" value="'42px Calibri'"/>
+				<argument name="color" value="'black'"/>
+			</args>
+		</module>
+		<module name="hpBarDisplayer"/>
+		<module name="timer">
+			<args>
+				<argument name="interval" value="300" />
+				<argument name="target" value="'.dragon'"/>'
+				<argument name="action" value="'attack'"/>
+			</args>
+		</module>
+	</modules>
+</gameModel>

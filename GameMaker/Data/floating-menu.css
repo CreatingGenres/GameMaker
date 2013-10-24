@@ -1,0 +1,62 @@
+﻿#charms {
+    text-align: center;
+    border: 1px solid black;
+    padding-top: 10%;
+    overflow: visible;
+
+	
+	position: fixed;
+
+    /*Go fuck yourself, Kolio!*/
+    left: -85px;
+
+	top: 0;
+	bottom: 0;
+	height: 100%;
+	min-width: 20px;
+	z-index: 9999;
+
+    width: 125px;
+	/*width: 10%;*/
+
+    -webkit-transition: left 0.5s;
+    -moz-transition: left 0.5s;
+    -o-transition: left 0.5s;
+    transition: left 0.5s;
+}
+
+#charms.active {
+    left: 0px;
+}
+
+#charms li {
+    list-style-type:none;
+	margin: 0.5em 0 0.5em 0;
+}
+
+#charms img {
+    right: 0%;
+    width: 40%;
+    padding-bottom: 2em;
+}
+
+#charms .nav-icon {
+	font-size: 1.5em;
+	color: white;
+}
+
+#charms .nav-icon:hover {
+	color: rosybrown;
+}
+
+.page-header-content h1 {
+    color: white;
+}
+
+.page-header-content h1:hover{
+    color: white;
+}
+
+.content, #content {
+	height: 100%;
+}

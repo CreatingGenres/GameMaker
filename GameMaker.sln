@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameMaker", "GameMaker\GameMaker.csproj", "{84D3A02F-46AE-4AAB-A129-BC8F72E1CB11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsGameGenerator", "JsGameGenerator\JsGameGenerator.csproj", "{63F2EF4B-4019-47CB-880D-6229C2218D3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameMaker.Console", "GameMaker.Console\GameMaker.Console.csproj", "{EB3F46A1-875D-4E89-AE61-086BCAF3FA69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameMakerUITests", "GameMakerUITests\GameMakerUITests.csproj", "{F6B45DD4-51D4-4659-A0E5-F77D31E62B1E}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84D3A02F-46AE-4AAB-A129-BC8F72E1CB11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84D3A02F-46AE-4AAB-A129-BC8F72E1CB11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84D3A02F-46AE-4AAB-A129-BC8F72E1CB11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84D3A02F-46AE-4AAB-A129-BC8F72E1CB11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63F2EF4B-4019-47CB-880D-6229C2218D3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63F2EF4B-4019-47CB-880D-6229C2218D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63F2EF4B-4019-47CB-880D-6229C2218D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63F2EF4B-4019-47CB-880D-6229C2218D3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB3F46A1-875D-4E89-AE61-086BCAF3FA69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB3F46A1-875D-4E89-AE61-086BCAF3FA69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB3F46A1-875D-4E89-AE61-086BCAF3FA69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB3F46A1-875D-4E89-AE61-086BCAF3FA69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6B45DD4-51D4-4659-A0E5-F77D31E62B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6B45DD4-51D4-4659-A0E5-F77D31E62B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6B45DD4-51D4-4659-A0E5-F77D31E62B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6B45DD4-51D4-4659-A0E5-F77D31E62B1E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

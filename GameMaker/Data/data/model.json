@@ -1,0 +1,331 @@
+{
+  players: [
+    {
+      name: "Nikola"
+    }
+  ],
+  units: [
+    {
+      texture: "C:/Users/NikolaDimitroff/Desktop/AnimationsTest/zombieEnemy.png",
+      framesPerRow: 8,
+      framesPerCol: 3,
+      Animations: [
+        {
+          name: "idle",
+          spriteRowIndex: 1,
+          duration: 650,
+          mustPlayUntilFinished: false,
+          playedOn: [],
+          isEmpty: false
+        },
+        {
+          name: "die",
+          spriteRowIndex: 0,
+          duration: 650,
+          mustPlayUntilFinished: true,
+          playedOn: [
+            {
+              name: "onDeath",
+              args: null
+            }
+          ],
+          isEmpty: false
+        },
+        {
+          name: "attack",
+          spriteRowIndex: 2,
+          duration: 650,
+          mustPlayUntilFinished: true,
+          playedOn: [
+            {
+              name: "attack",
+              args: null
+            }
+          ],
+          isEmpty: false
+        }
+      ],
+      id: "zombie",
+      owner: "Nikola",
+      modules: [
+        {
+          name: "move",
+          args: [],
+          annotation: null
+        },
+        {
+          name: "rotate",
+          args: [],
+          annotation: null
+        },
+        {
+          name: "attack",
+          args: [],
+          annotation: null
+        },
+        {
+          name: "charge",
+          args: [
+            {
+              name: "speed",
+              value: "2",
+              isArray: false,
+              annotation: null
+            }
+          ],
+          annotation: null
+        },
+        {
+          name: "onDeath",
+          args: [],
+          annotation: null
+        }
+      ],
+      position: {
+        x: 0.0,
+        y: 0.0
+      },
+      rotation: {
+        x: 0.0,
+        y: 0.0
+      },
+      velocity: {
+        x: 0.0,
+        y: 0.0
+      },
+      size: {
+        width: 150.0,
+        height: 140.0
+      },
+      hp: 1,
+      isPrototype: false
+    },
+    {
+      texture: "C:/Users/NikolaDimitroff/Desktop/AnimationsTest/dragon.gif",
+      framesPerRow: 10,
+      framesPerCol: 8,
+      Animations: [
+        {
+          name: "idle",
+          spriteRowIndex: 0,
+          duration: 650,
+          mustPlayUntilFinished: false,
+          playedOn: [],
+          isEmpty: false
+        },
+        {
+          name: "flyUp",
+          spriteRowIndex: 6,
+          duration: 650,
+          mustPlayUntilFinished: false,
+          playedOn: [
+            {
+              name: "move",
+              args: [
+                "0",
+                "-2"
+              ]
+            }
+          ],
+          isEmpty: false
+        }
+      ],
+      id: "dragon",
+      owner: "Nikola",
+      modules: [
+        {
+          name: "move",
+          args: [],
+          annotation: null
+        },
+        {
+          name: "rotate",
+          args: [],
+          annotation: null
+        },
+        {
+          name: "attack",
+          args: [],
+          annotation: null
+        },
+        {
+          name: "charge",
+          args: [
+            {
+              name: "speed",
+              value: "2",
+              isArray: false,
+              annotation: null
+            }
+          ],
+          annotation: null
+        },
+        {
+          name: "onDeath",
+          args: [],
+          annotation: null
+        }
+      ],
+      position: {
+        x: 250.0,
+        y: 400.0
+      },
+      rotation: {
+        x: 0.0,
+        y: 0.0
+      },
+      velocity: {
+        x: 0.0,
+        y: 0.0
+      },
+      size: {
+        width: 100.0,
+        height: 67.0
+      },
+      hp: 1,
+      isPrototype: false
+    },
+    {
+      texture: "C:/Users/NikolaDimitroff/Desktop/AnimationsTest/archer.gif",
+      framesPerRow: 9,
+      framesPerCol: 1,
+      Animations: [
+        {
+          name: "idle",
+          spriteRowIndex: 0,
+          duration: 300,
+          mustPlayUntilFinished: false,
+          playedOn: [],
+          isEmpty: false
+        }
+      ],
+      id: "fireball",
+      owner: "Nikola",
+      modules: [
+        {
+          name: "move",
+          args: [],
+          annotation: null
+        },
+        {
+          name: "attack",
+          args: [],
+          annotation: null
+        },
+        {
+          name: "rotate",
+          args: [],
+          annotation: null
+        },
+        {
+          name: "onCollision",
+          args: [
+            {
+              name: "zombie",
+              value: "action: 'this.attack(unit)'",
+              isArray: true,
+              annotation: null
+            }
+          ],
+          annotation: null
+        }
+      ],
+      position: {
+        x: 0.0,
+        y: 0.0
+      },
+      rotation: {
+        x: 0.0,
+        y: 0.0
+      },
+      velocity: {
+        x: 0.0,
+        y: 0.0
+      },
+      size: {
+        width: 64.0,
+        height: 64.0
+      },
+      hp: 1,
+      isPrototype: true
+    }
+  ],
+  keyBindings: [
+    {
+      key: "37",
+      target: "#zombie",
+      action: "move",
+      args: [
+        "-2",
+        "0"
+      ],
+      single-call: false
+    },
+    {
+      key: "38",
+      target: "#dragon",
+      action: "move",
+      args: [
+        "0",
+        "-2"
+      ],
+      single-call: false
+    },
+    {
+      key: "39",
+      target: "#zombie",
+      action: "move",
+      args: [
+        "2",
+        "0"
+      ],
+      single-call: false
+    },
+    {
+      key: "40",
+      target: "#zombie",
+      action: "move",
+      args: [
+        "0",
+        "2"
+      ],
+      single-call: false
+    },
+    {
+      key: "50",
+      target: "#zombie",
+      action: "charge",
+      args: [
+        "300",
+        "300",
+        "true"
+      ],
+      single-call: false
+    },
+    {
+      key: "49",
+      target: "unit-generator",
+      action: "generate",
+      args: [
+        "'fireball'",
+        "Object({x:'0',y:'100',dx:0,dy:0,})"
+      ],
+      single-call: true
+    }
+  ],
+  modules: [
+    {
+      name: "collider",
+      args: [],
+      annotation: null
+    },
+    {
+      name: "unit-generator",
+      args: [],
+      annotation: null
+    }
+  ],
+  background: {
+    texture: null
+  }
+}

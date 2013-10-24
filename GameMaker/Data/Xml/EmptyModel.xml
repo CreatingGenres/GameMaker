@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<gameModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<background texture="" />
+	<units>
+		<unit id="Basic" xsi:type="InanimatedSpriteUnit" color="#FF0000" isPrototype="true" texture="images/library/blue-monster.png">
+			<size width="40" height="40"/>
+			<position x="50" y="200"/>
+			<velocity x="0" y="0"/>
+			<modules>
+			</modules>
+		</unit>
+	</units>
+	<keyBindings>
+	</keyBindings>
+	<modules>
+    <module name="collider"/>
+    <module name="unit-generator" isInvokable="true"/>
+	<module name="camera" isInvokable="true"/>
+	</modules>
+</gameModel>

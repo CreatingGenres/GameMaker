@@ -1,0 +1,268 @@
+﻿
+<div class="page hidden" id="create">
+    <div class="hidden" id="create-small-screen">
+        <div class="message">
+            Uh-oh!
+        </div>
+
+        <div class="title">
+            Creating games is only possible on desktop devices. That doesn't mean you can't play them, though!<br />
+            Head over to the play page and try them out.
+        </div>
+    </div>
+
+<!--    <div class="row text-center">
+        <div class="span2 offset5">
+            <button class="button bg-color-purple fg-color-white" id="play-button">Play</button>
+        </div>
+    </div> <!-- row -->
+    <div id="main-content">
+        <div class="page-control">
+            <!-- Responsive controls -->
+            <span class="menu-pull"></span> 
+            <div class="menu-pull-bar"></div>
+
+            <!-- Tabs -->
+            <ul style="background-color: rgba(255, 255, 255, 0.6)">
+                <li><button id="play-button" class="">Play</button></li>
+                <li data-trigger="scroll" data-scroll="0"><a><strong>Edit</strong></a></li>
+                <li data-trigger="scroll" data-scroll="1"><a><strong>Unit</strong></a></li>
+                <li data-trigger="scroll" data-scroll="2"><a><strong>Events / Key Bindings</strong></a></li>
+                <li data-trigger="scroll" data-scroll="3"><a><strong>Game</strong></a></li>
+
+			    <li data-trigger="scroll" data-scroll="4" class="place-right"><a href="#frame-manage"><strong>Manage <i class="icon-bookmark-4"></i></strong></a></li>
+            </ul>
+	    </div>
+
+            <!-- Tabs content -->
+            <div class="frame-container" style="border: none">
+                <div class="frame-tab" id="frame-edit">
+                    <!-- Basic unit editing toolbox. Dependencies: Units -->
+                    <!--REVIEW: looks nice, except for id-->
+
+                    <div class="span3 bg-color-purple" style="float: left;">
+                        <h3 class="fg-color-white">Toolbox</h3>
+                            
+                        <ul class="accordion span3 dark" data-role="accordion">
+                            <li>
+                                <!--For every unit we need the name, prototype and id-->
+                                <a href="#" class="fg-color-white">Units<i class="icon-user"></i></a>
+                                <div data-bind="foreach: model.units">
+                                    <button class="meduim active"
+                                        data-bind="attr: { 'data-id': id }, click: window.onUnitButtonClick.bind($data)">
+                                            
+                                        <i class="icon-cancel place-left" data-bind="if: isPrototype()"></i>
+                                        <i class="icon-user place-left" data-bind="ifnot: isPrototype()"></i>
+
+                                        <span data-bind="text: id"></span>
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                            
+                    </div>
+                        
+                    <!--Main canvas. Everything gets drawn here.-->
+                    <div class="span9 border-color-white" style="display: inline-block;">
+                        <canvas id="game-canvas" width="800px" height="600px" class="game-canvas"></canvas>
+                    </div>
+                </div>
+
+                <!--This is a grid to allow the span*-s to align in colums-->
+                <!--The unit tab-->
+                <div id="frame-unit"  class="frame-tab grid" data-bind="with: selectedUnit">
+                    <div class="row">
+                        <!--2 of 12 to thumbnail-->
+                        <div class="span2">
+                            <!--a tile with a thumbnail-->
+                            <div class="tile icon(image)">
+                                <div class="tile-content">
+                                    <img class="filled" data-bind="attr: { src: texture(), width: size.width(), height: size.height() }"/>
+                                    <div class="brand bg-color-red">
+                                        <p class="text" data-bind="text: id"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Reset bindings to default.-->
+                        <!-- ko with: $root -->
+                            <!--5 of 12 to properties-->
+                            <div class="span6">
+                                <h2 class="fg-color-white">Properties</h2>
+
+                                <ul class="listview fluid" data-bind="foreach: $root.getObjectProperties(selectedUnit())">
+                            
+                                    <!-- ko if: type && type != "none" -->
+                                    <li style="width: auto;">
+                                        <div data-bind="template: { name: type, data: $data }"></div>
+                                    </li>
+                                    <!-- /ko -->
+                                </ul>
+                            </div>
+
+                            <div data-bind="template: { 
+							    name: 'module-edit', 
+							    data: { 
+								    editedEntity: selectedUnit(), 
+								    toChooseFrom: $root.filterUnitModules,
+								    target: selectedUnit()
+							    }
+						    }"></div>
+                        
+                        <!--It adds up to 13. May break the responsive design.-->
+                        <!-- /ko -->
+                    </div>
+                </div> 
+		
+                <div id="frame-key-bindings" class="frame-tab grid">
+                    <div class="row">
+                        <div class="span4 offset2">
+                            <!--3 of 12 to events-->
+                            <div class="span4">
+                                <h2 class="fg-color-white">Events</h2>
+
+                                <div data-bind="foreach: gameMakerViewModel.selectedUnit().events">
+                                    <button class="bg-color-blue fg-color-white"
+										    data-trigger="popup" data-popup="event-edit"
+                                            data-bind="text: name, click: dialogs.beginEdit.bind($data)">
+                                    </button>
+                                </div>
+
+                                <div class="input-control select">
+                                    <select data-bind="foreach: eventList">
+                                        <option data-bind="text: name"></option>
+                                    </select>
+                                </div>
+                                        
+                                <button id="add-event" data-bind="click: addEvent">Add Event</button>
+                            </div>
+                        </div>
+
+                        <div class="span4 offset2">
+                            <h2 class="fg-color-white">Key Bindings</h2>
+
+                            <div style="max-height: 25em; overflow-y: hidden; overflow-x: hidden;">
+                                <!--DAFUQ TRAIKO-->
+                                <div id="bindings" data-bind="foreach: model.keyBindings">
+
+                                    <!-- ko if: !target() || target().substr(1, target().length) == $root.selectedUnit().id() -->
+                                    <button data-type="module-button"
+                                            class="bg-color-blue fg-color-white"
+                                            data-trigger="popup" data-popup="binding-select"
+                                            data-bind="text: key() == 'None' ? 'None' : String.fromKeyCode(key()), click: dialogs.beginEdit.bind($data)" >
+                                    </button>
+                                    <!-- /ko -->
+                                </div>
+                                        
+                                <button id="add-binding" data-bind="click: addBinding">Add Binding</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="frame-game-properties" class="frame-tab grid" >
+                    <div class="row">
+                        <div class="span6 offset2">
+                            <ul class="listview fluid">
+                                <li style="width: auto;">
+                                    <h2 class="fg-color-white">Name</h2>
+                                    <div class="input-control text">
+                                        <input type="text" class="with-helper" placeholder="Name" data-bind="value: model.name" />
+                                        <button class="helper"></button>
+                                    </div>
+                                </li>
+                            
+                                <li style="width: auto;">
+                                    <h2 class="fg-color-white">Background</h2>
+                                
+                                    <button class="bg-color-blue fg-color-white" data-trigger="popup" data-popup="image-select"
+                                        onclick="dialogs.beginEdit.call(gameMakerViewModel.model.background.texture, 'picture');">Change Image</button>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                        <div data-bind="template: {
+						    name: 'module-edit',
+						    data: {
+							    editedEntity: model,
+							    toChooseFrom: $root.filterGameModules,
+							    target: model
+						    }
+					    }"></div>
+                    </div>
+                </div>
+
+			    <div id="frame-manage" class="frame-tab">				
+				    <ul data-bind="foreach: saveFiles" class="tile-group unselectable">
+					    <li class="tile resizable bg-color-blueDark">
+						    <div class="tile-content">
+							    <h2 class="unselectable" data-bind="text: name"></h2>
+							    <i class="icon-clock"></i>
+							    <h3 class="unselectable" data-bind="text: timestamp.toLocaleDateString()"></h3>
+							    <h3 class="unselectable" data-bind="text: timestamp.toLocaleTimeString()"></h3>
+						    </div>
+					    </li>
+				    </ul>		
+				    <i id="delete-saves-button" class="save-file-icon icon-cancel-2"></i>
+				    <input id="save-name-input" placeholder="Save Name" type="text" />
+				    <i id="save-button" class="save-file-icon icon-database"></i>
+			    </div>
+
+			    <!-- frame -->
+            </div> <!-- frames -->
+        
+        </div> <!-- content -->
+    </div> <!-- page -->
+
+    <!--Region: templates-->
+    <script type="text/html" id="module-edit">
+        <!--5 of 12 to Modules-->
+        <div class="span5">
+            <h2 class="fg-color-white">Modules</h2>
+            <div class="clearfix" data-bind="foreach: editedEntity.modules">
+                <div
+                        class="tile half half-vertical resizable bg-color-blue fg-color-white">
+    <!--                    data-bind="text: name, click: dialogs.launchModuleEditDialog.bind($data, $parent.target)" >-->
+				    <div class="tile-content" data-bind="text: name, click: dialogs.beginEdit.bind($data, 'module')"
+					    data-trigger="popup" data-popup="module-edit-popup">
+				    </div>
+                </div>
+            </div>
+                                        
+		    <div class="clear">
+			    <div class="input-control select">
+				    <select name="modules"  data-bind="options: toChooseFrom, optionsText: 'name'">
+				    </select>
+			    </div>
+			    <button id="add-module" data-bind="click: $root.addModule">Add Module</button>
+		    </div>
+        </div>
+    </script>
+
+    <script type="text/html" id="text">
+        <div class="input-control text fg-color-white span2">
+            <label data-bind="text: name"></label>
+            <input type="text"
+                class="with-helper"
+                data-bind="value: binding, attr: { placeholder: name }"
+                data-validate="formula" />
+        </div>
+    </script>
+    <script type="text/html" id="integer"> </script>
+    <script type="text/html" id="float"> </script>
+    <script type="text/html" id="function">adsf</script>
+    <script type="text/html" id="picture">
+        <button class="bg-color-blue fg-color-white" data-trigger="popup" data-popup="image-select"
+            data-bind="click: dialogs.beginEdit.bind(binding, 'picture')">Background</button>
+            <!-- data-bind="click: dialogs.launchImageSelectDialog" -->
+    </script>
+    <script type="text/html" id="color">as</script>
+    <script type="text/html" id="font">adsf</script>
+    <script type="text/html" id="vector">
+        <h4 class="fg-color-white" data-bind="text: name"></h4>
+        <div data-bind="template: { name: 'text', data: { binding: binding[Object.keys(binding)[0]], name: Object.keys(binding)[0] } }"></div>
+        <div data-bind="template: { name: 'text', data: { binding: binding[Object.keys(binding)[1]], name: Object.keys(binding)[1] } }"></div>
+    </script>
+    <script type="text/html" id="none"> </script>

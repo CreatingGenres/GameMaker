@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<gameModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<units>
+		<unit id="left" xsi:type="RectangleUnit" color="#FF0000">
+			<size width="10" height="80"/>
+			<position x="50" y="200"/>
+			<modules>
+				<module name="move"/>
+			</modules>
+      <events>
+        <event name="onCollision">
+          <requirements>
+            <requirement name="enemyName" value="'canvasTop'"/>
+          </requirements>
+          <args>
+            <argument name="y" value="units.canvasTop.y"/>
+          </args>
+        </event>
+        <event name="onCollision">
+          <requirements>
+            <requirement name="enemyName" value="'canvasBottom'"/>
+          </requirements>
+          <args>
+          <argument name="y" value="units.canvasBottom.y - this.height" />
+          </args>
+        </event>
+      </events>
+		</unit>
+		<unit id="right" xsi:type="RectangleUnit" color="#0000FF">
+			<size width="10" height="80"/>
+			<position x="650" y="200"/>
+			<modules>
+				<module name="move"/>
+			</modules>      
+      <events>
+        <event name="onCollision">
+          <requirements>
+            <requirement name="enemyName" value="'canvasTop'"/>
+          </requirements>
+          <args>
+            <argument name="y" value="units.canvasTop.y"/>
+          </args>
+        </event>
+        <event name="onCollision">
+          <requirements>
+            <requirement name="enemyName" value="'canvasBottom'"/>
+          </requirements>
+          <args>
+          <argument name="y" value="units.canvasBottom.y - this.height" />
+          </args>
+        </event>
+      </events>
+		</unit>
+		<unit id="ball" xsi:type="RectangleUnit" color="#00FF00">
+			<size width="20" height="20"/>
+			<position x="300" y="300"/>
+			<velocity x="-3" y="-3"/>
+			<modules>
+				<module name="move"/>
+			</modules>    
+      <events>
+        <event name="onCollision">
+          <requirements>
+            <requirement name="enemyName" value="'left'/'right'/'canvasRight'/'çanvasLeft'"/>
+          </requirements>
+          <args>
+            <argument name="dx" value="-this.dx"/>
+          </args>
+        </event>
+        <event name="onCollision">
+          <requirements>
+            <requirement name="enemyName" value="'canvasTop'/'canvasBottom'"/>
+          </requirements>
+          <args>
+            <argument name="dy" value="-this.dy"/>
+          </args>
+        </event>
+      </events>
+		</unit>
+	</units>
+	<keyBindings>
+		<keyBinding key="38" target="#right" action="move" >
+		  <args>
+			  <argument name="dy" value="-5"/>
+		  </args>
+	  </keyBinding>
+		<keyBinding key="40" target="#right" action="move" >
+		  <args>
+			  <argument name="dy" value="5"/>
+		  </args>
+	  </keyBinding>
+		<keyBinding key="87" target="#left" action="move" >
+		  <args>
+			  <argument name="dy" value="-5"/>
+		  </args>
+	  </keyBinding>
+		<keyBinding key="83" target="#left" action="move" >
+		  <args>
+			  <argument name="dy" value="5"/>
+		  </args>
+	  </keyBinding>
+	</keyBindings>
+	<modules>
+		<module name="collider"/>
+	</modules>
+</gameModel>

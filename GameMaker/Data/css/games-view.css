@@ -1,0 +1,70 @@
+﻿#games .replies {
+  width: 100%;
+  font-size: 0;
+}
+#games .replies li {
+  display: inline-block;
+  vertical-align: top;
+  width: 45%;
+  margin-right: 5%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#games .replies li:nth-child(2n) {
+  margin-right: 0;
+}
+@media screen and (max-width: 799px) {
+  #games .replies li {
+    width: 100%;
+    display: block;
+    margin-right: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+#play {
+  font-size: 0;
+  text-align: center;
+}
+#play > div {
+  display: inline-block;
+  vertical-align: top;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#play #play-div {
+  width: 80%;
+  margin-right: 2%;
+  border: 1px solid black;
+  height: 550px;
+}
+#play #play-canvas {
+  width: 100%;
+  height: 100%;
+}
+#play .controls {
+  width: 18%;
+}
+#play .controls div {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+@media screen and (max-width: 799px) {
+  #play > div {
+    margin: 0;
+  }
+  #play #play-div {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+  #play .controls {
+    margin-top: 20px;
+    width: 50%;
+  }
+}

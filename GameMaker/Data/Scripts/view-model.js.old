@@ -1,0 +1,181 @@
+function GameMakerViewModel(model, modules, events) {
+    //mapping here
+    this.model = model;
+    this.modules = ko.mapping.fromJS(modules);
+    this.events = ko.mapping.fromJS(events);
+    this.library = new Library();
+    
+    //Kolio hack
+    for (var x in this.model.units)
+        for (var i in this.model.units[x].events)
+            this.model.units[x].events[i].id = ko.observable(i);
+    
+    this.model = ko.mapping.fromJS(this.model);
+    
+    var self = this;
+    //more Kolio hack
+    this.hasPointsModule = function () {
+        for (var i in self.model.modules())
+            if (self.model.modules()[i].name() == "points")
+                return true;
+        return false;
+    };
+    
+    this.invokableGameModules = ko.computed(function () {
+        return ko.utils.arrayFilter(self.model.modules(), function (module) {
+            return module.isInvokable();
+        })
+    });
+
+
+    //region propertoes
+    this.currentLocation = undefined;
+    this.loadingBar = undefined;
+    
+    this.selectedUnit = ko.observable(emptyUnit);
+    this.selectedModule = ko.observable(emptyModule);
+    this.selectedBinding = ko.observable(emptyBinding);
+    
+    this.editedEvent = ko.observable(emptyEvent);
+    
+    this.eventList = ko.computed(function () {
+        return self.selectedUnit().modules().concat(self.events());
+    });
+    
+    this.placeUnit = function (unit) {
+        self.model.units.push(unit);
+    };
+    
+    this.deleteUnit = function () {
+        //can't remove basic unit, can we?
+        if (self.selectedUnit().id() == "Basic")
+            return;
+        
+        self.model.units.remove(function (item) {
+            return item.id() == self.selectedUnit().id();
+        });
+        self.selectedUnit(emptyUnit);
+    };
+
+    this.cloneProto = function () {
+        var clone = ko.mapping.fromJS(ko.toJS(self.selectedUnit()));
+        clone.isPrototype(true);
+        self.model.units.push(clone);
+        self.selectedUnit(self.selectedUnit());
+    };
+    
+    this.changeBindingsArgs = function (el) {
+        if (self.selectedBinding().action() != self.targetModuleName()) {
+            // DAFUQ: Insert empty lines between the condition and the body, I thought all the rows were the condition
+            self.selectedBinding().action(self.targetModuleName());
+
+            var prefix = self.selectedUnit().isPrototype() ? "." : "#";
+            self.selectedBinding().target(prefix + self.selectedUnit().id());
+            // DAFUQ: Function(Function(Function(Function(), param, Function()).Function()))
+            self.selectedBinding().args = ko.mapping.fromJS(ko.toJS(Array.findObservable(self.modules(), 'name', self.targetModuleName()).invocationArgs()));
+        }
+        
+        var el = $(el),
+            val = Array.findObservable(self.selectedBinding().args(), 'name', el.attr("placeholder"));
+        
+        val.value(el.val());
+        
+    };
+    
+    this.addBinding = function () {
+        self.model.keyBindings.push(ko.mapping.fromJS({key: 'None', target: '', action: '', args: [], 'singleCall': 'true'}));
+        self.selectedBinding(emptyBinding);
+    };
+    
+    this.addEvent = function () {
+        dialogs.launchEventDialog();
+        //self.selectedUnit().events.push(ko.mapping.fromJS({}));
+    };
+    
+    //region bind
+    function listen(ev) {
+        self.selectedBinding().key(ev.which);
+        window.removeEventListener("keydown", listen);
+    }
+    
+    this.listenForBind = function () {
+        $("[data-type='listener']").text("Press any key");
+        window.addEventListener("keydown", listen);
+    };
+    
+    //end
+    // DAFUQ: or not
+
+    this.bindingArgValue = function (name) {
+        var binding = Array.findObservable(self.selectedBinding().args(), 'name', name());
+        
+        return !binding ? '' : binding.value();
+    };
+    
+    this.targetModuleName = ko.observable();
+    this.targetModuleArgs = ko.computed({
+        read: function () {
+            var module = Array.findObservable(self.modules(), 'name', self.targetModuleName());
+            
+            if (!module)
+                return [];
+            
+            return module.invocationArgs;
+        }
+    });
+    
+    this.moduleList = ko.computed(function () {
+        return self.selectedUnit().id() == 'None' ? self.model.modules : self.selectedUnit().modules;
+    });
+    
+    this.eventRequirements = function () {
+        var eventId = self.editedEvent().id(),
+            eventName = self.editedEventName();
+        
+        var events = self.events().filter(function(el) { return el.name() == eventName; }),
+            modules = self.modules().filter(function(el) { return el.name() == eventName; });
+        
+        if (events.length)
+            return events[0].requirements();
+        if (modules.length)
+            return modules[0].invocationArgs();
+        
+        return undefined;
+    };
+
+    //region methods
+    this.switchLocation = function (locationId) {
+        // DAFUQ: First test if we aint trying to switch to the same window
+        self.currentLocation.fadeOut(150, function () {
+            self.loadingBar.show();
+            setTimeout(function() {
+                self.loadingBar.hide();
+                self.currentLocation = $("#" + locationId);
+                
+                self.currentLocation.fadeIn(200);
+            }, 300);
+        });
+    };
+    
+    this.initialize = function () {        
+        self.currentLocation = $("#home");
+        self.loadingBar = $("#loading");   
+    }
+    
+    this.addModule = function () {
+        var module = Array.findObservable(self.modules(), 'name', $("#modules").val()),
+            copy = ko.mapping.fromJS(ko.toJS(module));
+        
+        if (self.selectedUnit().id() != "None")
+            self.selectedUnit().modules.push(copy);
+        else self.model.modules.push(copy);
+    };
+}
+
+// Dynamically generated file from the server.
+var gameMakerViewModel = new GameMakerViewModel(config.model, config.modules, config.events);
+jQuery(document).ready(function () {
+    gameMakerViewModel.initialize();
+    ko.applyBindings(gameMakerViewModel, $("#content")[0]);
+    loadNavigator();
+});

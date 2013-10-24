@@ -1,0 +1,18 @@
+﻿@media screen and (max-width: 1023px) {
+  #main-content {
+    display: none;
+  }
+  #create-small-screen {
+    display: block;
+    text-align: center;
+    color: white;
+    padding-top: 10%;
+  }
+  #create-small-screen .message {
+    font-size: 150%;
+  }
+  #create-small-screen .title {
+    font-size: 125%;
+    padding: 5%;
+  }
+}

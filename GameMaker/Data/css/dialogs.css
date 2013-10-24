@@ -1,0 +1,40 @@
+﻿.popup {
+    border: 1px solid #CCC;
+    -webkit-box-shadow: 1px 1px 5px #CCC;
+            box-shadow: 1px 1px 5px #CCC;
+    border-radius: 10px;
+
+    background-color: white;
+                
+    padding: 10px;
+    position: absolute;
+}
+            
+.arrow-left {
+    width: 0; 
+    height: 0;
+    left: -20px;
+    top: 7px;
+    position: relative;
+                
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent; 
+                
+    border-right: 10px solid white; 
+}
+
+
+.tile {
+	-webkit-transition: 0.2s ease-in;
+	-moz-transition: 0.2s ease-in;
+	-o-transition: 0.2s ease-in;
+	transition: 0.2s ease-in;
+}
+
+div.error-bar[id^="error-"]{
+	position: absolute;
+	top: 30%;
+	left: 0%;
+	right: 0%;
+	z-index: 999999;
+}

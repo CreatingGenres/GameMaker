@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<modules xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <module xsi:type="Event" name="onCollision" annotation="Describes what happens whenever the unit collides with another one.">
+    <requirements>
+      <requirement name="enemyName" annotation="The name of the unit to collide with."/>
+    </requirements>
+    <args>
+      <argument name="x" annotation="The x coordinate of the unit"/>
+      <argument name="y" annotation="The y coordinate of the unit"/>
+      <argument name="dx" annotation="The x coordinate of the unit`s velocity vector"/>
+      <argument name="dy" annotation="The y coordinate of the unit`s velocity vector"/>
+      <argument name="points" annotation="The points of points module"/>
+      <argument name="stillPlaying" annotation="Set to false to end the game"/>
+    </args>
+  </module>
+  <module xsi:type="Event" name="onSpawn" annotation="Describes what happens when the unit is spawned.">
+    <args>
+      <argument name="x" annotation="The x coordinate of the unit"/>
+      <argument name="y" annotation="The y coordinate of the unit"/>
+      <argument name="dx" annotation="The x coordinate of the unit`s velocity vector"/>
+      <argument name="dy" annotation="The y coordinate of the unit`s velocity vector"/>
+      <argument name="points" annotation="The points of points module"/>
+      <argument name="stillPlaying" annotation="Set to false to end the game"/>
+    </args>
+  </module>
+  <module xsi:type="Event" name="onDeath" annotation="Describes what happens when the unit dies.">
+    <args>
+      <argument name="x" annotation="The x coordinate of the unit"/>
+      <argument name="y" annotation="The y coordinate of the unit"/>
+      <argument name="dx" annotation="The x coordinate of the unit`s velocity vector"/>
+      <argument name="dy" annotation="The y coordinate of the unit`s velocity vector"/>
+      <argument name="points" annotation="The points of points module"/>
+      <argument name="stillPlaying" annotation="Set to false to end the game"/>
+    </args>
+  </module>
+	<module xsi:type="Event" name="onClick" annotation="Describes what happens when the unit is clicked.">
+		<args>
+			<argument name="x" annotation="The x coordinate of the unit"/>
+			<argument name="y" annotation="The y coordinate of the unit"/>
+			<argument name="dx" annotation="The x coordinate of the unit`s velocity vector"/>
+			<argument name="dy" annotation="The y coordinate of the unit`s velocity vector"/>
+			<argument name="points" annotation="The points of points module"/>
+			<argument name="stillPlaying" annotation="Set to false to end the game"/>
+		</args>
+	</module>
+	<module xsi:type="Event" name="onMouseOver" annotation="Describes what happens when the mouse moves over the unit.">
+		<args>
+			<argument name="x" annotation="The x coordinate of the unit"/>
+			<argument name="y" annotation="The y coordinate of the unit"/>
+			<argument name="dx" annotation="The x coordinate of the unit`s velocity vector"/>
+			<argument name="dy" annotation="The y coordinate of the unit`s velocity vector"/>
+			<argument name="points" annotation="The points of points module"/>
+			<argument name="stillPlaying" annotation="Set to false to end the game"/>
+		</args>
+	</module>
+</modules>

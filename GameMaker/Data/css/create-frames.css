@@ -1,0 +1,25 @@
+﻿.frame-tab {
+	float: left;
+	width: 1200px !important;
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+.frame-container {
+	position: relative;
+	margin-top: 5%;
+	width: 9000px;
+}
+
+.tile.half {
+	width: 110px;
+}
+
+.tile-content {
+	font-size: 1.7em !important;
+	font-family: 'Segoe UI';
+}
+
+.tile.half-vertical {
+	height: 110px;
+}

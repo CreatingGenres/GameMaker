@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<gameModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <players>
+    <player name="Nikola" />
+  </players>
+	<background texture="images/library/space.jpg" />
+	<units>
+		<unit xsi:type="InanimatedSpriteUnit" id="Sonic" owner="Nikola" texture="images/library/spaceship.png">
+      <modules>
+        <module name="move" />
+        <module name="rotate"/>
+      </modules>
+      <events>
+        <event name="onDeath">
+          <args>
+            <argument name="stillPlaying" value="false"/>
+          </args>
+        </event>
+        <event name="onCollision">
+          <requirements>
+            <requirement name="enemyName" value="'enemy'"/>
+          </requirements>
+          <args>
+            <argument name="hp" value="-1"/>
+          </args>
+        </event>
+      </events>
+			<position x="350" y="350" />
+			<velocity x="0" y="0" />
+			<size width="60" height="60" />
+		</unit>
+		<unit xsi:type="InanimatedSpriteUnit" id="enemy" owner="Nikola" texture="images/library/asteroid.png" isPrototype="true">
+      <modules>
+        <module name="move" />
+        <module name="rotate"/>
+      </modules>
+      <events>
+        <event name="onDeath">
+          <args>
+            <argument name="points" value="1"/>
+          </args>
+        </event>
+        <event name="onCollision">
+          <requirements>
+            <requirement name="enemyName" value="'bullet'"/>
+          </requirements>
+          <args>
+            <argument name="hp" value="-1"/>
+          </args>
+        </event>
+      </events>
+			<size width="60" height="60" />
+		</unit>
+		<unit xsi:type="InanimatedSpriteUnit" id="bullet" owner="Nikola" texture="images/library/laser.png" isPrototype="true">
+			<size width="7" height="18"></size>
+      <events>
+        <event name="onCollision">
+          <requirements>
+            <requirement name="enemyName" value="'enemy'"/>
+          </requirements>
+          <args>
+            <argument name="hp" value="-1"/>
+          </args>
+        </event>
+      </events>
+		</unit>
+	</units>
+  <keyBindings>
+	<!--
+    <keyBinding key="49" target="Sonic" action="dash" single-call="true" />
+	-->
+	  <keyBinding key="37" target="#Sonic" action="move" single-call="false" >
+		  <args>
+			  <argument name="dx" value="-5"/>
+		  </args>
+	  </keyBinding>
+    <keyBinding key="38" target="#Sonic" action="move" single-call="false" >
+		  <args>
+			  <argument name="dy" value="-5"/>
+		  </args>
+	  </keyBinding>
+    <keyBinding key="39" target="#Sonic" action="move"  single-call="false" >
+		  <args>
+			  <argument name="dx" value="5"/>
+		  </args>
+	  </keyBinding>
+    <keyBinding key="40" target="#Sonic" action="move" single-call="false" >
+		  <args>
+			  <argument name="dy" value="5"/>
+		  </args>
+	  </keyBinding>
+	<keyBinding key="49" target="unit-generator" action="generate" single-call="true" >
+		  <args>
+			  <argument name="id" value="'bullet'"/>
+			  <argument name="coordinates" value="Object({x:'units.Sonic.x+units.Sonic.width/2',y:'units.Sonic.y-10',dx:0,dy:-10})" />
+		  </args>
+	  </keyBinding>
+ </keyBindings>
+
+  <modules>
+	  <module name="unit-generator" />
+	  <module name="timed-unit-generator">
+		  <args>
+			  <argument name="unit" value="'enemy'"/>
+			  <argument name="interval" value="300"/>
+			  <argument name="unitX" value="'Math.random()*canvas.width'"/>
+			  <argument name="unitDy" value="'Math.random()*5 + 1'"/>
+			  <argument name="unitDx" value="'Math.random() * -5 + 2.5'" />
+		  </args>
+	  </module>
+	  <module name="collider"/>
+	  <module name="points">
+		  <args>
+			  <argument name="x" value="50"/>
+			  <argument name="y" value="50"/>
+			  <argument name="color" value="'white'" />
+			  <argument name="font" value="'20px Comic Sans MS'"/>
+		  </args>
+	  </module>
+	  <module name="timer">
+		  <args>
+			  <argument name="interval" value="settings.updateTime / 2" />
+			  <argument name="target" value="'.enemy'"/>'
+			  <argument name="action" value="'rotate'"/>
+			  <argument name="args" value="Object({angle: Math.toRadians(2)})"/>
+		  </args>
+	  </module>
+  </modules>
+</gameModel>

@@ -1,0 +1,26 @@
+﻿html {}
+
+@tablet:    ~"screen and (max-width: 1023px)";
+
+@media @tablet {
+    #main-content {
+        display: none;
+    }
+
+    #create-small-screen {
+        display: block;
+        text-align: center;
+        color: white;
+        padding-top: 10%;
+
+        .message {
+            font-size: 150%;
+        }
+        
+        .title {
+
+            font-size: 125%;
+            padding: 5%;
+        }
+    }
+}

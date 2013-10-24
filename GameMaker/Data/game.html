@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game from CG's Game maker!</title>
+    <link href="Styles/game.css" rel="stylesheet"/>
+</head>
+<body>
+    <canvas id="play-canvas" width="800px" height="600px" style="border: 1px solid black;">
+        You dont have a good enough browser to play this game. Go upgrade it!
+    </canvas>
+    <a id="play-button" class="play-button unselectable ">Play</a>
+    
+    <script src="Scripts\jquery-2.0.3.min.js"></script>
+    <script src="Scripts\Extensions.js"></script>
+    <script src="game.js"></script>
+
+    <!--This is crap, but it's just a preliminary-->
+    <!--TODO: clean up code-->
+    <script>
+        var canvas = document.getElementById("play-canvas"),
+                context = canvas.getContext("2d");
+
+        var playButton = $("#play-button");
+
+        function CGIntro(_location, _spread, _numLines, _drawContext, _message) {
+            var position = 0, spread = _spread,
+                location = _location, numLines = _numLines,
+                frames = 0, context = _drawContext,
+                self = this, message = _message,
+                messageOpacity = 0;
+
+            this.finsihed = false;
+            this.onfinished = function () { };
+
+            var colors = ["red", "green", "blue", "pink", "cyan", "magenta", "yellow"];
+
+            this.update = function () {
+                frames++;
+                position += 1;
+
+                if (frames > 120) {
+                    messageOpacity += 0.01;
+                }
+
+                if (frames > 400) {
+                    clearInterval(pid);
+                    self.onfinished();
+                    self.finished = true;
+                }
+
+            }
+
+            var pid = setInterval(this.update, 10);
+
+            this.draw = function () {
+                context.save();
+
+                context.fillStyle = "rgba(76, 76, 76, " + messageOpacity + ")";
+                context.font = "30px Verdana";
+                context.fillText(message, 400, 300);
+                context.font = "20px Verdana";
+                context.fillText("presents", 520, 330);
+
+
+                context.globalAlpha = 100 / position;
+                context.lineWidth = 2;
+
+                for (var k = 1; k < numLines + 1; ++k) {
+                    context.strokeStyle = colors[k];
+                    context.beginPath();
+                    for (var i = 0; i < position + spread; i += 1) {
+                        context.lineTo(location.x + i * k, k * 20 + location.y + Math.sin(i / 50) * 50);
+                    }
+                    context.stroke();
+                }
+
+                context.restore();
+
+            }
+        }
+
+        var intro = new CGIntro({ x: -300, y: canvas.height / 2 - 100 }, 50, 6, context, "Creating Genres");
+
+        intro.onfinished = function () {
+            playButton.fadeIn();
+            
+            $("canvas").addClass("background");
+        }
+
+        playButton.click(function () {
+            playButton.fadeOut();
+            game.start();
+        });
+
+        function draw() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            if (intro.finished)
+                return;
+            intro.draw();
+            setTimeout(draw, 10);
+        }
+
+        draw();
+
+    </script>
+</body>
+</html>

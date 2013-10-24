@@ -1,0 +1,232 @@
+﻿<?xml version="1.0"?>
+<modules xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<module name="points" annotation="Saves and draws on the screen the player`s points.">
+		<args>
+			<argument name="color" value="Color as text or hex" annotation="The color to draw the points with" />
+			<argument name="font" value="Font" annotation="The font to draw the points with" />
+			<argument name="x" value="The x coordinate" annotation="The x coordinate of the point where to draw the points" />
+			<argument name="y" value="The y coordinate" annotation="The y coordinate of the point where to draw the points" />
+		</args>
+		<function>
+			function() {
+				return {
+					points: 0,
+					draw: function() {
+						context.save();
+						context.fillStyle = eval(this.data.color);
+						context.font = eval(this.data.font);
+						context.fillText("Points: " + this.points, eval(this.data.x), eval(this.data.y));
+						context.restore();
+					}
+				};
+			}
+		</function>
+	</module>
+	<module name="unit-generator" annotation="Used to spawn units from unit prototypes. Other modules depend on this one."
+          isInvokable="true">
+		<invocationArgs>
+			<argument name="unit" annotation="The name of the unit to spawn." />
+			<argument name="unitX" annotation="The x coordinate to spawn the generated unit at."/>
+			<argument name="unitY" annotation="The y coordinate to spawn the generated unit at."/>
+			<argument name="unitDx" annotation="The velocity at Ox to to spawn the generated unit with."/>
+			<argument name="unitDy" annotation="The velocity at Oy to to spawn the generated unit with."/>
+		</invocationArgs>
+		<function>
+			function () {
+				var counter = 0;
+				var generate = function generate(params, mousy) {
+					var id = params.unit || params.id, coordinates = {
+						x: params.unitX,
+						y: params.unitY,
+						dx: params.unitDx,
+						dy: params.unitDy,
+					}
+					if (!unitPrototypes[id]) {
+						return;
+					}
+					if (mousy) {
+						var mouse = mousy;
+					}
+					var unit = clone(unitPrototypes[id]);
+					unit.id = id + "_" + this.counter;
+					unit.x = eval(coordinates.x);
+					unit.y = eval(coordinates.y);
+					if (coordinates.dx) {
+						unit.dx = eval(coordinates.dx);
+					}
+					if (coordinates.dy) {
+						unit.dy = eval(coordinates.dy);
+					}
+					units[unit.id] = unit;
+					raiseEvent(unit, "onSpawn");
+					this.counter++;
+				};
+				return {
+					counter: 0,
+					generate: generate,
+					invoke: generate,
+				};
+			}
+		</function>
+	</module>
+	<module name="timed-unit-generator" annotation="Spawns a unit automatically.">
+		<args>
+			<argument name="unit" annotation="The name of the unit to spawn." />
+			<argument name="interval" annotation="The interval to spawn the unit at."/>
+			<argument name="unitX" annotation="The x coordinate to spawn the generated unit at."/>
+			<argument name="unitY" annotation="The y coordinate to spawn the generated unit at."/>
+			<argument name="unitDx" annotation="The velocity at Ox to to spawn the generated unit with."/>
+			<argument name="unitDy" annotation="The velocity at Oy to to spawn the generated unit with."/>
+		</args>
+		<function>
+			function () {
+				return {
+					last: new Date(),
+					update: function() {
+						var data = this.data;
+						var coordinates = {
+							unitX: eval(data.unitX),
+							unitY: eval(data.unitY),
+							unitDx: eval(data.unitDx),
+							unitDy: eval(data.unitDy),
+						};
+						for (var i in coordinates) {
+							if (!coordinates[i]) {
+								coordinates[i] = 0;
+							}
+						}
+
+						if (new Date() - this.last &gt; eval(this.data.interval)) {
+							var params = coordinates;
+							params.id = eval(this.data.unit) + "";
+							modules['unit-generator'].generate(params);
+							this.last = new Date();
+						}
+					}
+				};
+			}
+		</function>
+	</module>
+	<module name="timer">
+		<args>
+			<argument name="interval" value="1000" annotation="The time in ms to execute the specified action"/>
+			<argument name="target" value="" annotation="The target to execute your method on begining with # for single unit followed by id, . for a class of units, and no prefix for a module."/>
+			<argument name="action" value="" annotation="The action to execute on the target."/>
+			<argument name="args" isArray="true" value="" annotation="Parameters to the object's action" />
+		</args>
+		<function>
+			function() {
+				return {
+					last: new Date(),
+					update: function() {
+						if (new Date() - this.last &gt; eval(this.data.interval)) {
+							//Hard coded stuff, to be replaced when we introduce selectors
+							var selected = selector(eval(this.data.target));
+							for (var i in selected) {
+								selected[i][eval(this.data.action)].call(selected[i], eval(this.data.args));
+							}
+							this.last = new Date();
+						}
+					}
+				}
+			}
+		</function>
+	</module>
+	<module name="collider" annotation="Notifies units about collisions. Required.">
+		<function>
+			function() {
+				return {
+					update: function() {
+						for(var i in units) {
+							for(var j in units) {
+								if (units[i].isColliding(units[j])) {
+									if (i == j || (i.startsWith("canvas") &amp;&amp; j.startsWith("canvas")))
+										continue;
+
+									raiseEvent(units[i], "onCollision", {enemyName: units[j].id.removeAfter("_") });
+								}
+							}
+						}
+					}
+				};
+			}
+		</function>
+	</module>
+	<module name="hpBarDisplayer" isInvokable="true">
+		<invocationArgs>
+			<argument name="hidden" value="false"/>
+		</invocationArgs>
+		<function>
+			function () {
+				return {
+					draw: function() {
+						if (this.hidden) {
+							return;
+						}
+						for (var i in units) {
+							if (units[i].hpBar) {
+								units[i].hpBar();
+							}
+						}
+					},
+					invoke: function() {
+						this.hidden = !this.hidden;
+					}
+				};
+			}
+		</function>
+	</module>
+	<module name="speechDisplayer" isInvokable="true">
+		<function>
+			function () {
+				return {
+					draw: function() {
+						for (var i in units) {
+							if (units[i].Dialog) {
+								units[i].Dialog.call(units[i], { action: "draw" });
+							}
+						}
+					},
+					invoke: function() {
+					}
+				};
+			}
+		</function>
+	</module>
+	<module name="camera" isInvokable="true">
+		<invocationArgs>
+			<argument name="x" annotation="The name of the unit to spawn." />
+			<argument name="y" annotation="The x coordinate to spawn the generated unit at."/>
+			<argument name="rotation" annotation="The y coordinate to spawn the generated unit at."/>
+			<argument name="scale" annotation="The velocity at Ox to to spawn the generated unit with."/>
+		</invocationArgs>
+		<function>
+			function () {
+				return {
+					position: new Vector2(0, 0),
+					rotation: 0,
+					scale: 1,
+					transform: [1, 0, 0, 1, 0, 0],
+					invoke: function(data) {
+						if (data.x != '0')
+							evaluateInput(this.position, this.position, 'x', data.x);
+						if (data.y != '0')
+							evaluateInput(this.position, this.position, 'y', data.y);
+						if (data.rotation != "0")
+							evaluateInput(this, this, 'rotation', data.rotation);
+						if (data.scale != "0")
+							evaluateInput(this, this, 'scale', data.scale);
+							
+						this.transform = [
+							this.scale * Math.cos(this.rotation), Math.sin(this.rotation), - Math.sin(this.rotation), this.scale * Math.cos(this.rotation), this.position.x, this.position.y
+						];						
+					},
+					draw: function() {	
+						var matrix = this.transform;
+						context.setTransform(matrix[0], matrix[1], matrix[2], matrix[3], matrix[4], matrix[5]);
+					}
+				}
+			}
+		</function>
+	</module>
+</modules>

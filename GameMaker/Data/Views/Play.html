@@ -1,0 +1,34 @@
+﻿<div id="play" class="page hidden">        
+    <div id="play-div" class="span10">
+        <canvas id="play-canvas" width="800px" height="600px"></canvas>
+
+        <script id="play-script"></script>
+    </div>
+
+    <div class="controls">
+        <div class="span3 button fg-color-white text-center bg-color-blue"
+            onclick="if(game)game.start();" style="font-size: 1.2em;">
+            (Re)Play <i style="font-size: 1em;" class="icon-rocket place-right"></i>
+            <!-- span -->
+        </div>
+
+        <div class="span3 button fg-color-white text-center bg-color-blue"
+            onclick="if(game)game.togglePause();" style="font-size: 1.2em;">
+            (Un)Pause <i style="font-size: 1em;" class="icon-rocket place-right"></i>
+            <!-- span -->
+        </div>
+        
+        <div id="Div1" class="span3 button fg-color-white text-center bg-color-blue"
+            style="font-size: 1.2em;">
+            Download <i style="font-size: 1em;" class="icon-download-2 place-right"></i>
+            <!-- span -->
+        </div>
+
+        <div id="publish-button" class="span3 button fg-color-white text-center bg-color-blue"
+            style="font-size: 1.2em;">
+            Publish <i style="font-size: 1em;" class="icon-share-2 place-right"></i>
+            <!-- span -->
+        </div>
+    </div>
+    <!-- play page here -->
+</div>

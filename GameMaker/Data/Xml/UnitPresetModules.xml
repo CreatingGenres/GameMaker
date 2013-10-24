@@ -1,0 +1,271 @@
+﻿<?xml version="1.0"?>
+<modules xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<!--UNIT MODULES-->
+	<module name="move" annotation="Allows the unit to move.">
+		<invocationArgs>
+			<argument name="dx" value="0" annotation="The deviation on Ox." />
+			<argument name="dy" value="0" annotation="The deviation on Oy." />
+		</invocationArgs>
+		<function>function (params) { 
+			if (params.dx) {
+				this.x += eval(params.dx); 
+			}
+			if (params.dy) {
+				this.y += eval(params.dy); 
+			}
+		}</function>
+	</module>
+	<module name="rotate" annotation="Allows the unit to rotate">
+		<invocationArgs>
+			<argument name="angle" value="0" annotation="The rotation around Ox." />
+		</invocationArgs>
+		<function>function (params) {
+				if (params.angle) {
+          evaluateInput(this, this, "rotateX", params.angle);
+					//this.rotateX = this.rotateX + eval(params.angle);
+				}
+			}
+		</function>
+	</module>
+	<module name="scale" annotation="Allows the unit to scale">
+		<invocationArgs>
+			<argument name="scaleX" value="0" annotation="The scale around Ox." />
+			<argument name="scaleY" value="0" annotation="The scale around Oy." />
+		</invocationArgs>
+		<function>
+			function (params) {
+				if (params.scaleX) {
+          evaluateInput(this, this, "scaleX", params.scaleX);
+					//this.scaleX = eval(params.scaleX);
+				}
+				if (params.scaleY) {
+          evaluateInput(this, this, "scaleY", params.scaleY);
+					//this.scaleY = eval(params.scaleY);
+				}
+			}
+		</function>
+	</module>
+	<module name="attack" annotation="Attack, mudafaka">
+		<args>
+			<argument name="ammo" annotation="The unit to be spawned as ammo. Optional if the unit is melee."/>
+			<argument name="ammoX" annotation="The x coordinate to spawn the ammo at."/>
+			<argument name="ammoY" annotation="The y coordinate to spawn the ammo at."/>
+			<argument name="ammoDx" annotation="The velocity at Ox to to spawn the ammo with."/>
+			<argument name="ammoDy" annotation="The velocity at Oy to to spawn the ammo with."/>
+			<argument name="damage" annotation="Amount of damage the unit does to its enemy. Used only in melee combat"/>
+		</args>
+		<function>
+			function (params) {
+				var data = this.moduleData["attack"];
+				var timeout = (this.activeAnimation &amp;&amp; this.activeAnimation != "idle") ? this.animations[this.activeAnimation].duration : 1;
+
+				if (new Date() - this.lastAttack &lt; timeout) { 
+					return;
+				}
+				if (params != undefined &amp;&amp; !isObjectEmpty(params)) {
+					var unit;
+					if (params instanceof Unit) {
+						unit = params;
+					}
+					else if (params.unit instanceof Unit) {
+						unit = params.unit;
+					}
+					if (unit) {
+						var damage = eval(data.damage);
+						setTimeout(function () {
+							if (data.damage) {
+								unit.hp -= damage;
+							}
+						}, timeout);
+					}
+				}
+				else {
+					if (data.ammo &amp;&amp; modules["unit-generator"]) {
+						var coordinates = {
+							unitX: eval(data.ammoX),
+							unitY: eval(data.ammoY),
+							unitDx: eval(data.ammoDx),
+							unitDy: eval(data.ammoDy),
+						}
+						var mousy = $.extend(true, {}, mouse);
+						setTimeout(function() {
+							var unitGeneratorParams = coordinates;
+							unitGeneratorParams.id = eval(data.ammo) + "";
+							modules['unit-generator'].generate(unitGeneratorParams, mousy);
+						}, timeout);
+					}
+				}
+
+				this.lastAttack = new Date();
+			}
+		</function>
+	</module>
+	<module name="charge" annotation="THIS.IS.SPARTA!">
+		<args>
+			<argument name="speed" value="1" annotation="The speed to charge with!"/>
+		</args>
+		<invocationArgs>
+			<argument name="endX" value="0" annotation="The x to charge to" />
+			<argument name="endY" value="0" annotation="The y to charge to"/>
+			<argument name="shouldReturn" value="false" annotation="Optional. Determines whether the unit will charge back to his original position."/>
+		</invocationArgs>
+		<function>
+			function (params) {
+				var endX = eval(params.endX), endY = eval(params.endY), shouldReturn = params.shouldReturn;
+
+				var startPoint = new Vector2(this.x, this.y);
+				var endPoint = new Vector2(endX, endY);
+				var speed = Math.abs(this.moduleData["charge"].speed);
+				speed = speed ? speed : 1;
+				if (endX != this.x) {
+					var angle = Math.abs(Math.atan((this.y - endY) / (this.x - endX)));
+					this.dx = Math.cos(angle) * Math.sign(endX - this.x) * speed;
+					this.dy = Math.sin(angle) * Math.sign(endY - this.y) * speed;
+				}
+				else {
+					this.dx = 0;
+					this.dy =  Math.sign(endY - this.y) * speed;
+				}
+				var updateFunc = this.update;
+				var reachedDestination = new $.Deferred();
+				this.update = function() {
+					updateFunc.call(this);
+					if (Math.abs(this.x - endX) &lt;= speed &amp;&amp; Math.abs(this.y - endY) &lt;= speed) {
+						this.x = endPoint.x;
+						this.y = endPoint.y;
+						reachedDestination.resolve();
+					}
+				};
+				var self = this;
+				reachedDestination.done(function () {
+					self.update = updateFunc;
+					if (shouldReturn) {
+						self.charge({endX: startPoint.x, endY: startPoint.y});
+					}
+					else { 
+						self.dx = 0; 
+						self.dy = 0;
+					}
+				});
+
+			}
+		</function>
+	</module>
+	<module name="summon" annotation="Summons the specified unit.">
+		<invocationArgs>
+			<argument name="unit" value="unitId" annotation="The id of the unit to summon"/>
+			<argument name="unitX" annotation="The x coordinate to spawn the summoned unit at."/>
+			<argument name="unitY" annotation="The y coordinate to spawn the summoned unit at."/>
+			<argument name="unitDx" annotation="The velocity at Ox to to spawn the summoned unit with."/>
+			<argument name="unitDy" annotation="The velocity at Oy to to spawn the summoned unit with."/>
+		</invocationArgs>
+		<function>
+			function (params) {
+				if (modules["unit-generator"]) {
+					var timeout = (this.activeAnimation &amp;&amp; this.activeAnimation != "idle") ? this.animations[this.activeAnimation].duration : 1;
+          
+					setTimeout(function() {
+							modules['unit-generator'].generate(params);
+					}, timeout);
+				}
+			}
+		</function>
+	</module>
+	<module name="hpBar">
+		<function>
+			function() {
+				context.save();
+
+				var green = this.hp;
+				context.fillStyle = "rgb(0, " + green + ", 0)";
+				context.fillRect(this.x, this.y - 10, this.width * this.hp / 255, 10);
+
+				context.restore();
+			}
+		</function>
+	</module>
+	<module name="Dialog" isInvokable="true">
+		<args>
+			<argument name="text1" value="..."/>
+			<argument name="text2" value="..."/>
+			<argument name="text3" value="..."/>
+		</args>
+
+		<invocationArgs>
+			<argument name="action" value="hide" />
+		</invocationArgs>
+
+		<function>
+			function (params) {
+
+				var data = this.moduleData["Dialog"];
+				var action = params.action;
+				//console.log(action, data, unit);
+
+				if (action == "draw" &amp;&amp; true /*data.visible*/) {
+					context.save();
+
+					context.fillStyle = "white";
+					context.font = "20px Arial";
+					var dialogX = this.x + this.width,
+					dialogY = this.y - 150,
+					words = (data.currentText || data.text1).split(" ");
+
+					context.fillRect(dialogX, dialogY, 150, 150);
+
+					var cLen = 0, mult = 0;
+
+					context.fillStyle = "black";
+					for (var i in words) {
+						context.fillText(words[i], 20 + dialogX + cLen, 40 + dialogY + mult * 25);
+
+						cLen += context.measureText(words[i] + " ").width;
+						if (cLen > 110) {
+						cLen = 0;
+						mult++;
+					}
+				}
+				} else if (action == "next") {
+					console.log("next");
+
+					data.visible = true;
+					if (!data.currentText)
+						data.currentText = data.text1;
+
+					else {
+						switch(data.currentText) {
+							case data.text1:
+							data.currentText = data.text2;
+							break;
+							case data.text2:
+							data.currentText = data.text3;
+							break;
+							case data.text3:
+							data.visible = false;
+							break;
+						}
+					}
+				} else if (action == "hide") {
+					console.log("hide");
+
+					data.visible = false;
+				}
+			}
+		</function>
+	</module>
+	<module name="talk" isInvokable="true">
+		<function>
+			function(params) {
+				if (!this.Dialog )//|| this.moduleData["Dialog"].visible == true)
+					return;
+
+				this.Dialog.call(this, { action: "next" });
+
+				var self = this;
+				setTimeout(function () {
+					self.Dialog.call(self, { action: "hide" });
+				}, 2000);
+			}
+		</function>
+	</module>
+</modules>

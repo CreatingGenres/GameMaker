@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{63F2EF4B-4019-47CB-880D-6229C2218D3D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GameMaker</RootNamespace>
+    <AssemblyName>JsGameGenerator</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="ModelStructure\EditorField.cs" />
+    <Compile Include="ModelStructure\Helper.cs" />
+    <Compile Include="JsGenerator.cs" />
+    <Compile Include="ModelStructure\Background.cs" />
+    <Compile Include="ICodeGenerator.cs" />
+    <Compile Include="ModelStructure\EventExtensions.cs" />
+    <Compile Include="ModelStructure\Units\Size.cs" />
+    <Compile Include="ModelStructure\Units\Vector2.cs" />
+    <Compile Include="ModelStructure\Event.cs" />
+    <Compile Include="ModelStructure\GameModel.cs" />
+    <Compile Include="ModelStructure\IExtensible.cs" />
+    <Compile Include="ModelStructure\KeyBinding.cs" />
+    <Compile Include="ModelStructure\Module.cs" />
+    <Compile Include="ModelStructure\ModuleCollection.cs" />
+    <Compile Include="ModelStructure\Units\Unit.cs" />
+    <Compile Include="ModelStructure\Units\AnimatedSpriteUnit.cs" />
+    <Compile Include="ModelStructure\Units\Animation.cs" />
+    <Compile Include="ModelStructure\Units\InanimatedSpriteUnit.cs" />
+    <Compile Include="ModelStructure\Units\RectangleUnit.cs" />
+    <Compile Include="PathFinder.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="JsCode\AnimatedSpriteUnit.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="JsCode\GameTemplate.js" />
+    <EmbeddedResource Include="JsCode\InanimatedSpriteUnit.js" />
+    <EmbeddedResource Include="JsCode\RectangleUnit.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="JsCode\Extensions.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="README.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,68 @@
+﻿canvas {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 1);
+}
+            
+body {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.9);
+}
+            
+.background {
+    background: -moz-linear-gradient(left,  rgba(178,178,178,0) 0%, rgba(178,178,178,0.8) 15%, rgba(178,178,178,1) 19%, rgba(178,178,178,1) 20%, rgba(178,178,178,1) 50%, rgba(178,178,178,1) 80%, rgba(178,178,178,1) 81%, rgba(178,178,178,0.8) 85%, rgba(178,178,178,0) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(178,178,178,0)), color-stop(15%,rgba(178,178,178,0.8)), color-stop(19%,rgba(178,178,178,1)), color-stop(20%,rgba(178,178,178,1)), color-stop(50%,rgba(178,178,178,1)), color-stop(80%,rgba(178,178,178,1)), color-stop(81%,rgba(178,178,178,1)), color-stop(85%,rgba(178,178,178,0.8)), color-stop(100%,rgba(178,178,178,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  rgba(178,178,178,0) 0%,rgba(178,178,178,0.8) 15%,rgba(178,178,178,1) 19%,rgba(178,178,178,1) 20%,rgba(178,178,178,1) 50%,rgba(178,178,178,1) 80%,rgba(178,178,178,1) 81%,rgba(178,178,178,0.8) 85%,rgba(178,178,178,0) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  rgba(178,178,178,0) 0%,rgba(178,178,178,0.8) 15%,rgba(178,178,178,1) 19%,rgba(178,178,178,1) 20%,rgba(178,178,178,1) 50%,rgba(178,178,178,1) 80%,rgba(178,178,178,1) 81%,rgba(178,178,178,0.8) 85%,rgba(178,178,178,0) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  rgba(178,178,178,0) 0%,rgba(178,178,178,0.8) 15%,rgba(178,178,178,1) 19%,rgba(178,178,178,1) 20%,rgba(178,178,178,1) 50%,rgba(178,178,178,1) 80%,rgba(178,178,178,1) 81%,rgba(178,178,178,0.8) 85%,rgba(178,178,178,0) 100%); /* IE10+ */
+    background: linear-gradient(to right,  rgba(178,178,178,0) 0%,rgba(178,178,178,0.8) 15%,rgba(178,178,178,1) 19%,rgba(178,178,178,1) 20%,rgba(178,178,178,1) 50%,rgba(178,178,178,1) 80%,rgba(178,178,178,1) 81%,rgba(178,178,178,0.8) 85%,rgba(178,178,178,0) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00b2b2b2', endColorstr='#00b2b2b2',GradientType=1 ); /* IE6-9 */
+
+}
+            
+.unselectable {
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+}
+            
+/*I know this is crap, but we're not resizing the canvas either.*/
+.play-button {
+    position: absolute;
+    display: none;
+                
+                
+    top: 30%;
+    left: 45%;
+    cursor: pointer;
+                
+    width: 150px;
+    height: 50px;
+                
+    background: #f6f8f9; /* Old browsers */
+    background: -moz-linear-gradient(top,  #f6f8f9 0%, #e5ebee 92%, #f5f7f9 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f6f8f9), color-stop(92%,#e5ebee), color-stop(100%,#f5f7f9)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #f6f8f9 0%,#e5ebee 92%,#f5f7f9 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #f6f8f9 0%,#e5ebee 92%,#f5f7f9 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #f6f8f9 0%,#e5ebee 92%,#f5f7f9 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #f6f8f9 0%,#e5ebee 92%,#f5f7f9 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f8f9', endColorstr='#f5f7f9',GradientType=0 ); /* IE6-9 */
+
+                
+    text-align: center;
+    line-height: 50px;
+    color: black;
+    font-weight: bold;
+    font-family: "Arial", sans-serif;
+    font-size: 1.4em;
+                
+    border: 1px solid rgba(122, 122, 122, 0.5);
+    border-radius: 6px;
+}
+            
+.play-button:hover {
+    box-shadow: 0px 0px 5px black;
+}
