@@ -414,9 +414,7 @@
       <param name="type">parameter type that binder is applied to</param>
       <param name="binder">a model binder</param>
     </member>
-    <member name="T:System.Web.Http.HttpDeleteAttribute">
-      <summary>No content here will be updated; please do not add material here.</summary>
-    </member>
+    <member name="T:System.Web.Http.HttpDeleteAttribute"></member>
     <member name="M:System.Web.Http.HttpDeleteAttribute.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.HttpDeleteAttribute" /> class.</summary>
     </member>
@@ -459,9 +457,7 @@
       <summary>Converts an <see cref="T:System.Web.Http.HttpError" /> instance into its XML representation.</summary>
       <param name="writer">The <see cref="T:System.Xml.XmlWriter" /> stream to which the object is serialized.</param>
     </member>
-    <member name="T:System.Web.Http.HttpGetAttribute">
-      <summary>No content here will be updated; please do not add material here.</summary>
-    </member>
+    <member name="T:System.Web.Http.HttpGetAttribute"></member>
     <member name="M:System.Web.Http.HttpGetAttribute.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.HttpGetAttribute" /> class.</summary>
     </member>
@@ -499,9 +495,7 @@
       <summary>Gets a collection of HTTP methods.</summary>
       <returns>A collection of HTTP methods.</returns>
     </member>
-    <member name="T:System.Web.Http.HttpPostAttribute">
-      <summary>No content here will be updated; please do not add material here.</summary>
-    </member>
+    <member name="T:System.Web.Http.HttpPostAttribute"></member>
     <member name="M:System.Web.Http.HttpPostAttribute.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.HttpPostAttribute" /> class.</summary>
     </member>
@@ -755,14 +749,14 @@
     <member name="T:System.Web.Http.IncludeErrorDetailPolicy">
       <summary>Specifies whether error details, such as exception messages and stack traces, should be included in error messages.</summary>
     </member>
+    <member name="F:System.Web.Http.IncludeErrorDetailPolicy.Always">
+      <summary>Always include error details.</summary>
+    </member>
     <member name="F:System.Web.Http.IncludeErrorDetailPolicy.Default">
       <summary>Use the default behavior for the host environment. For ASP.NET hosting, use the value from the customErrors element in the Web.config file. For self-hosting, use the value <see cref="F:System.Web.Http.IncludeErrorDetailPolicy.LocalOnly" />.</summary>
     </member>
     <member name="F:System.Web.Http.IncludeErrorDetailPolicy.LocalOnly">
       <summary>Only include error details when responding to a local request. </summary>
-    </member>
-    <member name="F:System.Web.Http.IncludeErrorDetailPolicy.Always">
-      <summary>Always include error details.</summary>
     </member>
     <member name="F:System.Web.Http.IncludeErrorDetailPolicy.Never">
       <summary>Never include error details. </summary>
@@ -783,33 +777,6 @@
       <summary>Gets the parameter binding.</summary>
       <returns>The parameter binding.</returns>
       <param name="parameter">The parameter description.</param>
-    </member>
-    <member name="T:System.Web.Http.QueryableAttribute">
-      <summary>Enables a controller action to support OData query parameters.</summary>
-    </member>
-    <member name="M:System.Web.Http.QueryableAttribute.#ctor">
-      <summary>Initializes a new instance of the <see cref="T:System.Web.Http.QueryableAttribute" /> class.</summary>
-    </member>
-    <member name="M:System.Web.Http.QueryableAttribute.ApplyResultLimit(System.Web.Http.Filters.HttpActionExecutedContext,System.Linq.IQueryable)">
-      <summary>Applies the result limit to the query results.</summary>
-      <returns>The query results after the result limit is applied.</returns>
-      <param name="actionExecutedContext">The context for the action.</param>
-      <param name="query">The original query results.</param>
-    </member>
-    <member name="M:System.Web.Http.QueryableAttribute.OnActionExecuted(System.Web.Http.Filters.HttpActionExecutedContext)">
-      <summary>Called by the Web API framework after the action method executes.</summary>
-      <param name="actionExecutedContext">The filter context.</param>
-    </member>
-    <member name="M:System.Web.Http.QueryableAttribute.OnActionExecuting(System.Web.Http.Controllers.HttpActionContext)">
-      <summary>Called by the Web API framework before the action method executes.</summary>
-      <param name="actionContext">The filter context.</param>
-    </member>
-    <member name="P:System.Web.Http.QueryableAttribute.ResultLimit">
-      <summary>The maximum number of results that should be returned from this query regardless of query-specified limits.</summary>
-      <returns>The maximum number of results that should be returned. A value of zero indicates no limit.</returns>
-    </member>
-    <member name="P:System.Web.Http.QueryableAttribute.StructuredQueryBuilder">
-      <summary> The <see cref="T:System.Web.Http.Query.IStructuredQueryBuilder" /> to use. Derived classes can use this to have a per-attribute query builder  instead of the one on <see cref="T:System.Web.Http.HttpConfiguration" /></summary>
     </member>
     <member name="T:System.Web.Http.RouteParameter">
       <summary>The <see cref="T:System.Web.Http.RouteParameter" /> class can be used to indicate properties about a route parameter (the literals and placeholders  located within segments of a <see cref="M:IHttpRoute.RouteTemplate" />).  It can for example be used to indicate that a route parameter is optional. </summary>
@@ -902,11 +869,6 @@
     <member name="M:System.Web.Http.ServicesExtensions.GetModelValidatorProviders(System.Web.Http.Controllers.ServicesContainer)">
       <summary>Gets the <see cref="T:System.Web.Http.Validation.ModelValidatorProvider" /> collection.</summary>
       <returns>Returns a collection of<see cref="T:System.Web.Http.Validation.ModelValidatorProvider" />objects.</returns>
-      <param name="services">The services container.</param>
-    </member>
-    <member name="M:System.Web.Http.ServicesExtensions.GetStructuredQueryBuilder(System.Web.Http.Controllers.ServicesContainer)">
-      <summary>Gets the <see cref="T:System.Web.Http.Query.IStructuredQueryBuilder" /> service.</summary>
-      <returns>Returns an<see cref="T:System.Web.Http.Query.IStructuredQueryBuilder" />instance.</returns>
       <param name="services">The services container.</param>
     </member>
     <member name="M:System.Web.Http.ServicesExtensions.GetTraceManager(System.Web.Http.Controllers.ServicesContainer)">
@@ -1289,9 +1251,7 @@
       <summary>Returns a value indicating whether this <see cref="T:System.Web.Http.Controllers.HttpParameterBinding" /> instance will read the entity body of the HTTP message.</summary>
       <returns>true if this <see cref="T:System.Web.Http.Controllers.HttpParameterBinding" /> will read the entity body; otherwise, false.</returns>
     </member>
-    <member name="T:System.Web.Http.Controllers.HttpParameterDescriptor">
-      <summary>No content here will be updated; please do not add material here.</summary>
-    </member>
+    <member name="T:System.Web.Http.Controllers.HttpParameterDescriptor"></member>
     <member name="M:System.Web.Http.Controllers.HttpParameterDescriptor.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Controllers.HttpParameterDescriptor" /> class.</summary>
     </member>
@@ -1349,9 +1309,7 @@
       <param name="controllerContext">The controller context.</param>
       <param name="actionResult">The action result.</param>
     </member>
-    <member name="T:System.Web.Http.Controllers.IActionValueBinder">
-      <summary>No content here will be updated; please do not add material here.</summary>
-    </member>
+    <member name="T:System.Web.Http.Controllers.IActionValueBinder"></member>
     <member name="M:System.Web.Http.Controllers.IActionValueBinder.GetBinding(System.Web.Http.Controllers.HttpActionDescriptor)">
       <summary>Gets the <see cref="T:System.Web.Http.Controllers.HttpActionBinding" /></summary>
       <returns>A <see cref="T:System.Web.Http.Controllers.HttpActionBinding" /> object.</returns>
@@ -1387,9 +1345,7 @@
       <returns>The action for the controller.</returns>
       <param name="controllerContext">The context of the controller.</param>
     </member>
-    <member name="T:System.Web.Http.Controllers.IHttpController">
-      <summary>No content here will be updated; please do not add material here.</summary>
-    </member>
+    <member name="T:System.Web.Http.Controllers.IHttpController"></member>
     <member name="M:System.Web.Http.Controllers.IHttpController.ExecuteAsync(System.Web.Http.Controllers.HttpControllerContext,System.Threading.CancellationToken)">
       <summary>Executes the controller for synchronization.</summary>
       <returns>The controller.</returns>
@@ -1512,9 +1468,7 @@
       <summary>Gets or sets the supported http methods.</summary>
       <returns>The supported http methods.</returns>
     </member>
-    <member name="T:System.Web.Http.Controllers.ReflectedHttpParameterDescriptor">
-      <summary>No content here will be updated; please do not add material here.</summary>
-    </member>
+    <member name="T:System.Web.Http.Controllers.ReflectedHttpParameterDescriptor"></member>
     <member name="M:System.Web.Http.Controllers.ReflectedHttpParameterDescriptor.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Controllers.ReflectedHttpParameterDescriptor" /> class.</summary>
     </member>
@@ -1821,11 +1775,11 @@
     <member name="T:System.Web.Http.Description.ApiParameterSource">
       <summary> Describes where the parameter come from. </summary>
     </member>
-    <member name="F:System.Web.Http.Description.ApiParameterSource.FromUri">
-      <summary>The parameter come from Uri.</summary>
-    </member>
     <member name="F:System.Web.Http.Description.ApiParameterSource.FromBody">
       <summary>The parameter come from Body.</summary>
+    </member>
+    <member name="F:System.Web.Http.Description.ApiParameterSource.FromUri">
+      <summary>The parameter come from Uri.</summary>
     </member>
     <member name="F:System.Web.Http.Description.ApiParameterSource.Unknown">
       <summary>The location is unknown.</summary>
@@ -2020,9 +1974,7 @@
       <param name="cancellationToken">The cancellation token assigned for this task.</param>
       <param name="continuation">The delegate function to continue after the action method is invoked.</param>
     </member>
-    <member name="T:System.Web.Http.Filters.AuthorizationFilterAttribute">
-      <summary>No content here will be updated; please do not add material here.</summary>
-    </member>
+    <member name="T:System.Web.Http.Filters.AuthorizationFilterAttribute"></member>
     <member name="M:System.Web.Http.Filters.AuthorizationFilterAttribute.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Filters.AuthorizationFilterAttribute" /> class.</summary>
     </member>
@@ -2094,18 +2046,16 @@
     <member name="T:System.Web.Http.Filters.FilterScope">
       <summary>Defines values that specify the order in which filters run within the same filter type and filter order.</summary>
     </member>
-    <member name="F:System.Web.Http.Filters.FilterScope.Global">
-      <summary>Specifies an action before Controller.</summary>
+    <member name="F:System.Web.Http.Filters.FilterScope.Action">
+      <summary>Specifies an order after Controller. </summary>
     </member>
     <member name="F:System.Web.Http.Filters.FilterScope.Controller">
       <summary>Specifies an order before Action and after Global.</summary>
     </member>
-    <member name="F:System.Web.Http.Filters.FilterScope.Action">
-      <summary>Specifies an order after Controller. </summary>
+    <member name="F:System.Web.Http.Filters.FilterScope.Global">
+      <summary>Specifies an action before Controller.</summary>
     </member>
-    <member name="T:System.Web.Http.Filters.HttpActionExecutedContext">
-      <summary>No content here will be updated; please do not add material here.</summary>
-    </member>
+    <member name="T:System.Web.Http.Filters.HttpActionExecutedContext"></member>
     <member name="M:System.Web.Http.Filters.HttpActionExecutedContext.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Filters.HttpActionExecutedContext" /> class.</summary>
     </member>
@@ -2174,9 +2124,7 @@
       <param name="cancellationToken">The cancellation token assigned for this task.</param>
       <param name="continuation">The delegate function to continue after the action method is invoked.</param>
     </member>
-    <member name="T:System.Web.Http.Filters.IAuthorizationFilter">
-      <summary>No content here will be updated; please do not add material here.</summary>
-    </member>
+    <member name="T:System.Web.Http.Filters.IAuthorizationFilter"></member>
     <member name="M:System.Web.Http.Filters.IAuthorizationFilter.ExecuteAuthorizationFilterAsync(System.Web.Http.Controllers.HttpActionContext,System.Threading.CancellationToken,System.Func{System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}})">
       <summary>Executes the authorization filter to synchronize.</summary>
       <returns>The authorization filter to synchronize.</returns>
@@ -2258,9 +2206,7 @@
       <returns>true if buffering should be used; otherwise a streamed response should be used.</returns>
       <param name="response">The HTTP response message.</param>
     </member>
-    <member name="T:System.Web.Http.Metadata.ModelMetadata">
-      <summary>No content here will be updated; please do not add material here.</summary>
-    </member>
+    <member name="T:System.Web.Http.Metadata.ModelMetadata"></member>
     <member name="M:System.Web.Http.Metadata.ModelMetadata.#ctor(System.Web.Http.Metadata.ModelMetadataProvider,System.Type,System.Func{System.Object},System.Type,System.String)">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Metadata.ModelMetadata" /> class.</summary>
       <param name="provider">The provider.</param>
@@ -2326,9 +2272,7 @@
       <summary>Gets or sets the provider.</summary>
       <returns>The provider.</returns>
     </member>
-    <member name="T:System.Web.Http.Metadata.ModelMetadataProvider">
-      <summary>No content here will be updated; please do not add material here.</summary>
-    </member>
+    <member name="T:System.Web.Http.Metadata.ModelMetadataProvider"></member>
     <member name="M:System.Web.Http.Metadata.ModelMetadataProvider.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Metadata.ModelMetadataProvider" /> class.</summary>
     </member>
@@ -2443,7 +2387,6 @@
       <returns>true if the model is read-only; otherwise, false.</returns>
     </member>
     <member name="T:System.Web.Http.Metadata.Providers.CachedModelMetadata`1">
-      <summary>No content here will be updated; please do not add material here.</summary>
       <typeparam name="TPrototypeCache">The type of prototype cache.</typeparam>
     </member>
     <member name="M:System.Web.Http.Metadata.Providers.CachedModelMetadata`1.#ctor(System.Web.Http.Metadata.Providers.CachedModelMetadata{`0},System.Func{System.Object})">
@@ -2515,9 +2458,7 @@
       <param name="modelType">The type of the model.</param>
       <param name="propertyName">The name of the property.</param>
     </member>
-    <member name="T:System.Web.Http.Metadata.Providers.EmptyModelMetadataProvider">
-      <summary>No content here will be updated; please do not add material here.</summary>
-    </member>
+    <member name="T:System.Web.Http.Metadata.Providers.EmptyModelMetadataProvider"></member>
     <member name="M:System.Web.Http.Metadata.Providers.EmptyModelMetadataProvider.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Metadata.Providers.EmptyModelMetadataProvider" /> class.</summary>
     </member>
@@ -2559,9 +2500,7 @@
       <summary>Retrieves the associated model binder.</summary>
       <returns>A reference to an object that implements the <see cref="T:System.Web.Http.ModelBinding.IModelBinder" /> interface.</returns>
     </member>
-    <member name="T:System.Web.Http.ModelBinding.DefaultActionValueBinder">
-      <summary>No content here will be updated; please do not add material here.</summary>
-    </member>
+    <member name="T:System.Web.Http.ModelBinding.DefaultActionValueBinder"></member>
     <member name="M:System.Web.Http.ModelBinding.DefaultActionValueBinder.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.ModelBinding.DefaultActionValueBinder" /> class.</summary>
     </member>
@@ -2669,11 +2608,11 @@
     <member name="T:System.Web.Http.ModelBinding.HttpBindingBehavior">
       <summary>Enumerates the behavior of the HTTP binding.</summary>
     </member>
-    <member name="F:System.Web.Http.ModelBinding.HttpBindingBehavior.Optional">
-      <summary>The optional binding behavior</summary>
-    </member>
     <member name="F:System.Web.Http.ModelBinding.HttpBindingBehavior.Never">
       <summary>Never use HTTP binding.</summary>
+    </member>
+    <member name="F:System.Web.Http.ModelBinding.HttpBindingBehavior.Optional">
+      <summary>The optional binding behavior</summary>
     </member>
     <member name="F:System.Web.Http.ModelBinding.HttpBindingBehavior.Required">
       <summary>HTTP binding is required.</summary>
@@ -3337,9 +3276,7 @@
       <param name="configuration">The configuration.</param>
       <param name="modelType">The type of the model to retrieve.</param>
     </member>
-    <member name="T:System.Web.Http.ModelBinding.Binders.SimpleModelBinderProvider">
-      <summary>No content here will be updated; please do not add material here.</summary>
-    </member>
+    <member name="T:System.Web.Http.ModelBinding.Binders.SimpleModelBinderProvider"></member>
     <member name="M:System.Web.Http.ModelBinding.Binders.SimpleModelBinderProvider.#ctor(System.Type,System.Func{System.Web.Http.ModelBinding.IModelBinder})">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.ModelBinding.Binders.SimpleModelBinderProvider" /> class.</summary>
       <param name="modelType">The model type.</param>
@@ -3411,48 +3348,6 @@
       <returns>The associated model binder.</returns>
       <param name="configuration">The configuration.</param>
       <param name="modelType">The type of model.</param>
-    </member>
-    <member name="T:System.Web.Http.Query.DefaultStructuredQueryBuilder">
-      <summary> The <see cref="T:System.Web.Http.Query.DefaultStructuredQueryBuilder" /> understands $filter, $orderby, $top and $skip OData query parameters </summary>
-    </member>
-    <member name="M:System.Web.Http.Query.DefaultStructuredQueryBuilder.#ctor">
-      <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Query.DefaultStructuredQueryBuilder" /> class.</summary>
-    </member>
-    <member name="M:System.Web.Http.Query.DefaultStructuredQueryBuilder.GetStructuredQuery(System.Uri)">
-      <summary> Build the <see cref="T:System.Web.Http.Query.StructuredQuery" /> for the given uri. </summary>
-      <returns>The <see cref="T:System.Web.Http.Query.StructuredQuery" /></returns>
-      <param name="uri">The <see cref="T:System.Uri" /> to build the <see cref="T:System.Web.Http.Query.StructuredQuery" /> from</param>
-    </member>
-    <member name="T:System.Web.Http.Query.IStructuredQueryBuilder">
-      <summary> A <see cref="T:System.Web.Http.Query.IStructuredQueryBuilder" /> is used to extract the query from a Uri. </summary>
-    </member>
-    <member name="M:System.Web.Http.Query.IStructuredQueryBuilder.GetStructuredQuery(System.Uri)">
-      <summary> Build the <see cref="T:System.Web.Http.Query.StructuredQuery" /> for the given uri. Return null if there is no query  in the Uri. </summary>
-      <returns>The <see cref="T:System.Web.Http.Query.StructuredQuery" /></returns>
-      <param name="uri">The <see cref="T:System.Uri" /> to build the <see cref="T:System.Web.Http.Query.StructuredQuery" /> from</param>
-    </member>
-    <member name="T:System.Web.Http.Query.IStructuredQueryPart">
-      <summary> Represents a query option like $filter, $top etc. </summary>
-    </member>
-    <member name="M:System.Web.Http.Query.IStructuredQueryPart.ApplyTo(System.Linq.IQueryable)">
-      <summary> Applies this <see cref="T:System.Web.Http.Query.IStructuredQueryPart" /> on to an <see cref="T:System.Linq.IQueryable" /> returning the resultant <see cref="T:System.Linq.IQueryable" /></summary>
-      <returns>The resultant <see cref="T:System.Linq.IQueryable" /></returns>
-      <param name="source">The source <see cref="T:System.Linq.IQueryable" /></param>
-    </member>
-    <member name="P:System.Web.Http.Query.IStructuredQueryPart.QueryExpression">
-      <summary> The value part of the query parameter for this query part. </summary>
-    </member>
-    <member name="P:System.Web.Http.Query.IStructuredQueryPart.QueryOperator">
-      <summary> The query operator that this query parameter is for. </summary>
-    </member>
-    <member name="T:System.Web.Http.Query.StructuredQuery">
-      <summary> Represents an <see cref="T:System.Linq.IQueryable" />. </summary>
-    </member>
-    <member name="M:System.Web.Http.Query.StructuredQuery.#ctor">
-      <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Query.StructuredQuery" /> class.</summary>
-    </member>
-    <member name="P:System.Web.Http.Query.StructuredQuery.QueryParts">
-      <summary> Gets or sets a list of query parts. </summary>
     </member>
     <member name="T:System.Web.Http.Routing.HttpMethodConstraint">
       <summary>Enables you to define which HTTP verbs are allowed when ASP.NET routing determines whether a URL matches a route.</summary>
@@ -3583,11 +3478,11 @@
     <member name="T:System.Web.Http.Routing.HttpRouteDirection">
       <summary>Specifies an enumeration of route direction.</summary>
     </member>
-    <member name="F:System.Web.Http.Routing.HttpRouteDirection.UriResolution">
-      <summary>The UriResolution direction.</summary>
-    </member>
     <member name="F:System.Web.Http.Routing.HttpRouteDirection.UriGeneration">
       <summary>The UriGeneration direction.</summary>
+    </member>
+    <member name="F:System.Web.Http.Routing.HttpRouteDirection.UriResolution">
+      <summary>The UriResolution direction.</summary>
     </member>
     <member name="T:System.Web.Http.Routing.HttpRouteValueDictionary">
       <summary>Represents a route class for self-host of specified key/value pairs.</summary>
@@ -3689,9 +3584,7 @@
       <summary>Gets the URI that represents the virtual path of the current HTTP route.</summary>
       <returns>The URI that represents the virtual path of the current HTTP route.</returns>
     </member>
-    <member name="T:System.Web.Http.Routing.UrlHelper">
-      <summary>No content here will be updated; please do not add material here.</summary>
-    </member>
+    <member name="T:System.Web.Http.Routing.UrlHelper"></member>
     <member name="M:System.Web.Http.Routing.UrlHelper.#ctor(System.Net.Http.HttpRequestMessage)">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Routing.UrlHelper" /> class.</summary>
       <param name="request">The HTTP request for this instance.</param>
@@ -4009,35 +3902,35 @@
     <member name="T:System.Web.Http.Tracing.TraceKind">
       <summary>Specifies the kind of tracing operation.</summary>
     </member>
-    <member name="F:System.Web.Http.Tracing.TraceKind.Trace">
-      <summary>Single trace, not part of a Begin/End trace pair.</summary>
-    </member>
     <member name="F:System.Web.Http.Tracing.TraceKind.Begin">
       <summary>Trace marking the beginning of some operation.</summary>
     </member>
     <member name="F:System.Web.Http.Tracing.TraceKind.End">
       <summary>Trace marking the end of some operation.</summary>
     </member>
+    <member name="F:System.Web.Http.Tracing.TraceKind.Trace">
+      <summary>Single trace, not part of a Begin/End trace pair.</summary>
+    </member>
     <member name="T:System.Web.Http.Tracing.TraceLevel">
       <summary>Specifies an enumeration of tracing level.</summary>
     </member>
-    <member name="F:System.Web.Http.Tracing.TraceLevel.Off">
-      <summary>Tracing is disabled.</summary>
-    </member>
     <member name="F:System.Web.Http.Tracing.TraceLevel.Debug">
       <summary>Trace level for debugging traces.</summary>
-    </member>
-    <member name="F:System.Web.Http.Tracing.TraceLevel.Info">
-      <summary>Trace level for informational traces.</summary>
-    </member>
-    <member name="F:System.Web.Http.Tracing.TraceLevel.Warn">
-      <summary>Trace level for warning traces.</summary>
     </member>
     <member name="F:System.Web.Http.Tracing.TraceLevel.Error">
       <summary>Trace level for error traces.</summary>
     </member>
     <member name="F:System.Web.Http.Tracing.TraceLevel.Fatal">
       <summary>Trace level for fatal traces.</summary>
+    </member>
+    <member name="F:System.Web.Http.Tracing.TraceLevel.Info">
+      <summary>Trace level for informational traces.</summary>
+    </member>
+    <member name="F:System.Web.Http.Tracing.TraceLevel.Off">
+      <summary>Tracing is disabled.</summary>
+    </member>
+    <member name="F:System.Web.Http.Tracing.TraceLevel.Warn">
+      <summary>Trace level for warning traces.</summary>
     </member>
     <member name="T:System.Web.Http.Tracing.TraceRecord">
       <summary>Represents a trace record.</summary>

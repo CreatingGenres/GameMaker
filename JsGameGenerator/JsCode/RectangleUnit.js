@@ -1,4 +1,5 @@
-﻿function RectangleUnit() {
+﻿/// <reference path="gametemplate.js" />
+function RectangleUnit() {
 	var base = RectUnit;
 	__extends(RectangleUnit, base);
 

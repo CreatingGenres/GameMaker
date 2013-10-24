@@ -1,4 +1,5 @@
-﻿using GameMaker.Model_Structure.Units;
+﻿using GameMaker.ModelStructure;
+using GameMaker.ModelStructure.Units;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -14,11 +15,11 @@ namespace GameMaker
 	/// </summary>
 	public class JsGenerator
 	{
-		private static string BackgroundPlaceholder = @"//<!--BACKGROUND-->";
-		private static string UnitsPlaceholder = @"//<!--UNITS-->";
-		private static string KeyBindingsPlaceholder = @"//<!--KEYBINDINGS-->";
-		private static string DrawPlaceholder = @"//<!--DRAW-->";
-		private static string ModulesPlaceholder = @"//<!--MODULES-->";
+		private static readonly string BackgroundPlaceholder = @"//<!--BACKGROUND-->";
+		private static readonly string UnitsPlaceholder = @"//<!--UNITS-->";
+		private static readonly string KeyBindingsPlaceholder = @"//<!--KEYBINDINGS-->";
+		private static readonly string DrawPlaceholder = @"//<!--DRAW-->";
+		private static readonly string ModulesPlaceholder = @"//<!--MODULES-->";
 		private string gameTemplate;
 		private Dictionary<string, Module> presetModules;
 
@@ -41,31 +42,13 @@ namespace GameMaker
 		/// <param name="model">The model that describes the game.</param>
 		public string GenerateGameCode(GameModel model)
 		{
-			return GenerateGameCode(model, new ModuleCollection());
-		}
-
-		/// <summary>
-		/// Generates the javascript code for the game described in the specified model and using the given default unit presetModules.
-		/// </summary>
-		/// <param name="model">The model that describes the game.</param>
-		/// <param name="defaultUnitModules">A collection of presetModules to be included to each unit.</param>
-		/// <returns></returns>
-		public string GenerateGameCode(GameModel model, ModuleCollection defaultUnitModules)
-		{
 			if (model == null)
 				throw new ArgumentNullException("model");
-
-			if (defaultUnitModules == null)
-				throw new ArgumentNullException("defaultUnitModules");
 
 			Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
 
 			UpdateModules(model.Units);
 			UpdateModules(model);
-			foreach (var unit in model.Units)
-			{
-				unit.Modules.AddRange(defaultUnitModules);
-			}
 
 			var unitModules = new ModuleCollection();
 			foreach (var unit in model.Units)
@@ -75,12 +58,11 @@ namespace GameMaker
 
 			string background = model.Background.GenerateCode();
 			string modules = unitModules.GenerateUnitModulesCode() + "\n" + model.Modules.GenerateGameModulesCode();
-			string unitConstructors = GenerateUnitConstructors(); 
+			string unitConstructors = GenerateUnitConstructors();
 			string units = unitConstructors + model.Units.GenerateCollectionCode((unit) => unit.GenerateCode());
 			string bindings = model.KeyBindings.GenerateCollectionCode((binding) => binding.GenerateCode());
-			bindings += model.MouseBindings.GenerateCollectionCode((binding) => binding.GenerateCode());
 
-			var game = Regex.Replace(gameTemplate, BackgroundPlaceholder, background, RegexOptions.None);
+			string game = Regex.Replace(gameTemplate, BackgroundPlaceholder, background, RegexOptions.None);
 			game = Regex.Replace(game, ModulesPlaceholder, modules, RegexOptions.None);
 			game = Regex.Replace(game, UnitsPlaceholder, units, RegexOptions.None);
 			game = Regex.Replace(game, KeyBindingsPlaceholder, bindings, RegexOptions.None);
@@ -88,7 +70,11 @@ namespace GameMaker
 			return game;
 		}
 
-		//REVIEW: Why the reflection?
+		/// <summary>
+		/// Finds all <see cref="GameMaker.ModelStructure.Units.Unit"/> subclasses and uses their name to find a .js file containing the generated javascript for each 
+		/// of them
+		/// </summary>
+		/// <returns>The code for every single <see cref="GameMaker.ModelStructure.Units.Unit"/> subclass.</returns>
 		private string GenerateUnitConstructors()
 		{
 			var typeOfUnit = typeof(Unit);
@@ -108,6 +94,10 @@ namespace GameMaker
 			return code.ToString();
 		}
 
+		/// <summary>
+		/// Updates the function body and invokable property of all modules of all IExtensibles in the collection.
+		/// </summary>
+		/// <param name="extensibles">The collection, whose element's modules to update.</param>
 		private void UpdateModules(IEnumerable<IExtensible> extensibles)
 		{
 			foreach (var extendable in extensibles)
@@ -116,6 +106,10 @@ namespace GameMaker
 			}
 		}
 
+		/// <summary>
+		/// Updates the function body and the invokable property of all modules in this IExtensible
+		/// </summary>
+		/// <param name="extensible">The object to update modules upon.</param>
 		private void UpdateModules(IExtensible extensible)
 		{
 			foreach (var module in extensible.Modules)

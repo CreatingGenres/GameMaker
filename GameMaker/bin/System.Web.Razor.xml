@@ -178,9 +178,7 @@
     <member name="M:System.Web.Razor.RazorEngineHost.#ctor(System.Web.Razor.RazorCodeLanguage)">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.RazorEngineHost.#ctor(System.Web.Razor.RazorCodeLanguage,System.Func`1)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.RazorEngineHost.#ctor(System.Web.Razor.RazorCodeLanguage,System.Func{System.Web.Razor.Parser.ParserBase})"></member>
     <member name="P:System.Web.Razor.RazorEngineHost.CodeLanguage">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
@@ -389,9 +387,7 @@
     <member name="T:System.Web.Razor.Editor.ImplicitExpressionEditHandler">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Editor.ImplicitExpressionEditHandler.#ctor(System.Func`2,System.Boolean,System.String)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Editor.ImplicitExpressionEditHandler.#ctor(System.Func{System.String,System.Collections.Generic.IEnumerable{System.Web.Razor.Tokenizer.Symbols.ISymbol}},System.Collections.Generic.ISet{System.String},System.Boolean)"></member>
     <member name="P:System.Web.Razor.Editor.ImplicitExpressionEditHandler.AcceptTrailingDot">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
@@ -413,21 +409,13 @@
     <member name="T:System.Web.Razor.Editor.SingleLineMarkupEditHandler">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Editor.SingleLineMarkupEditHandler.#ctor(System.Func`2)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
-    <member name="M:System.Web.Razor.Editor.SingleLineMarkupEditHandler.#ctor(System.Func`2,System.Boolean)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Editor.SingleLineMarkupEditHandler.#ctor(System.Func{System.String,System.Collections.Generic.IEnumerable{System.Web.Razor.Tokenizer.Symbols.ISymbol}})"></member>
+    <member name="M:System.Web.Razor.Editor.SingleLineMarkupEditHandler.#ctor(System.Func{System.String,System.Collections.Generic.IEnumerable{System.Web.Razor.Tokenizer.Symbols.ISymbol}},System.Web.Razor.Parser.SyntaxTree.AcceptedCharacters)"></member>
     <member name="T:System.Web.Razor.Editor.SpanEditHandler">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Editor.SpanEditHandler.#ctor(System.Func`2)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
-    <member name="M:System.Web.Razor.Editor.SpanEditHandler.#ctor(System.Func`2,System.Boolean)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Editor.SpanEditHandler.#ctor(System.Func{System.String,System.Collections.Generic.IEnumerable{System.Web.Razor.Tokenizer.Symbols.ISymbol}})"></member>
+    <member name="M:System.Web.Razor.Editor.SpanEditHandler.#ctor(System.Func{System.String,System.Collections.Generic.IEnumerable{System.Web.Razor.Tokenizer.Symbols.ISymbol}},System.Web.Razor.Parser.SyntaxTree.AcceptedCharacters)"></member>
     <member name="P:System.Web.Razor.Editor.SpanEditHandler.AcceptedCharacters">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
@@ -443,9 +431,7 @@
     <member name="M:System.Web.Razor.Editor.SpanEditHandler.CreateDefault">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Editor.SpanEditHandler.CreateDefault(System.Func`2)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Editor.SpanEditHandler.CreateDefault(System.Func{System.String,System.Collections.Generic.IEnumerable{System.Web.Razor.Tokenizer.Symbols.ISymbol}})"></member>
     <member name="P:System.Web.Razor.Editor.SpanEditHandler.EditorHints">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
@@ -620,9 +606,7 @@
     <member name="M:System.Web.Razor.Generator.CodeGeneratorContext.BufferStatementFragment(System.Web.Razor.Parser.SyntaxTree.Span)">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Generator.CodeGeneratorContext.ChangeStatementCollector(System.Action`2)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Generator.CodeGeneratorContext.ChangeStatementCollector(System.Action{System.String,System.CodeDom.CodeLinePragma})"></member>
     <member name="P:System.Web.Razor.Generator.CodeGeneratorContext.CodeMappings">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
@@ -1320,9 +1304,7 @@
     <member name="M:System.Web.Razor.Parser.CSharpCodeParser.At(System.Web.Razor.Tokenizer.Symbols.CSharpKeyword)">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Parser.CSharpCodeParser.BaseTypeDirective(System.String,System.Func`2)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Parser.CSharpCodeParser.BaseTypeDirective(System.String,System.Func{System.String,System.Web.Razor.Generator.SpanCodeGenerator})"></member>
     <member name="M:System.Web.Razor.Parser.CSharpCodeParser.FunctionsDirective">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
@@ -1344,9 +1326,7 @@
     <member name="P:System.Web.Razor.Parser.CSharpCodeParser.IsNested">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Parser.CSharpCodeParser.IsSpacingToken(System.Boolean,System.Web.Razor.Tokenizer.Symbols.CSharpSymbol)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Parser.CSharpCodeParser.IsSpacingToken(System.Boolean,System.Boolean)"></member>
     <member name="P:System.Web.Razor.Parser.CSharpCodeParser.Keywords">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
@@ -1380,9 +1360,7 @@
     <member name="M:System.Web.Razor.Parser.CSharpCodeParser.SessionStateDirectiveCore">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Parser.CSharpCodeParser.SessionStateTypeDirective(System.String,System.Func`3)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Parser.CSharpCodeParser.SessionStateTypeDirective(System.String,System.Func{System.String,System.String,System.Web.Razor.Generator.SpanCodeGenerator})"></member>
     <member name="M:System.Web.Razor.Parser.CSharpCodeParser.TryGetDirectiveHandler(System.String,System.Action@)">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
@@ -1485,12 +1463,8 @@
     <member name="M:System.Web.Razor.Parser.HtmlMarkupParser.ParseDocument">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Parser.HtmlMarkupParser.ParseSection(System.Tuple`2,System.Boolean)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
-    <member name="M:System.Web.Razor.Parser.HtmlMarkupParser.SkipToAndParseCode(System.Func`2)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Parser.HtmlMarkupParser.ParseSection(System.Tuple{System.String,System.String},System.Boolean)"></member>
+    <member name="M:System.Web.Razor.Parser.HtmlMarkupParser.SkipToAndParseCode(System.Func{System.Web.Razor.Tokenizer.Symbols.HtmlSymbol,System.Boolean})"></member>
     <member name="M:System.Web.Razor.Parser.HtmlMarkupParser.SkipToAndParseCode(System.Web.Razor.Tokenizer.Symbols.HtmlSymbolType)">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
@@ -1557,9 +1531,7 @@
     <member name="M:System.Web.Razor.Parser.LanguageCharacteristics`3.KnowsSymbolType(System.Web.Razor.Tokenizer.Symbols.KnownSymbolType)">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Parser.LanguageCharacteristics`3.SplitSymbol(System.Boolean,`1,`1)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Parser.LanguageCharacteristics`3.SplitSymbol(`1,System.Int32,`2)"></member>
     <member name="M:System.Web.Razor.Parser.LanguageCharacteristics`3.TokenizeString(System.String)">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
@@ -1590,9 +1562,7 @@
     <member name="M:System.Web.Razor.Parser.ParserBase.ParseDocument">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Parser.ParserBase.ParseSection(System.Tuple`2,System.Boolean)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Parser.ParserBase.ParseSection(System.Tuple{System.String,System.String},System.Boolean)"></member>
     <member name="T:System.Web.Razor.Parser.ParserContext">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
@@ -1935,9 +1905,7 @@
     <member name="M:System.Web.Razor.Parser.TokenizerBackedParser`3.AcceptUntil(`2[])">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Parser.TokenizerBackedParser`3.AcceptWhile(System.Func`2)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Parser.TokenizerBackedParser`3.AcceptWhile(System.Func{`1,System.Boolean})"></member>
     <member name="M:System.Web.Razor.Parser.TokenizerBackedParser`3.AcceptWhile(`2)">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
@@ -1977,9 +1945,7 @@
     <member name="M:System.Web.Razor.Parser.TokenizerBackedParser`3.ConfigureSpan(System.Action{System.Web.Razor.Parser.SyntaxTree.SpanBuilder})">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Parser.TokenizerBackedParser`3.ConfigureSpan(System.Action`2)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Parser.TokenizerBackedParser`3.ConfigureSpan(System.Action{System.Web.Razor.Parser.SyntaxTree.SpanBuilder,System.Action{System.Web.Razor.Parser.SyntaxTree.SpanBuilder}})"></member>
     <member name="P:System.Web.Razor.Parser.TokenizerBackedParser`3.CurrentLocation">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
@@ -2010,9 +1976,7 @@
     <member name="P:System.Web.Razor.Parser.TokenizerBackedParser`3.Language">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Parser.TokenizerBackedParser`3.NextIs(System.Func`2)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Parser.TokenizerBackedParser`3.NextIs(System.Func{`1,System.Boolean})"></member>
     <member name="M:System.Web.Razor.Parser.TokenizerBackedParser`3.NextIs(`2)">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
@@ -2049,9 +2013,7 @@
     <member name="M:System.Web.Razor.Parser.TokenizerBackedParser`3.PushSpanConfig(System.Action{System.Web.Razor.Parser.SyntaxTree.SpanBuilder})">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Parser.TokenizerBackedParser`3.PushSpanConfig(System.Action`2)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Parser.TokenizerBackedParser`3.PushSpanConfig(System.Action{System.Web.Razor.Parser.SyntaxTree.SpanBuilder,System.Action{System.Web.Razor.Parser.SyntaxTree.SpanBuilder}})"></member>
     <member name="M:System.Web.Razor.Parser.TokenizerBackedParser`3.PutBack(System.Collections.Generic.IEnumerable{`1})">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
@@ -2064,9 +2026,7 @@
     <member name="M:System.Web.Razor.Parser.TokenizerBackedParser`3.RazorComment">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Parser.TokenizerBackedParser`3.ReadWhile(System.Func`2)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Parser.TokenizerBackedParser`3.ReadWhile(System.Func{`1,System.Boolean})"></member>
     <member name="M:System.Web.Razor.Parser.TokenizerBackedParser`3.Required(`2,System.Boolean,System.String)">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
@@ -2103,18 +2063,12 @@
     <member name="M:System.Web.Razor.Parser.VBCodeParser.At(System.Web.Razor.Tokenizer.Symbols.VBKeyword)">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Parser.VBCodeParser.EndTerminatedDirective(System.Void,System.Boolean,System.String,System.Web.Razor.Parser.SyntaxTree.BlockType)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Parser.VBCodeParser.EndTerminatedDirective(System.String,System.Web.Razor.Parser.SyntaxTree.BlockType,System.Web.Razor.Generator.SpanCodeGenerator,System.Boolean)"></member>
     <member name="M:System.Web.Razor.Parser.VBCodeParser.EndTerminatedDirectiveBody(System.String,System.Web.Razor.Text.SourceLocation,System.Boolean)">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Parser.VBCodeParser.EndTerminatedStatement(System.Void,System.Boolean,System.Web.Razor.Tokenizer.Symbols.VBKeyword)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
-    <member name="M:System.Web.Razor.Parser.VBCodeParser.EndTerminatedStatement(System.Void,System.Boolean,System.Web.Razor.Tokenizer.Symbols.VBKeyword,System.Boolean)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Parser.VBCodeParser.EndTerminatedStatement(System.Web.Razor.Tokenizer.Symbols.VBKeyword,System.Boolean,System.Boolean)"></member>
+    <member name="M:System.Web.Razor.Parser.VBCodeParser.EndTerminatedStatement(System.Web.Razor.Tokenizer.Symbols.VBKeyword,System.Boolean,System.Boolean,System.String)"></member>
     <member name="M:System.Web.Razor.Parser.VBCodeParser.HandleEmbeddedTransition">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
@@ -2145,21 +2099,15 @@
     <member name="P:System.Web.Razor.Parser.VBCodeParser.Keywords">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Parser.VBCodeParser.KeywordTerminatedStatement(System.Void,System.Boolean,System.Web.Razor.Tokenizer.Symbols.VBKeyword,System.Web.Razor.Tokenizer.Symbols.VBKeyword)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Parser.VBCodeParser.KeywordTerminatedStatement(System.Web.Razor.Tokenizer.Symbols.VBKeyword,System.Web.Razor.Tokenizer.Symbols.VBKeyword,System.Boolean,System.Boolean)"></member>
     <member name="P:System.Web.Razor.Parser.VBCodeParser.Language">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
     <member name="M:System.Web.Razor.Parser.VBCodeParser.LayoutDirective">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Parser.VBCodeParser.MapDirective(System.String,System.Func`1)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
-    <member name="M:System.Web.Razor.Parser.VBCodeParser.MapKeyword(System.Web.Razor.Tokenizer.Symbols.VBKeyword,System.Func`1)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Parser.VBCodeParser.MapDirective(System.String,System.Func{System.Boolean})"></member>
+    <member name="M:System.Web.Razor.Parser.VBCodeParser.MapKeyword(System.Web.Razor.Tokenizer.Symbols.VBKeyword,System.Func{System.Boolean})"></member>
     <member name="M:System.Web.Razor.Parser.VBCodeParser.NestedBlock">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
@@ -2250,12 +2198,8 @@
     <member name="T:System.Web.Razor.Parser.SyntaxTree.AutoCompleteEditHandler">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Parser.SyntaxTree.AutoCompleteEditHandler.#ctor(System.Func`2)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
-    <member name="M:System.Web.Razor.Parser.SyntaxTree.AutoCompleteEditHandler.#ctor(System.Func`2,System.Boolean)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Parser.SyntaxTree.AutoCompleteEditHandler.#ctor(System.Func{System.String,System.Collections.Generic.IEnumerable{System.Web.Razor.Tokenizer.Symbols.ISymbol}})"></member>
+    <member name="M:System.Web.Razor.Parser.SyntaxTree.AutoCompleteEditHandler.#ctor(System.Func{System.String,System.Collections.Generic.IEnumerable{System.Web.Razor.Tokenizer.Symbols.ISymbol}},System.Web.Razor.Parser.SyntaxTree.AcceptedCharacters)"></member>
     <member name="P:System.Web.Razor.Parser.SyntaxTree.AutoCompleteEditHandler.AutoCompleteAtEndOfSpan">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
@@ -2986,9 +2930,7 @@
     <member name="P:System.Web.Razor.Tokenizer.Tokenizer`2.Buffer">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Tokenizer.Tokenizer`2.CharOrWhiteSpace(System.Boolean)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Tokenizer.Tokenizer`2.CharOrWhiteSpace(System.Char)"></member>
     <member name="M:System.Web.Razor.Tokenizer.Tokenizer`2.CreateSymbol(System.Web.Razor.Text.SourceLocation,System.String,`1,System.Collections.Generic.IEnumerable{System.Web.Razor.Parser.SyntaxTree.RazorError})">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
@@ -3064,9 +3006,7 @@
     <member name="M:System.Web.Razor.Tokenizer.Tokenizer`2.TakeString(System.String,System.Boolean)">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Tokenizer.Tokenizer`2.TakeUntil(System.Func`2)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Tokenizer.Tokenizer`2.TakeUntil(System.Func{System.Char,System.Boolean})"></member>
     <member name="T:System.Web.Razor.Tokenizer.TokenizerView`3">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
       <typeparam name="TTokenizer"></typeparam>
@@ -3743,9 +3683,7 @@
     <member name="M:System.Web.Razor.Tokenizer.Symbols.SymbolExtensions.GetContent(System.Web.Razor.Parser.SyntaxTree.SpanBuilder)">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
-    <member name="M:System.Web.Razor.Tokenizer.Symbols.SymbolExtensions.GetContent(System.Web.Razor.Parser.SyntaxTree.SpanBuilder,System.Func`2)">
-      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
-    </member>
+    <member name="M:System.Web.Razor.Tokenizer.Symbols.SymbolExtensions.GetContent(System.Web.Razor.Parser.SyntaxTree.SpanBuilder,System.Func{System.Collections.Generic.IEnumerable{System.Web.Razor.Tokenizer.Symbols.ISymbol},System.Collections.Generic.IEnumerable{System.Web.Razor.Tokenizer.Symbols.ISymbol}})"></member>
     <member name="M:System.Web.Razor.Tokenizer.Symbols.SymbolExtensions.GetContent(System.Web.Razor.Tokenizer.Symbols.ISymbol)">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>

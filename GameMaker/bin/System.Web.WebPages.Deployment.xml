@@ -16,6 +16,9 @@
     <member name="M:System.Web.WebPages.Deployment.WebPagesDeployment.GetAssemblyPath(System.Version)">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>
+    <member name="M:System.Web.WebPages.Deployment.WebPagesDeployment.GetExplicitWebPagesVersion(System.String)">
+      <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
+    </member>
     <member name="M:System.Web.WebPages.Deployment.WebPagesDeployment.GetIncompatibleDependencies(System.String)">
       <summary>This type/member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</summary>
     </member>

@@ -1,9 +1,5 @@
-D:\Projects\work\GameMaker\GameMaker\bin\GameMaker.dll
-D:\Projects\work\GameMaker\GameMaker\bin\GameMaker.pdb
 D:\Projects\work\GameMaker\GameMaker\bin\JsGameGenerator.dll
 D:\Projects\work\GameMaker\GameMaker\bin\Microsoft.AspNet.SignalR.Core.dll
-D:\Projects\work\GameMaker\GameMaker\bin\Microsoft.AspNet.SignalR.Owin.dll
-D:\Projects\work\GameMaker\GameMaker\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
 D:\Projects\work\GameMaker\GameMaker\bin\Microsoft.Owin.Host.SystemWeb.dll
 D:\Projects\work\GameMaker\GameMaker\bin\Microsoft.Web.Infrastructure.dll
 D:\Projects\work\GameMaker\GameMaker\bin\Newtonsoft.Json.dll
@@ -20,8 +16,6 @@ D:\Projects\work\GameMaker\GameMaker\bin\System.Web.WebPages.Razor.dll
 D:\Projects\work\GameMaker\GameMaker\bin\JsGameGenerator.pdb
 D:\Projects\work\GameMaker\GameMaker\bin\Ionic.Zip.xml
 D:\Projects\work\GameMaker\GameMaker\bin\Microsoft.AspNet.SignalR.Core.xml
-D:\Projects\work\GameMaker\GameMaker\bin\Microsoft.AspNet.SignalR.Owin.xml
-D:\Projects\work\GameMaker\GameMaker\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
 D:\Projects\work\GameMaker\GameMaker\bin\Microsoft.Owin.Host.SystemWeb.xml
 D:\Projects\work\GameMaker\GameMaker\bin\Newtonsoft.Json.xml
 D:\Projects\work\GameMaker\GameMaker\bin\System.Net.Http.Formatting.xml
@@ -34,8 +28,14 @@ D:\Projects\work\GameMaker\GameMaker\bin\System.Web.WebPages.xml
 D:\Projects\work\GameMaker\GameMaker\bin\System.Web.WebPages.Deployment.xml
 D:\Projects\work\GameMaker\GameMaker\bin\System.Web.WebPages.Razor.xml
 D:\Projects\work\GameMaker\GameMaker\obj\Debug\GameMaker.csprojResolveAssemblyReference.cache
-D:\Projects\work\GameMaker\GameMaker\obj\Debug\GameMaker.dll
-D:\Projects\work\GameMaker\GameMaker\obj\Debug\GameMaker.pdb
 D:\Projects\work\GameMaker\GameMaker\bin\AppfailReporting.dll
 D:\Projects\work\GameMaker\GameMaker\bin\AppfailReporting.Mvc.dll
 D:\Projects\work\GameMaker\GameMaker\bin\Ionic.Zip.dll
+D:\Projects\work\GameMaker\GameMaker\bin\GameMaker.WebApp.dll
+D:\Projects\work\GameMaker\GameMaker\bin\GameMaker.WebApp.pdb
+D:\Projects\work\GameMaker\GameMaker\bin\Microsoft.Owin.dll
+D:\Projects\work\GameMaker\GameMaker\bin\Microsoft.Owin.Security.dll
+D:\Projects\work\GameMaker\GameMaker\bin\Microsoft.Owin.xml
+D:\Projects\work\GameMaker\GameMaker\bin\Microsoft.Owin.Security.xml
+D:\Projects\work\GameMaker\GameMaker\obj\Debug\GameMaker.WebApp.dll
+D:\Projects\work\GameMaker\GameMaker\obj\Debug\GameMaker.WebApp.pdb

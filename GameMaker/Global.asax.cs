@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Xml.Serialization;
 using System.Text;
+using GameMaker.ModelStructure;
 
 namespace GameMaker.WebApp
 {
@@ -22,7 +23,6 @@ namespace GameMaker.WebApp
 
 		protected void Application_Start()
 		{
-			RouteTable.Routes.MapHubs();
 			Initialize();
 			CombineIndex();
 		}

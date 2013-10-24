@@ -1143,11 +1143,11 @@
     <member name="T:System.Net.Http.Formatting.MediaTypeFormatterMatchRanking">
       <summary> Contains information about the degree to which a <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" /> matches the   explicit or implicit preferences found in an incoming request. </summary>
     </member>
-    <member name="F:System.Net.Http.Formatting.MediaTypeFormatterMatchRanking.None">
-      <summary> No match was found </summary>
-    </member>
     <member name="F:System.Net.Http.Formatting.MediaTypeFormatterMatchRanking.MatchOnCanWriteType">
       <summary> Matched on a type, meaning that the formatter is able to serialize the type.</summary>
+    </member>
+    <member name="F:System.Net.Http.Formatting.MediaTypeFormatterMatchRanking.MatchOnRequestAcceptHeaderAllMediaRange">
+      <summary>Matched on an explicit “*/*” range in the Accept header.</summary>
     </member>
     <member name="F:System.Net.Http.Formatting.MediaTypeFormatterMatchRanking.MatchOnRequestAcceptHeaderLiteral">
       <summary>Matched on an explicit literal accept header, such as “application/json”.</summary>
@@ -1155,14 +1155,14 @@
     <member name="F:System.Net.Http.Formatting.MediaTypeFormatterMatchRanking.MatchOnRequestAcceptHeaderSubtypeMediaRange">
       <summary>Matched on an explicit subtype range in an Accept header, such as “application/*”.</summary>
     </member>
-    <member name="F:System.Net.Http.Formatting.MediaTypeFormatterMatchRanking.MatchOnRequestAcceptHeaderAllMediaRange">
-      <summary>Matched on an explicit “*/*” range in the Accept header.</summary>
+    <member name="F:System.Net.Http.Formatting.MediaTypeFormatterMatchRanking.MatchOnRequestMediaType">
+      <summary> Matched on the media type of the entity body in the HTTP request message.</summary>
     </member>
     <member name="F:System.Net.Http.Formatting.MediaTypeFormatterMatchRanking.MatchOnRequestWithMediaTypeMapping">
       <summary> Matched on <see cref="T:System.Net.Http.HttpRequestMessage" /> after having applied the various <see cref="T:System.Net.Http.Formatting.MediaTypeMapping" />s. </summary>
     </member>
-    <member name="F:System.Net.Http.Formatting.MediaTypeFormatterMatchRanking.MatchOnRequestMediaType">
-      <summary> Matched on the media type of the entity body in the HTTP request message.</summary>
+    <member name="F:System.Net.Http.Formatting.MediaTypeFormatterMatchRanking.None">
+      <summary> No match was found </summary>
     </member>
     <member name="T:System.Net.Http.Formatting.MediaTypeMapping">
       <summary> An abstract base class used to create an association between <see cref="T:System.Net.Http.HttpRequestMessage" /> or  <see cref="T:System.Net.Http.HttpResponseMessage" /> instances that have certain characteristics  and a specific <see cref="T:System.Net.Http.Headers.MediaTypeHeaderValue" />.  </summary>

@@ -1,4 +1,4 @@
-﻿/// <reference path="extensions.js" />
+// TODO: Depends on Extensions.js. What nao?
 
 var game;
 $(document).ready(function () {
@@ -123,7 +123,7 @@ $(document).ready(function () {
 			isEmpty: true
         };
         var background;
-        //<!--BACKGROUND-->
+        
 
 		// Creates a module and sets its basic properties
         var createModule = function (name, data) {
@@ -133,18 +133,10 @@ $(document).ready(function () {
             };
         };
 
-		// Arrays to hold the implementations of the game and unit modules
         var modules = [];
         var unitModules = [];
 
-    	/// <summary>
-        /// Evaluates string commands in the specified context and updates the value of the specified property of the specified object.
-    	/// The extra context variable is needed to properly evaluate 'this'.
-        /// </summary>
-    	/// <param name="context" type="Object">The context in which to evaluate.</param>
-    	/// <param name="obj" type="Object">The object whose property to update.</param>
-    	/// <param name="property" type="String">The name of the property to be updated.</param>
-    	/// <param name="input" type="String">The command to evaluate.</param>
+		// A function I have yet to grasp 
         var evaluateInput = (function () {
         	var evaluateInputInContext = function (obj, property, input) {
         		if (!input.startsWith)
@@ -168,27 +160,16 @@ $(document).ready(function () {
         	return evaluateInput;
         })();
 
-    	/// <summary>Raises the specified event on the specified unit with the specified arguments to the event handler.</summary>
-    	/// <param name="unit" type="Object">The unit to raise event on.</param>
-    	/// <param name="eventName" type="String">The name of the event to raise.</param>
-    	/// <param name="args" type="Object">A dictionary holding the arguments.</param>
-        var raiseEvent = function (unit, eventName, args) {
-        	if (unit.events[eventName]) {
+        var raiseEvent = function (unit, module, args) {
+        	if (unit.events[module]) {
         		try {
-        			unit.events[eventName].call(unit, args);
+        			unit.events[module].call(unit, args);
         		} catch (e) {
-        			logger.onError(String.format("Error raising event {0}. Error: {1}", eventName, e));
+        			logger.onError(String.format("Error raising event {0}. Error: {1}", module, e));
         		}
         	}
         };
 
-    	/// <summary>Standart event handler. Updates property values and calls any methods if specified in action.</summary>
-    	/// <param name="unit" type="Object">The unit to operate on.</param>
-    	/// <param name="properties" type="Array">An array of property names to update.</param>
-    	/// <param name="action" type="Object">
-        /// An optional simple object. 
-    	/// Holds 3 values - a target, a module to be called on the target and arguments to the module call.
-        /// </param>
         var basicEventHandler = function (unit, properties, action) {
             for (var i in properties) {
                 // Different from an empty string, else things like 0 will be truthy
@@ -212,26 +193,113 @@ $(document).ready(function () {
             }
         }
 
-        //<!--MODULES-->
+        unitModules['move'] = function (params) { raiseEvent(this, 'move', arguments[0]);  
+			if (params.dx) {
+				this.x += eval(params.dx); 
+			}
+			if (params.dy) {
+				this.y += eval(params.dy); 
+			}
+		};
 
-		// Arrays to hold units and their prototypes
+var module = createModule('collider', (function() { var data = [];  return data; })());
+		$.extend(module, (function() {
+				return {
+					update: function() {
+						for(var i in units) {
+							for(var j in units) {
+								if (units[i].isColliding(units[j])) {
+									if (i == j || (i.startsWith("canvas") && j.startsWith("canvas")))
+										continue;
+
+									raiseEvent(units[i], "onCollision", {enemyName: units[j].id.removeAfter("_") });
+								}
+							}
+						}
+					}
+				};
+			})());
+		modules['collider'] = module;
+		var module = createModule('unit-generator', (function() { var data = [];  return data; })());
+		$.extend(module, (function () {
+				var counter = 0;
+				var generate = function generate(params, mousy) {
+					var id = params.unit || params.id, coordinates = {
+						x: params.unitX,
+						y: params.unitY,
+						dx: params.unitDx,
+						dy: params.unitDy,
+					}
+					if (!unitPrototypes[id]) {
+						return;
+					}
+					if (mousy) {
+						var mouse = mousy;
+					}
+					var unit = clone(unitPrototypes[id]);
+					unit.id = id + "_" + this.counter;
+					unit.x = eval(coordinates.x);
+					unit.y = eval(coordinates.y);
+					if (coordinates.dx) {
+						unit.dx = eval(coordinates.dx);
+					}
+					if (coordinates.dy) {
+						unit.dy = eval(coordinates.dy);
+					}
+					units[unit.id] = unit;
+					raiseEvent(unit, "onSpawn");
+					this.counter++;
+				};
+				return {
+					counter: 0,
+					generate: generate,
+					invoke: generate,
+				};
+			})());
+		modules['unit-generator'] = module;
+		var module = createModule('camera', (function() { var data = [];  return data; })());
+		$.extend(module, (function () {
+				return {
+					position: new Vector2(0, 0),
+					rotation: 0,
+					scale: 1,
+					transform: [1, 0, 0, 1, 0, 0],
+					invoke: function(data) {
+						if (data.x != '0')
+							evaluateInput(this.position, this.position, 'x', data.x);
+						if (data.y != '0')
+							evaluateInput(this.position, this.position, 'y', data.y);
+						if (data.rotation != "0")
+							evaluateInput(this, this, 'rotation', data.rotation);
+						if (data.scale != "0")
+							evaluateInput(this, this, 'scale', data.scale);
+							
+						this.transform = [
+							this.scale * Math.cos(this.rotation), Math.sin(this.rotation), - Math.sin(this.rotation), this.scale * Math.cos(this.rotation), this.position.x, this.position.y
+						];						
+					},
+					draw: function() {	
+						context.setTransform.apply(this, this.data);
+					}
+				}
+			})());
+		modules['camera'] = module;
+		
+
         var units = [];
         var unitPrototypes = [];
-
-		// Enumeration of possible states a unit is in.
         var UnitStates = {
             alive: "alive",
             dead: "dead",
             dying: "dying",
         }
-
-    	/// <summary>Base class for all units. Defines their id, position, rotation and health.</summary>
         var Unit = (function() { 
-            function Unit(id, x, y, hp, rotateX) {
+            function Unit(id, x, y, hp, rotateX, rotateY) {
                 this.id = id;
                 this.dx = 0;
                 this.dy = 0;
                 this.rotateX = rotateX ? rotateX : 0;
+                this.rotateY = rotateY ? rotateY : 0;
                 this.scaleX = 1;
                 this.scaleY = 1;
                 this.hp = hp;
@@ -275,12 +343,9 @@ $(document).ready(function () {
             	this.updateCallback();
             };
 
-        	/// <summary>A method that is called in unit's update method. Implement it to actually update the object.</summary>
             Unit.prototype.updateCallback = function () { };
-        	/// <summary>A method that is called in the unit's draw method. Implement it to actually draw the object.</summary>
             Unit.prototype.drawCallback = function () { };
-			
-        	/// <summary>Draws the unit. To override this behaviour implement drawCallback.</summary>
+
             Unit.prototype.draw = function () {
                 context.save();
                 context.translate(this.x + this.width / 2, this.y + this.height / 2);
@@ -363,12 +428,162 @@ $(document).ready(function () {
             return unit.y + unit.height >= canvas.height;
         };
 
-        //<!--UNITS-->
+        	var AnimatedSpriteUnit = (function AnimatedSpriteUnit() {
+	var base = RectUnit;
+	__extends(AnimatedSpriteUnit, base);
 
-		// Boolean array to represent the state of the keyboard 
+	function AnimatedSpriteUnit(id, texture, animations, framesPerRow, framesPerCol, x, y, width, height, hp, rotateX, rotateY) {
+		base.call(this, id, x, y, width, height, hp, rotateX, rotateY);
+		this.animations = animations;
+		this.runningAnimation = 'idle'; //BECAUSE IE
+		this.activeAnimationChangedRecently = false;
+		if (texture) {
+			this.texture = new Image();
+			this.texture.src = texture;
+			loader.imagesToLoad++;
+			var self = this;
+			this.texture.onload = function() {
+				self.swidth = self.texture.width / framesPerRow;
+				self.sheight = self.texture.height / framesPerCol;
+				loader.onImageLoaded();
+			};
+		}
+	}
+				
+	Object.defineProperties(AnimatedSpriteUnit.prototype, {
+		'activeAnimation': {
+			get: function() {
+				return this.runningAnimation;
+			},
+			set: function(value) {							
+				if (value == this.runningAnimation) {
+					if (this.animations[this.runningAnimation].hasFinished) 
+						this.animations[this.runningAnimation].reset();
+					return;
+				}
+
+
+				if (this.canChangeAnimationTo(value)) {
+					this.activeAnimationChangedRecently = true;
+					this.runningAnimation = value;
+					if (this.animations[this.runningAnimation].mustFinish) {
+						this.animations[this.runningAnimation].reset();
+					}
+				}
+			}
+		},
+	});
+
+	AnimatedSpriteUnit.prototype.canChangeAnimationTo = function (nextAnimation) {
+		var next = this.animations[nextAnimation];
+		if (!next)
+			return false;
+
+		if (next.mustFinish) {
+			return true;	
+		}
+
+		var active = this.animations[this.runningAnimation];
+		if (active.mustFinish && !active.hasFinished)
+			return false;
+
+		return true;
+	};
+				
+	AnimatedSpriteUnit.prototype.updateCallback = function () {
+		if (!this.activeAnimationChangedRecently && this.canChangeAnimationTo('idle')) {
+			this.activeAnimation = 'idle';
+		}
+		this.animations[this.activeAnimation].update();
+
+		this.activeAnimationChangedRecently = false;
+	};
+
+	AnimatedSpriteUnit.prototype.drawCallback = function (context) {
+		var sx = this.animations[this.activeAnimation].colFrame * this.swidth;
+		var sy = this.animations[this.activeAnimation].rowFrame * this.sheight;
+		context.drawImage(this.texture, sx, sy, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
+	};
+				
+	AnimatedSpriteUnit.prototype.die = function () {
+		if (this.state != UnitStates.dying) {
+			raiseEvent(this, 'onDeath');
+		}
+		this.state = UnitStates.dying;
+		var self = this;
+		var activeAnimation = this.animations[this.activeAnimation];
+		setTimeout(function () {
+			Array.removeItem(units, this.id);
+			self.state = UnitStates.dead;
+		}, settings.updateTime * activeAnimation.framesPerRow);
+	};
+
+
+	return AnimatedSpriteUnit;				
+})();
+	var InanimatedSpriteUnit = (function InanimatedSpriteUnit() {
+	var base = RectUnit;
+	__extends(InanimatedSpriteUnit, base);
+
+	function InanimatedSpriteUnit(id, texture, x, y, width, height, hp) {
+		base.call(this, id, x, y, width, height, hp);
+		if (texture) {
+			this.texture = new Image();
+			this.texture.src = texture;
+			loader.imagesToLoad++;
+			var self = this;
+			this.texture.onload = loader.onImageLoaded;
+		}
+	};
+
+	InanimatedSpriteUnit.prototype.drawCallback = function (context) {
+		context.drawImage(this.texture, this.x, this.y, this.width, this.height);
+	};
+
+	return InanimatedSpriteUnit;
+})();
+	var RectangleUnit = (function RectangleUnit() {
+	var base = RectUnit;
+	__extends(RectangleUnit, base);
+
+	function RectangleUnit(id, color, x, y, width, height, hp) {
+		base.call(this, id, x, y, width, height, hp);
+		this.color = color;
+	};
+
+	RectangleUnit.prototype.drawCallback = function (context) {
+		context.fillStyle = this.color;
+		context.fillRect(this.x, this.y, this.width, this.height);
+	}
+
+	return RectangleUnit;
+})();
+
+			var unit = createUnit(InanimatedSpriteUnit, true, 'Basic', 'images/library/blue-monster.png', 50, 200, 40, 40, 1);
+			unit.dx = 0; unit.dy = 0
+
+
+			var unit = createUnit(InanimatedSpriteUnit, false, 'Basic83', 'images/library/blue-monster.png', 88.5057471264368, 93.1880108991826, 40, 40, 1);
+			unit.dx = 0; unit.dy = 0
+$.extend(unit, (function () {
+		var moduleData = [];
+		moduleData['move'] = (function() { var data = [];  return data; })();
+
+		return {
+				
+		move : unitModules['move'], 
+		moduleData: moduleData
+		};
+	})());unit.events = (function () { var events = [];
+events['onClick'] = function(args) {basicEventHandler(this, (function() { var data = []; data['hp'] = ""; data['dX'] = ""; data['dY'] = ""; data['width'] = ""; data['height'] = ""; data['stillPlaying'] = ""; data['points'] = "";  return data; })(), new Object({ target: '#Basic83', module: 'move', args: new Object({dx: '10', dy: '0', })}));
+};
+return events; })();
+raiseEvent(unit, 'onSpawn');
+
+
+
         var keyboard = [];
         var previousKeyboard = [];
-		// Object to hold the state of the mouse - its position and 3 boolean variables - left, middle, right
         var mouse = {};
         mouse.position = new Vector2(0, 0);
         var previousMouse = {};
@@ -382,28 +597,26 @@ $(document).ready(function () {
             keyboard[args.which] = false;
         }, false);
 
+        $(window).mousedown(function (args) {
+            switch (args.which) {
+                case 1:
+                    mouse.left = true;
+                    break;
+                case 2:
+                    mouse.middle = true;
+                    break;
+                case 3:
+                    mouse.right = true;
+                    break;
+            };
+        });
 
-		// Raise the click event on the units below the mouse
         $(window).click(function (args) {
         	for (var i in units) {
         		if (units[i].boundingFigure.contains(mouse.position)) {
         			raiseEvent(units[i], 'onClick', {});
         		}
         	}        	
-        });
-
-        $(window).mousedown(function (args) {
-        	switch (args.which) {
-        		case 1:
-        			mouse.left = true;
-        			break;
-        		case 2:
-        			mouse.middle = true;
-        			break;
-        		case 3:
-        			mouse.right = true;
-        			break;
-        	};
         });
 
         $(window).mouseup(function (args) {
@@ -420,7 +633,6 @@ $(document).ready(function () {
             };
         });
         
-		// Update the mouse position and raise the mouseOver event
         window.addEventListener("mousemove", function (args) {
             mouse.position.x = args.clientX;
             mouse.position.y = args.clientY;
@@ -432,7 +644,6 @@ $(document).ready(function () {
             }
         });
 
-    	/// <summary>Removes all units that with health < 1</summary>
         var removeUnits = function () {
             var toBeRemoved = [];
             var maximumOffset = 0;
@@ -444,15 +655,15 @@ $(document).ready(function () {
                     units[i].die();
                 }
 
-                //var isOutOfBounds =
-                //    units[i].x + units[i].width + maximumOffset < 0 ||
-                //    units[i].x - maximumOffset > canvas.width ||
-                //    units[i].y + units[i].height + maximumOffset < 0 ||
-                //    units[i].y - maximumOffset > canvas.height
-                //if (isOutOfBounds) {
-                //    units[i].die();
-                //    toBeRemoved.push(units[i].id);
-                //}
+                var isOutOfBounds =
+                    units[i].x + units[i].width + maximumOffset < 0 ||
+                    units[i].x - maximumOffset > canvas.width ||
+                    units[i].y + units[i].height + maximumOffset < 0 ||
+                    units[i].y - maximumOffset > canvas.height
+                if (isOutOfBounds) {
+                    units[i].die();
+                    toBeRemoved.push(units[i].id);
+                }
             }
 
             for (var i in toBeRemoved) {
@@ -460,14 +671,11 @@ $(document).ready(function () {
             }
         };
 
-		// StillPlaying shows whether the game isn't over, isPaused shows whether... well if the game is paused.
         var stillPlaying = true;
         var isPaused = true;
-		// Increment this counter for every update call.
         var updateCounter = 0;
-
         var update = function () {
-            //<!--KEYBINDINGS-->
+            
             for (var i in modules) {
                 if (modules[i].update) {
                     modules[i].update();
@@ -548,7 +756,7 @@ $(document).ready(function () {
             updateCounter = 0;
         };
 
-    	/// <summary>Runs the game from the start. (resets it if needed)</summary>
+		// Runs the game
         var start = function () {
 			// If the game runs for the first time, save its state
             if (startState.isEmpty) {

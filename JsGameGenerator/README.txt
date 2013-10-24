@@ -6,7 +6,7 @@ Abstract:
 1. The generator uses a simple data model to produce the javascript code of the game. This data model is the GameModel class, which contains several other abstractions - 
 the game's name and background, a list of units, modules and so on.
 
-2. The main method is JsGenerator.GenerateGameCode. It carefully assembles the whole program.
+2. The main method is JsGenerator.GenerateGameCode. It assembles the whole program.
 
 3. The Generator depends on two javascript files:
 	- JsCode/Extensions.js - contains utility methods (String.format for example), OOP basics, bounding figure math.

@@ -5,22 +5,25 @@ using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using GameMaker.ModelStructure;
 
 namespace GameMaker.WebApp.Hubs
 {
 	public class MainHub : Hub
 	{
+		// TODO: TEST IF COMPRESSING ACTUALLY DOESNT BREAK ANYTHING!
 		public string GenerateGame(string json)
         {
-            var code = GenerateGameCode(json);
-            var path = PathFinder.GetGameFilePath();
+            string code = GenerateGameCode(json);
+            string path = PathFinder.GetGameFilePath();
+			
             File.WriteAllText(Path.Combine(Application.RootPath, path), code);
 			return path;
 		}
 
         public string GenerateGameArchive(string json)
         {
-            var code = GenerateGameCode(json);
+            string code = GenerateGameCode(json);
             using (var archive = new ZipFile())
             {
 				//REVIEW: create a requirements table (low priority)

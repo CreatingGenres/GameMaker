@@ -5932,6 +5932,7 @@
       <param name="routeCollection">A collection of routes.</param>
       <exception cref="T:System.ArgumentNullException">The <paramref name="requestContext" /> or the <paramref name="routeCollection" /> parameter is null.</exception>
     </member>
+    <member name="M:System.Web.Mvc.UrlHelper.Action"></member>
     <member name="M:System.Web.Mvc.UrlHelper.Action(System.String)">
       <summary>Generates a fully qualified URL to an action method by using the specified action name.</summary>
       <returns>The fully qualified URL to an action method.</returns>

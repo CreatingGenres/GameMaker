@@ -408,15 +408,7 @@
       <summary>Gets a value that indicates whether the <see cref="T:System.Web.Helpers.WebGrid" /> instance supports sorting.</summary>
       <returns>true if the instance supports sorting; otherwise, false.</returns>
     </member>
-    <member name="M:System.Web.Helpers.WebGrid.Column(System.String,System.String,System.Func`2,System.Boolean,System.Object)">
-      <summary>Creates a new <see cref="T:System.Web.Helpers.WebGridColumn" /> instance.</summary>
-      <returns>The new column.</returns>
-      <param name="columnName">The name of the data column to associate with the <see cref="T:System.Web.Helpers.WebGridColumn" /> instance.</param>
-      <param name="header">The text that is rendered in the header of the HTML table column that is associated with the <see cref="T:System.Web.Helpers.WebGridColumn" /> instance.</param>
-      <param name="format">The function that is used to format the data values that are associated with the <see cref="T:System.Web.Helpers.WebGridColumn" /> instance.</param>
-      <param name="style">A string that specifies the name of the CSS class that is used to style the HTML table cells that are associated with the <see cref="T:System.Web.Helpers.WebGridColumn" /> instance.</param>
-      <param name="canSort">true to enable sorting in the <see cref="T:System.Web.Helpers.WebGrid" /> instance by the data values that are associated with the <see cref="T:System.Web.Helpers.WebGridColumn" /> instance; otherwise, false. The default is true.</param>
-    </member>
+    <member name="M:System.Web.Helpers.WebGrid.Column(System.String,System.String,System.Func{System.Object,System.Object},System.String,System.Boolean)"></member>
     <member name="P:System.Web.Helpers.WebGrid.ColumnNames">
       <summary>Gets a collection that contains the name of each data column that is bound to the <see cref="T:System.Web.Helpers.WebGrid" /> instance.</summary>
       <returns>The collection of data column names.</returns>
@@ -535,24 +527,7 @@
       <summary>Gets the full name of the query-string field that is used to specify the name of the data column that the <see cref="T:System.Web.Helpers.WebGrid" /> instance is sorted by.</summary>
       <returns>The full name of the query-string field that is used to specify the name of the data column that the grid is sorted by.</returns>
     </member>
-    <member name="M:System.Web.Helpers.WebGrid.Table(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String,System.Collections.Generic.IEnumerable{System.Web.Helpers.WebGridColumn},System.Collections.Generic.IEnumerable{System.String},System.Func`2,System.Boolean)">
-      <summary>Returns the HTML markup that is used to render the <see cref="T:System.Web.Helpers.WebGrid" /> instance.</summary>
-      <returns>The HTML markup that represents the fully-populated <see cref="T:System.Web.Helpers.WebGrid" /> instance.</returns>
-      <param name="tableStyle">The name of the CSS class that is used to style the whole table.</param>
-      <param name="headerStyle">The name of the CSS class that is used to style the table header.</param>
-      <param name="footerStyle">The name of the CSS class that is used to style the table footer.</param>
-      <param name="rowStyle">The name of the CSS class that is used to style each table row.</param>
-      <param name="alternatingRowStyle">The name of the CSS class that is used to style even-numbered table rows.</param>
-      <param name="selectedRowStyle">The name of the CSS class that is used use to style the selected table row.</param>
-      <param name="caption">The table caption.</param>
-      <param name="displayHeader">true to display the table header; otherwise, false. The default is true.</param>
-      <param name="fillEmptyRows">true to insert additional rows in the last page when there are insufficient data items to fill the last page; otherwise, false. The default is false. Additional rows are populated using the text specified by the <paramref name="emptyRowCellValue" /> parameter.</param>
-      <param name="emptyRowCellValue">The text that is used to populate additional rows in the last page when there are insufficient data items to fill the last page. The <paramref name="fillEmptyRows" /> parameter must be set to true to display these additional rows.</param>
-      <param name="columns">A collection of <see cref="T:System.Web.Helpers.WebGridColumn" /> instances that specify how each column is displayed. This includes which data column is associated with each grid column, and how to format the data values that each grid column contains.</param>
-      <param name="exclusions">A collection that contains the names of the data columns to exclude when the grid auto-populates columns.</param>
-      <param name="footer">A function that returns the HTML markup that is used to render the table footer.</param>
-      <param name="htmlAttributes">An object that represents a collection of attributes (names and values) to set for the HTML table element that represents the <see cref="T:System.Web.Helpers.WebGrid" /> instance.</param>
-    </member>
+    <member name="M:System.Web.Helpers.WebGrid.Table(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String,System.Collections.Generic.IEnumerable{System.Web.Helpers.WebGridColumn},System.Collections.Generic.IEnumerable{System.String},System.Func{System.Object,System.Object},System.Object)"></member>
     <member name="P:System.Web.Helpers.WebGrid.TotalRowCount">
       <summary>Gets the total number of rows that the <see cref="T:System.Web.Helpers.WebGrid" /> instance contains.</summary>
       <returns>The total number of rows in the grid. This value includes all rows from every page, but does not include the additional rows inserted in the last page when there are insufficient data items to fill the last page.</returns>
