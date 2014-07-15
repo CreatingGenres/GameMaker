@@ -274,6 +274,7 @@
     </Content>
     <Content Include="Global.asax" />
     <Content Include="Data\data\model.json" />
+    <Content Include="Data\data\baseModel.js" />
     <Content Include="Data\fonts\iconFont.eot" />
     <Content Include="Data\fonts\iconFont.ttf" />
     <Content Include="Data\fonts\iconFont.woff" />
