@@ -257,7 +257,8 @@ function GameMakerViewModel(model, unitModules, gameModules, events, library) {
 
         var properties = [],
             type = object.$type().split(".");
-        type = type[type.length - 1].split(",")[0].toLowerCase();
+        // type = type[type.length - 1].split(",")[0].toLowerCase();
+        type = type[type.length - 1].split(",")[0];
         for (var i in object) {
             if (object.hasOwnProperty(i)) {
                 properties.push({ name: i, binding: object[i], type: window.baseModelTemplate[type][i] });
