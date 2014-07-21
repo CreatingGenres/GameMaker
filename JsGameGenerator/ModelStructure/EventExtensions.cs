@@ -47,7 +47,11 @@ namespace GameMaker.ModelStructure
 							else
 							{
 								// REVIEW: remove evals
-								eventsCode.AppendFormat("args['{0}'] == eval(\"{1}\") && ", requirement.Name, requirement.Value);
+                                // Consider undefined variables as true
+                                if (requirement.Value.Length == 0)
+                                    eventsCode.Append("true &&");
+                                else
+								    eventsCode.AppendFormat("args['{0}'] == eval(\"{1}\") && ", requirement.Name, requirement.Value);
 							}
 						}
 

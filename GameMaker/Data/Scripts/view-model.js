@@ -337,6 +337,18 @@ function GameMakerViewModel(model, unitModules, gameModules, events, library) {
     })();
 
     this.googleSearchResults = ko.observableArray();
+
+    this.getCleanModel = function getCleanModel() {
+        var model = ko.toJS(this.model);
+        for (var unit in model.units) {
+            for (var ev in model.units[unit].events) {
+                var event = model.units[unit].events[ev];
+                if (event.action.module.length == 0)
+                    delete event.action;
+            }
+        }
+        return JSON.stringify(model);
+    };
 }
 
 // Dynamically generated file from the server.

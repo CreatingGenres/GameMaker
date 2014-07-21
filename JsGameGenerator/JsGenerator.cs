@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Assembly = System.Reflection.Assembly;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -79,16 +80,14 @@ namespace GameMaker
 		{
 			var typeOfUnit = typeof(Unit);
 			var code = new StringBuilder();
-			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            var assembly = Assembly.GetExecutingAssembly();
+			foreach (Type type in assembly.GetTypes())
 			{
-				foreach (var type in assembly.GetTypes())
+				if (type.IsSubclassOf(typeOfUnit))
 				{
-					if (type.IsSubclassOf(typeOfUnit))
-					{
-						var constructor = PathFinder.ReadEmbeddedFile(type.Name + ".js");
-						code.AppendFormat("\tvar {0} = ", type.Name);
-						code.Append("(" + constructor + ")();\n");
-					}
+					var constructor = PathFinder.ReadEmbeddedFile(type.Name + ".js");
+					code.AppendFormat("\tvar {0} = ", type.Name);
+					code.Append("(" + constructor + ")();\n");
 				}
 			}
 			return code.ToString();

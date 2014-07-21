@@ -29,7 +29,7 @@ $.connection.hub.start().done(function () {
     $("#play-button").click(function () {
         $("#loading").show();
         $("#create").hide();
-        hubby.server.generateGame(ko.toJSON(gameMakerViewModel.model))
+        hubby.server.generateGame(gameMakerViewModel.getCleanModel())
             .done(function (path) {
                 playDAHGAME(path);
             })
@@ -38,7 +38,7 @@ $.connection.hub.start().done(function () {
             });
     });
     $("#download-button").click(function () {
-        hubby.server.generateGameArchive(ko.toJSON(gameMakerViewModel.model))
+        hubby.server.generateGameArchive(gameMakerViewModel.getCleanModel())
             .done(function (path) {
             	window.location.href = path;
             })

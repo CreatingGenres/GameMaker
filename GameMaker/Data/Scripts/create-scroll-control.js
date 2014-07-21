@@ -11,8 +11,6 @@
 		var currentActive = Math.abs(parseInt((parseInt(container.css("left")) || 0) / 1250));
 		triggers.removeClass("active");
 		$(triggers[currentActive]).addClass("active");
-
-		console.log(currentActive);
 	}
 
 	//When the mouse is scrolled over the container, move it accordingly.

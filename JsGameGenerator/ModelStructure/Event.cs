@@ -44,7 +44,13 @@ namespace GameMaker.ModelStructure
 
 		public string GenerateCode()
 		{
-			string formatted = string.Format(@"new Object({{ target: '{0}', module: '{1}', args: {2}}})", this.Target, this.Module, this.Arguments.FormatParams());
+            if (this.Target == null || this.Module == null)
+                return "undefined";
+
+			string formatted = string.Format(@"new Object({{ target: '{0}', module: '{1}', args: {2}}})", 
+                                        this.Target, 
+                                        this.Module, 
+                                        this.Arguments.FormatParams());
 			return formatted;
 		}
 	}

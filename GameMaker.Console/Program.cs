@@ -39,9 +39,9 @@ namespace GameMaker
 				SerializeAsJson(modules, Path.Combine(rootPath, @"Xml\modules.json"));
 				SerializeAsJson(events, Path.Combine(rootPath, @"Xml\events.json"));
 
-				var models = (from thing in Assembly.GetAssembly(typeof(Unit)).GetTypes()
-							 where thing.IsClass && thing.Namespace == "GameMaker.Model_Structure.Units"
-							 select thing).ToList();
+				var models = (from type in Assembly.GetAssembly(typeof(Unit)).GetTypes()
+							 where type.IsClass && type.Namespace == "GameMaker.Model_Structure.Units"
+							 select type).ToList();
 				var attributeType = typeof(GameMaker.ModelStructure.EditorFieldAttribute);
 
 				var data = GameMaker.ModelStructure.Helper.GetTypeAttributesData(models, attributeType,
