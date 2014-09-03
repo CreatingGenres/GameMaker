@@ -96,6 +96,10 @@ function clone(obj) {
 	}
 })()
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 var Helper = {
 	hasProperties: function (obj) {
 		for (var i in obj) {

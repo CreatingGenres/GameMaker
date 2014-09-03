@@ -225,8 +225,11 @@
                 <div
                         class="tile half half-vertical resizable bg-color-blue fg-color-white">
     <!--                    data-bind="text: name, click: dialogs.launchModuleEditDialog.bind($data, $parent.target)" >-->
-				    <div class="tile-content" data-bind="text: name, click: dialogs.beginEdit.bind($data, 'module')"
+				    <div class="tile-content" data-bind="click: dialogs.beginEdit.bind($data, 'module')"
 					    data-trigger="popup" data-popup="module-edit-popup">
+
+                        <span data-bind="text: name"></span>
+                        <div class="delete-icon icon-cancel-2" data-bind="click: $root.removeModule"></div>
 				    </div>
                 </div>
             </div>

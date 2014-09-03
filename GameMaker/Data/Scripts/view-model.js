@@ -229,6 +229,12 @@ function GameMakerViewModel(model, unitModules, gameModules, events, library) {
     	GM.UndoManager.addAction(new GM.UndoManager.ViewModelAction(removeModule, addModule, copy, data.editedEntity));
     };
 
+    this.removeModule = function (module, eventArgs) {
+        removeModule.call(self.selectedUnit(), module);
+
+        GM.UndoManager.addAction(new GM.UndoManager.ViewModelAction(addModule, removeModule, module, self.selectedUnit()));
+    }
+
     function removeModule(module) {
         this.modules.remove(module);
     }
@@ -261,7 +267,10 @@ function GameMakerViewModel(model, unitModules, gameModules, events, library) {
         type = type[type.length - 1].split(",")[0];
         for (var i in object) {
             if (object.hasOwnProperty(i)) {
-                properties.push({ name: i, binding: object[i], type: window.baseModelTemplate[type][i] });
+                var propertyType = window.baseModelTemplate[type][capitalizeFirstLetter(i)];
+                
+                if (propertyType)
+                    properties.push({ name: i, binding: object[i], type: propertyType.toLowerCase() });
             }
         }
 

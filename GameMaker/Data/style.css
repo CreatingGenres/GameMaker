@@ -283,3 +283,11 @@ input[type=text].success:focus {
 .error-icon {
     color: red !important;
 }
+
+.delete-icon {
+    position: absolute !important;
+    right: 4px;
+    top: 4px;
+    width: 18px;
+    height: 18px;
+}
