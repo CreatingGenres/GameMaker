@@ -90,7 +90,7 @@
 						var mousy = $.extend(true, {}, mouse);
 						setTimeout(function() {
 							var unitGeneratorParams = coordinates;
-							unitGeneratorParams.id = eval(data.ammo) + "";
+							unitGeneratorParams.id = data.ammo;
 							modules['unit-generator'].generate(unitGeneratorParams, mousy);
 						}, timeout);
 					}

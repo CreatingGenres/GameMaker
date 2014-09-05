@@ -98,7 +98,7 @@
 
 						if (new Date() - this.last &gt; eval(this.data.interval)) {
 							var params = coordinates;
-							params.id = eval(this.data.unit) + "";
+							params.id = this.data.unit;
 							modules['unit-generator'].generate(params);
 							this.last = new Date();
 						}

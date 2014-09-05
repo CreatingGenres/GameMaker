@@ -100,7 +100,7 @@ namespace GameMaker.WebApp.Hubs
 		{
 			foreach (var replacement in ReplacementTable)
 			{
-				json = Regex.Replace(json, replacement.Key, replacement.Value, RegexOptions.IgnoreCase);
+				json = Regex.Replace(json, string.Format(@"\b{0}\b", replacement.Key), replacement.Value, RegexOptions.IgnoreCase);
 			}
 			var model = JsonConvert.DeserializeObject<GameModel>(json);
 			return model;

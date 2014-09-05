@@ -74,23 +74,24 @@ function GameMakerViewModel(model, unitModules, gameModules, events, library) {
         });
     }
 
-    this.deleteSelectedUnit = function () {
+    this.deleteUnit = function (unit) {
         //can't delete basic unit, basic is always the first unit
-        if (self.selectedUnit() == self.model.units()[0])
+        if (unit == self.model.units()[0])
             return;
 
         GM.UndoManager.addAction(new GM.UndoManager.ViewModelAction(addUnit, deleteUnit, unit, self));
 
-        deleteUnit(self.selectedUnit());
+        deleteUnit(unit);
 
         self.selectedUnit(emptyUnit);
     };
 
-    this.cloneProto = function () {
-        var clone = ko.mapping.fromJS(ko.toJS(self.selectedUnit()));
+    this.cloneProto = function (unit) {
+        var clone = ko.mapping.fromJS(ko.toJS(unit));
         clone.isPrototype(true);
+        clone.id("_" + clone.id())
         self.model.units.push(clone);
-        self.selectedUnit(self.selectedUnit());
+        self.selectedUnit(unit);
     };
 
     this.changeBindingsArgs = function () {
@@ -112,8 +113,8 @@ function GameMakerViewModel(model, unitModules, gameModules, events, library) {
         //TODO: figure out why the next two lines were there
         //PS: it works without them. -Traiko
 
-        //dialogs.beginEdit.call(binding);
-        //self.changeBindingsArgs();
+        dialogs.beginEdit.call(binding);
+        self.changeBindingsArgs();
     }
 
     this.addBinding = function () {

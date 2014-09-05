@@ -212,8 +212,8 @@
                                     <button class="meduim active"
                                         data-bind="attr: { 'data-id': id }, click: window.onUnitButtonClick.bind($data)">
                                             
-                                        <i class="icon-cancel place-left" data-bind="if: isPrototype()"></i>
-                                        <i class="icon-user place-left" data-bind="ifnot: isPrototype()"></i>
+                                        <i class="icon-cancel place-left" data-bind="if: isPrototype(), click: $root.deleteUnit.bind($root, $data)"></i>
+                                        <i class="icon-user place-left" data-bind="ifnot: isPrototype(), click: $root.cloneProto.bind($root, $data)"></i>
 
                                         <span data-bind="text: id"></span>
                                     </button>
